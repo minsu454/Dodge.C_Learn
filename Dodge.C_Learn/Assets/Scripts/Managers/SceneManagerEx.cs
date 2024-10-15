@@ -8,7 +8,7 @@ public class SceneManagerEx : ICreate
 
     public void Init()
     {
-
+        
     }
 
     /// <summary>

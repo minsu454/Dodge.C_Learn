@@ -17,5 +17,9 @@ public class GameManager : MonoBehaviour
 
         anim.runtimeAnimatorController = playerClass.Animator;
         spriteRenderer.sprite = playerClass.Sprite;
+
+        SpawnSO spawn = Managers.Stage.GetSpawn(1);
+        Debug.Log($"{spawn.count} {spawn.spawnTime}");
+
     }
 }
