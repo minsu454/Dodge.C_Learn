@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PopupManager : MonoBehaviour
+public class PopupManager : MonoBehaviour, ICreate
 {
     private readonly Dictionary<PopupType, GameObject> popupContainerDic = new Dictionary<PopupType, GameObject>();     //팝업 타입 별로 프리팹 저장하는 dic
     private readonly Stack<GameObject> depth = new Stack<GameObject>();                                                 //팝업 뎁스

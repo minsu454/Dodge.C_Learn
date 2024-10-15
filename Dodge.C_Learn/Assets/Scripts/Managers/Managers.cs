@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,9 +16,11 @@ public class Managers : MonoBehaviour
     #region No MonoBehaviour
     public static EventManager Event { get { return instance.eventManager; } }
     public static SceneManagerEx Scene { get { return instance.sceneManager; } }
+    public static CharacterContainer PlayerClass { get { return instance.playerClassManager; } }
 
-    private readonly EventManager eventManager = new EventManager();                        //이벤트매니저
     private readonly SceneManagerEx sceneManager = new SceneManagerEx();                    //씬매니저확장
+    private readonly EventManager eventManager = new EventManager();                        //이벤트매니저
+    private readonly CharacterContainer playerClassManager = new CharacterContainer();
     #endregion
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -28,8 +31,9 @@ public class Managers : MonoBehaviour
         DontDestroyOnLoad(managers);
 
         instance.popupManager = instance.CreateManager<PopupManager>("PopupManager", managers.transform);
-        
+
         Popup.Init();
+        PlayerClass.Init();
     }
 
     /// <summary>

@@ -2,9 +2,14 @@ using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class SceneManagerEx
+public class SceneManagerEx : ICreate
 {
     private readonly Dictionary<SceneType, string> typeToStringDic = new Dictionary<SceneType, string>();
+
+    public void Init()
+    {
+
+    }
 
     /// <summary>
     /// 씬 로드 함수
