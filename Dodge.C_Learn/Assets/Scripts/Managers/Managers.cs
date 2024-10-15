@@ -1,3 +1,4 @@
+using System.Runtime.Serialization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,7 +28,7 @@ public class Managers : MonoBehaviour
         DontDestroyOnLoad(managers);
 
         instance.popupManager = instance.CreateManager<PopupManager>("PopupManager", managers.transform);
-
+        
         Popup.Init();
     }
 
