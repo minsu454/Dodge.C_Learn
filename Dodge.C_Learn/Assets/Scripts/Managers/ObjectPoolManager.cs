@@ -11,7 +11,14 @@ public class ObjectPoolManager : MonoBehaviour
 
     public static ObjectPoolManager Instance
     {
-        get;
+        get
+        {
+            if (_instance == null)
+            {
+                Debug.LogError("");
+            }
+            return _instance;
+        }
     }
 
     private void Awake()
@@ -25,7 +32,7 @@ public class ObjectPoolManager : MonoBehaviour
 
     private void PoolSetting()
     {
-        for(int i = 0; i< objectPrefabs.Length; i++)
+        for (int i = 0; i < objectPrefabs.Length; i++)
         {
             ObjectCase objCase = objectPrefabs[i];
             InitializePool(objCase.Type, objCase.GO, objCase.Count);
@@ -42,6 +49,13 @@ public class ObjectPoolManager : MonoBehaviour
         return objectContainer.GetObject(key);
     }
 
+    public GameObject GetObject(ObjectType key, Transform transform, Vector3 vec)
+    {
+        GameObject GO = objectContainer.GetObject(key);
+        GO.transform.position = transform.position + vec;
+        GO.transform.rotation = transform.rotation;
+        return GO;
+    }
     public void ReturnObject(ObjectType key, GameObject obj)
     {
         objectContainer.ReturnObject(key, obj);
