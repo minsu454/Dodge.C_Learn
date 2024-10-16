@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,11 @@ using UnityEngine.InputSystem;
 
 public class MapController : MonoBehaviour
 {
-    public SpawnPoint spawnPoint { get; private set; }
+    private SpawnPoint spawnPoint;
     private Camera mainCamera;
+
+    public Action<SpawnPoint> OnMove;
+    private bool isInputMouseScroll = false;
 
     private float scrollLimit = 10;
 
@@ -15,11 +19,20 @@ public class MapController : MonoBehaviour
         mainCamera = Camera.main;
     }
 
+    private void Update()
+    {
+        if (!isInputMouseScroll)
+            return;
+
+        OnMove?.Invoke(spawnPoint);
+    }
+
     public void OnClick(InputValue value)
     {
         if (!value.isPressed)
         {
             spawnPoint?.FollowMouse(false);
+            isInputMouseScroll = false;
             return;
         }
 
@@ -34,6 +47,8 @@ public class MapController : MonoBehaviour
         {
             spawnPoint?.SetOutline(false);
         }
+
+        isInputMouseScroll = true;
 
         spawnPoint = point;
         spawnPoint.SetOutline(true);

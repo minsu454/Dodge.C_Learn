@@ -12,7 +12,7 @@ public class MapGenerator : MonoBehaviour
     public GameObject pointPrefab;
     private List<GameObject> pointPrefabList = new List<GameObject>();
 
-    private MapController controller;
+    public MapController controller { get; private set; }
 
     private void Awake()
     {
@@ -46,10 +46,5 @@ public class MapGenerator : MonoBehaviour
     private void OnDestroy()
     {
         Instance = null;
-    }
-
-    public SpawnPoint ChoiceSpawnPoint()
-    {
-        return controller.spawnPoint;
     }
 }
