@@ -4,22 +4,27 @@ using UnityEngine;
 
 public class ObjectPoolManager : MonoBehaviour
 {
+    private static ObjectPoolManager _instance;
     private ObjectContainer objectContainer;
-    public GameObject temp;
+
+    public static ObjectPoolManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                GameObject obj = new GameObject("ObjectPoolManager");
+                _instance = obj.AddComponent<ObjectPoolManager>();
+            }
+            return _instance;
+        }
+    }
 
     private void Awake()
     {
-        objectContainer = gameObject.AddComponent<ObjectContainer>();
-        //objectContainer = new ObjectContainer();
-        InitializePool(ObjectType.Object, temp, 5);
-    }
+        _instance = this;
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            GetObject(ObjectType.Object);
-        }
+        objectContainer = gameObject.AddComponent<ObjectContainer>();
     }
 
     public void InitializePool(ObjectType key, GameObject prefab, int count)
