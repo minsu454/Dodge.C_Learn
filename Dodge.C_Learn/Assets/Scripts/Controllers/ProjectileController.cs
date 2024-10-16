@@ -22,4 +22,12 @@ public class ProjectileController : MonoBehaviour
         Vector2 direction = Random.insideUnitCircle.normalized;
         rigidbody2D.velocity = direction * 0.2f;
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Enemy") || collision.CompareTag("Boarder"))
+        {
+            Destroy(gameObject);
+            //gameObject.SetActive(false);
+        }
+    }
 }

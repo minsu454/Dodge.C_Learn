@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 /// Object타입
 /// </summary>
 public enum ObjectType

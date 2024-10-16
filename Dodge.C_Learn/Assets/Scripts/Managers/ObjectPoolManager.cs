@@ -1,24 +1,34 @@
-﻿using System;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class ObjectPoolManager : MonoBehaviour
 {
+    private static ObjectPoolManager _instance;
     private ObjectContainer objectContainer;
-    public GameObject temp;
+
+    [Header("Prefabs")]
+    [SerializeField] ObjectCase[] objectPrefabs;
+
+    public static ObjectPoolManager Instance
+    {
+        get;
+    }
 
     private void Awake()
     {
+        _instance = this;
+
         objectContainer = gameObject.AddComponent<ObjectContainer>();
-        //objectContainer = new ObjectContainer();
-        InitializePool(ObjectType.Object, temp, 5);
+
+        PoolSetting();
     }
 
-    private void Update()
+    private void PoolSetting()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        for(int i = 0; i< objectPrefabs.Length; i++)
         {
-            GetObject(ObjectType.Object);
+            ObjectCase objCase = objectPrefabs[i];
+            InitializePool(objCase.Type, objCase.GO, objCase.Count);
         }
     }
 
