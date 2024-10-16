@@ -6,7 +6,8 @@ public class ProjectileController : MonoBehaviour
 {
     private Rigidbody2D rigidbody2D;
     float speed = 0.5f;
-
+    [SerializeField] ObjectType OT;
+    public float Damage;
 
     private void Awake()
     {
@@ -26,8 +27,7 @@ public class ProjectileController : MonoBehaviour
     {
         if(collision.CompareTag("Enemy") || collision.CompareTag("Boarder"))
         {
-            Destroy(gameObject);
-            //gameObject.SetActive(false);
+            ObjectPoolManager.Instance.ReturnObject(OT, gameObject);
         }
     }
 }
