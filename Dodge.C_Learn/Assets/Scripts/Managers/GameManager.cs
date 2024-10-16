@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public GameObject player;
     public PlayerType playerType;
-    public Text startTimeText;
-    public float startTime = 0f;
+    
+    
 
     private void Start()
     {
@@ -24,10 +24,8 @@ public class GameManager : MonoBehaviour
         SpawnSO spawn = Managers.Stage.GetSpawn(1);
         Debug.Log($"{spawn.count} {spawn.spawnTime}");
 
+        Managers.Popup.CreatePopup(PopupType.InGamePopup);
+
     }
-    private void Update()
-    {
-        startTime += Time.deltaTime;
-        startTimeText.text = startTime.ToString("N0");
-    }
+    
 }
