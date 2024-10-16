@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        var playerClass = Managers.PlayerClass.ReturnAll(playerType);
+        var playerClass = Managers.Character.ReturnAll(playerType);
 
         Animator anim = player.GetComponentInChildren<Animator>();
         SpriteRenderer spriteRenderer =  player.GetComponentInChildren<SpriteRenderer>();
