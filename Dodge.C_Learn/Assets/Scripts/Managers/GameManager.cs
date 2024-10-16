@@ -10,12 +10,16 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        var playerClass = Managers.PlayerClass.ReturnAll(playerType);
+        var playerClass = Managers.Character.ReturnAll(playerType);
 
         Animator anim = player.GetComponentInChildren<Animator>();
         SpriteRenderer spriteRenderer =  player.GetComponentInChildren<SpriteRenderer>();
 
         anim.runtimeAnimatorController = playerClass.Animator;
         spriteRenderer.sprite = playerClass.Sprite;
+
+        SpawnSO spawn = Managers.Stage.GetSpawn(1);
+        Debug.Log($"{spawn.count} {spawn.spawnTime}");
+
     }
 }
