@@ -30,7 +30,7 @@ public class Spawner : MonoBehaviour
 
     private void Spawn()
     {
-        GameObject enemy = ObjectPoolManager.Instance.GetObject(ObjectType.Projectile);
+        GameObject enemy = ObjectPoolManager.Instance.GetObject(ObjectType.ProjectileA);
         enemy.transform.position = spawnPoint[UnityEngine.Random.Range(1, spawnPoint.Length)].position;
     }
 
