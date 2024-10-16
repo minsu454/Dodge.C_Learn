@@ -10,11 +10,8 @@ public class Managers : MonoBehaviour
 
     #region MonoBehaviour
     public static PopupManager Popup { get { return instance.popupManager; } }
-    //public static ObjectPoolManager ObjectPool { get { return instance.objectPoolManager; } }
 
     private PopupManager popupManager;                                                      //팝업매니저
-    //private ObjectPoolManager objectPoolManager;                                            //오브젝트풀 매니저
-    //private readonly ObjectContainer objectContainer;                                       //오브젝트풀 컨테이너
     #endregion
 
     #region No MonoBehaviour
@@ -26,7 +23,7 @@ public class Managers : MonoBehaviour
     #endregion
 
     #region Container
-    public static CharacterContainer PlayerClass { get { return instance.characterContainer; } }
+    public static CharacterContainer Character { get { return instance.characterContainer; } }
     public static StageContainer Stage { get { return instance.stageContainer; } }
 
     private readonly CharacterContainer characterContainer = new CharacterContainer();
@@ -43,7 +40,7 @@ public class Managers : MonoBehaviour
         instance.popupManager = instance.CreateManager<PopupManager>("PopupManager", managers.transform);
 
         Popup.Init();
-        PlayerClass.Init();
+        Character.Init();
         Stage.Init();
     }
 
