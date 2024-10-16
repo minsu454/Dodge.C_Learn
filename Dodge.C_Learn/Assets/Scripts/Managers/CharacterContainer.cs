@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using UnityEngine;
 
-public class CharacterContainer : ICreate
+public class CharacterContainer : IContainer
 {
     private readonly Dictionary<PlayerType, Character> playerClassDic = new Dictionary<PlayerType, Character>();
 
