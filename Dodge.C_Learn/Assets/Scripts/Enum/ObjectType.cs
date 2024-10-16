@@ -5,4 +5,6 @@ public enum ObjectType
 {
     Object = 0,
     Effect,
+    ProjectileA,
+    ProjectileB
 }

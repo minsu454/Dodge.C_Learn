@@ -3,5 +3,5 @@
 /// </summary>
 public enum PopupType
 {
-    MapEditorPopup,
+    MapEditorPopup = 0,
 }
