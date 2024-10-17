@@ -7,7 +7,7 @@ public class ProjectileController : MonoBehaviour
     private Rigidbody2D rigidbody2D;
     float speed = 0.5f;
     [SerializeField] ObjectType OT;
-    public float Damage;
+    public int Damage;
 
     private void Awake()
     {
@@ -25,9 +25,19 @@ public class ProjectileController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Enemy") || collision.CompareTag("Boarder"))
+        if (OT == ObjectType.EnemyProjectile)
         {
-            ObjectPoolManager.Instance.ReturnObject(OT, gameObject);
+            if (collision.CompareTag("Player") || collision.CompareTag("Boarder"))
+            {
+                ObjectPoolManager.Instance.ReturnObject(OT, gameObject);
+            }
+        }
+        else 
+        {
+            if (collision.CompareTag("Enemy") || collision.CompareTag("Boarder"))
+            {
+                ObjectPoolManager.Instance.ReturnObject(OT, gameObject);
+            }
         }
     }
 }
