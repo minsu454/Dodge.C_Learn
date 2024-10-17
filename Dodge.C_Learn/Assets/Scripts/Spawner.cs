@@ -1,7 +1,6 @@
 
 using System;
 using UnityEngine;
-using UnityEngine.UIElements;
 using static UnityEngine.EventSystems.EventTrigger;
 
 
@@ -34,7 +33,7 @@ public class Spawner : MonoBehaviour
 
     private void Spawn()
     {
-        GameObject enemy = ObjectPoolManager.Instance.GetObject(ObjectType.EnemyProjectile);
+        GameObject enemy = ObjectPoolManager.Instance.GetObject(ObjectType.Object);
         enemy.transform.position = spawnPoint[UnityEngine.Random.Range(0, spawnPoint.Length)].position;
         EnemyMovePoint(enemy.GetComponent<EnemyController>(), Vector2.zero );         
     }
@@ -48,11 +47,8 @@ public class Spawner : MonoBehaviour
     private void SpawnProjectile()
     {
         GameObject projectile = ObjectPoolManager.Instance.GetObject(ObjectType.ProjectileA);
-        ProjectileController controller = projectile.GetComponent<ProjectileController>();
         projectile.transform.position = spawnPoint[UnityEngine.Random.Range(0, spawnPoint.Length)].position;
-        //화면에 내에 있는 랜덤값 shoot
-        controller.RandomShoot();
-        //MovePoint(projectile.GetComponent<ProjectileController>(), Vector2.zero);
+        MovePoint(projectile.GetComponent<ProjectileController>(), Vector2.zero);
     }
 
     private void MovePoint(ProjectileController projectile, Vector2 position)
@@ -60,6 +56,8 @@ public class Spawner : MonoBehaviour
         projectile.transform.position = movePoint[UnityEngine.Random.Range(0, movePoint.Length)].position;
         projectile.transform.position = Vector2.MoveTowards(projectile.transform.position, position, 0.2f);
     }
+
+    // 방향 
 
 
 
