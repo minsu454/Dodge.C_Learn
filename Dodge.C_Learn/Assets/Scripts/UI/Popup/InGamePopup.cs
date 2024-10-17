@@ -14,6 +14,8 @@ public class InGamePopup : BasePopup
     }
     public void Pause()
     {       
-        BasePopup pausePopup = Managers.Popup.CreatePopup(PopupType.PausePopup);
+        BasePopup basePopup = Managers.Popup.CreatePopup(PopupType.PausePopup);
+        PausePopup pausePopup = basePopup as PausePopup;
+        pausePopup.SetNowtime(startTime);
     }
 }
