@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class StageContainer : IContainer
 {
-    private StageSO stageSO;
+    private TotalStageDataSO stageSO;
 
     public void Init()
     {
-        stageSO = Resources.Load<StageSO>($"Stage/StageSO");
+        stageSO = Resources.Load<TotalStageDataSO>($"Stage/StageSO");
     }
 
-    public SpawnSO GetSpawn(int stageNum)
+    public Patten GetSpawn(int stageNum)
     {
         stageNum--;
 
-        List<SpawnSO> spawnList = stageSO.spawnSOList;
+        List<Patten> spawnList = stageSO.spawnSOList;
 
         if (0 > stageNum || stageNum >= spawnList.Count)
         {

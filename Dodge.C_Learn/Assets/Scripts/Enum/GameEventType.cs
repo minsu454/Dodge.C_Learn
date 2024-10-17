@@ -3,5 +3,5 @@
 /// </summary>
 public enum GameEventType
 {
-    StopInputController = 0,
+    LockInput = 0,
 }

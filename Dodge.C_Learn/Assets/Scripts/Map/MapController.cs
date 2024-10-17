@@ -6,10 +6,12 @@ using UnityEngine.InputSystem;
 
 public class MapController : MonoBehaviour
 {
-    private SpawnPoint spawnPoint;
+    public SpawnPoint spawnPoint { get; set; }
     private Camera mainCamera;
 
-    public Action<SpawnPoint> OnMove;
+    private PlayerInput input;
+
+    public event Action<SpawnPoint> OnMove;
     private bool isInputMouseScroll = false;
 
     private float scrollLimit = 10;
@@ -17,6 +19,8 @@ public class MapController : MonoBehaviour
     private void Awake()
     {
         mainCamera = Camera.main;
+        input = GetComponent<PlayerInput>();
+        Managers.Event.Subscribe(GameEventType.LockInput, OnLockInput);
     }
 
     private void Update()
@@ -27,6 +31,18 @@ public class MapController : MonoBehaviour
         OnMove?.Invoke(spawnPoint);
     }
 
+    /// <summary>
+    /// Input을 잠구는 함수
+    /// </summary>
+    public void OnLockInput(object args)
+    {
+        bool isActive = (bool)args;
+        input.enabled = isActive;
+    }
+
+    /// <summary>
+    /// 클릭 버튼 action
+    /// </summary>
     public void OnClick(InputValue value)
     {
         if (!value.isPressed)
@@ -55,6 +71,9 @@ public class MapController : MonoBehaviour
         spawnPoint.FollowMouse(true);
     }
 
+    /// <summary>
+    /// 마우스 클릭방향으로 레이를 쏴서 spawnpoint가 있는지 체크하는 함수 
+    /// </summary>
     public bool IsMouseHit(out RaycastHit2D hit)
     {
         Vector2 vec = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
@@ -66,16 +85,20 @@ public class MapController : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// 삭제 버튼 action
+    /// </summary>
     public void OnDelete(InputValue value)
     {
         if (spawnPoint == null)
             return;
 
-        spawnPoint.SetOutline(false);
-        Destroy(spawnPoint.gameObject);
-        spawnPoint = null;
+        MapGenerator.Instance.Remove(spawnPoint);
     }
 
+    /// <summary>
+    /// 마우스 스크롤 action
+    /// </summary>
     public void OnMouseScrollY(InputValue value)
     {
         float v = value.Get<float>();

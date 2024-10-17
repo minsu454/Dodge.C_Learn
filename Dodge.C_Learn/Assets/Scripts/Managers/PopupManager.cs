@@ -91,4 +91,15 @@ public class PopupManager : MonoBehaviour, ICreate
             go.SetActive(true);
         }
     }
+
+    public bool ComparerLastDepth(GameObject go)
+    {
+        depth.TryPeek(out GameObject temp);
+
+        if (temp == null || temp != go)
+        {
+            return false;
+        }
+        return true;
+    }
 }
