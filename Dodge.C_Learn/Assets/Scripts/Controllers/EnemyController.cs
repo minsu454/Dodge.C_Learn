@@ -16,12 +16,14 @@ public class EnemyController : MonoBehaviour
     [SerializeField] ObjectType OT; 
     [SerializeField] EnemyType ET; 
 
-    public SpriteRenderer SR;
-    public Rigidbody2D RB;
+    SpriteRenderer SR;
+    Rigidbody2D RB;
 
     private void Awake()
     {
         health = maxHealth;
+        SR = GetComponent<SpriteRenderer>();
+        RB = GetComponent<Rigidbody2D>();
     }
     private void Update()
     {
