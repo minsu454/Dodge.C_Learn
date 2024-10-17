@@ -9,10 +9,6 @@ public class EnemyController : MonoBehaviour
     public float speed;
     public Sprite[] sprites;
 
-    float time = 0f;
-    public GameObject projectile;
-    public float firerate;
-
     [SerializeField] ObjectType OT; 
     [SerializeField] EnemyType ET; 
 
@@ -25,22 +21,6 @@ public class EnemyController : MonoBehaviour
         SR = GetComponent<SpriteRenderer>();
         RB = GetComponent<Rigidbody2D>();
     }
-    private void Update()
-    {
-        time += Time.deltaTime;
-        if (time >= firerate)
-        {
-            Shoot();
-            time = 0f;
-        }
-    }
-    void Shoot()
-    {
-        GameObject bullet = ObjectPoolManager.Instance.GetObject(ObjectType.EnemyProjectile, gameObject.transform, Vector3.zero);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.velocity = Vector2.down * 5f;
-    }
-
     void OnHit(int dmg)
     {
         health -= dmg;
