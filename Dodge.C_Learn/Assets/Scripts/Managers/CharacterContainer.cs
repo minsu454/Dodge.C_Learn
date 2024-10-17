@@ -37,7 +37,7 @@ public class CharacterContainer : IContainer
             Debug.Log($"Is Not Find PlayerClassDic {type}");
             return null;
         }
-
+        
         return result.Sprite;
     }
 
