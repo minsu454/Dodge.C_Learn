@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e00bb1ef8ff9981408e99b05bce13fdf, type: 3}
   m_Name: StageSO
   m_EditorClassIdentifier: 
-  spawnSOList:
-  - {fileID: 11400000, guid: 6555b73fb45d38b4080f3f2f7d5afc1e, type: 2}
+  spawnSOList: []

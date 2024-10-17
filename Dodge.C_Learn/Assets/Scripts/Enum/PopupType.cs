@@ -4,6 +4,8 @@
 public enum PopupType
 {
     MapEditorPopup = 0,
-    InGamePopup,
+    SimpleFileBrowserPopup,
+
+    InGamePopup = 10,
     PausePopup
 }

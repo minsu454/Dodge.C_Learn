@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 
@@ -47,11 +44,17 @@ public class MapEditorPopup : BasePopup
 
     public void Save()
     {
-
+        CreateSimpleFileBrowserPopup().LoadCanvas("d");
     }
 
     public void Load()
     {
-        
+        CreateSimpleFileBrowserPopup().LoadCanvas();
+    }
+
+    public SimpleFileBrowserPopup CreateSimpleFileBrowserPopup()
+    {
+        BasePopup popup = Managers.Popup.CreatePopup(PopupType.SimpleFileBrowserPopup, false, false);
+        return popup as SimpleFileBrowserPopup;
     }
 }

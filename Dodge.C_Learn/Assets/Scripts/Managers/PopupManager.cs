@@ -52,7 +52,7 @@ public class PopupManager : MonoBehaviour, ICreate
     /// <summary>
     /// 팝업 생성 함수
     /// </summary>
-    public BasePopup CreatePopup(PopupType type, bool active = true)
+    public BasePopup CreatePopup(PopupType type, bool useMainCanvas = true, bool curPopupActive = true)
     {
         if (!popupContainerDic.TryGetValue(type, out GameObject popupGo))
         {
@@ -60,9 +60,9 @@ public class PopupManager : MonoBehaviour, ICreate
             return null;
         }
 
-        GameObject clone = Instantiate(popupGo, mainCanvas);
+        GameObject clone = Instantiate(popupGo, useMainCanvas ? mainCanvas : null);
 
-        if (depth.TryPeek(out GameObject go) && active)
+        if (depth.TryPeek(out GameObject go) && curPopupActive)
         {
             go.SetActive(false);
         }

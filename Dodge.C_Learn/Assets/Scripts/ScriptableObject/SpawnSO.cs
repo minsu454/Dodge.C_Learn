@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 [System.Serializable]
 [CreateAssetMenu(fileName = "SpawnSO", menuName = "SO/SpawnSO", order = 2)]

@@ -28,7 +28,7 @@ public class MapGenerator : MonoBehaviour
 
     public void SaveData()
     {
-
+        
     }
 
     public void CreatePoint()
