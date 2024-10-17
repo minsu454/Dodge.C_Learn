@@ -1,9 +1,8 @@
-using JetBrains.Annotations;
+
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using static UnityEngine.EventSystems.EventTrigger;
+
 
 public class Spawner : MonoBehaviour
 {
@@ -12,6 +11,8 @@ public class Spawner : MonoBehaviour
     float timer;
 
     float spawnTime = 1;
+
+    public Transform[] movePoint;
 
     private void Awake()
     {
@@ -25,6 +26,7 @@ public class Spawner : MonoBehaviour
         if (timer > spawnTime)
         {
             Spawn();
+            SpawnProjectile();
             timer = 0;
         }
     }
@@ -33,9 +35,31 @@ public class Spawner : MonoBehaviour
     {
         GameObject enemy = ObjectPoolManager.Instance.GetObject(ObjectType.Object);
         enemy.transform.position = spawnPoint[UnityEngine.Random.Range(0, spawnPoint.Length)].position;
-        EnemyController enemyController = GetComponent<EnemyController>();
-
+        EnemyMovePoint(enemy.GetComponent<EnemyController>(), Vector2.zero );         
     }
+
+    private void EnemyMovePoint(EnemyController enemy, Vector2 position)
+    {
+        enemy.transform.position = movePoint[UnityEngine.Random.Range(0, movePoint.Length)].position;
+        enemy.transform.position = Vector2.MoveTowards(enemy.transform.position, position, 0.2f);
+    }
+
+    private void SpawnProjectile()
+    {
+        GameObject projectile = ObjectPoolManager.Instance.GetObject(ObjectType.ProjectileA);
+        projectile.transform.position = spawnPoint[UnityEngine.Random.Range(0, spawnPoint.Length)].position;
+        MovePoint(projectile.GetComponent<ProjectileController>(), Vector2.zero);
+    }
+
+    private void MovePoint(ProjectileController projectile, Vector2 position)
+    {
+        projectile.transform.position = movePoint[UnityEngine.Random.Range(0, movePoint.Length)].position;
+        projectile.transform.position = Vector2.MoveTowards(projectile.transform.position, position, 0.2f);
+    }
+
+
+
+
 
 
 
@@ -57,9 +81,5 @@ public class Spawner : MonoBehaviour
 
 
 
-    //private void ShootTargetPoint()
-    //{
-    //    GameObject Projectile = ObjectPoolManager.Instance.GetObject(ObjectType.ProjectileB);
-    //    transform.position = Vector2.MoveTowards(Projectile.transform.position, targetPoint, ProjectileController.Speed);
-    //}
+
 }
