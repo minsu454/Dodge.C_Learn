@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -30,8 +31,35 @@ public class Spawner : MonoBehaviour
 
     private void Spawn()
     {
-        GameObject enemy = ObjectPoolManager.Instance.GetObject(ObjectType.ProjectileA);
-        enemy.transform.position = spawnPoint[UnityEngine.Random.Range(1, spawnPoint.Length)].position;
+        GameObject enemy = ObjectPoolManager.Instance.GetObject(ObjectType.Object);
+        enemy.transform.position = spawnPoint[UnityEngine.Random.Range(0, spawnPoint.Length)].position;
+        EnemyController enemyController = GetComponent<EnemyController>();
+
     }
 
+
+
+
+
+
+    //private void ProjectileFire()
+    //{
+    //    ProjectileController projectileController = GetComponent<ProjectileController>();
+
+
+    //    float minAngle = -45f;
+    //    float maxAngle = 45f;
+
+    //    float randomAngle = UnityEngine.Random.Range(minAngle, maxAngle);
+    //    float radians = randomAngle * Mathf.Deg2Rad;
+
+    //}
+
+
+
+    //private void ShootTargetPoint()
+    //{
+    //    GameObject Projectile = ObjectPoolManager.Instance.GetObject(ObjectType.ProjectileB);
+    //    transform.position = Vector2.MoveTowards(Projectile.transform.position, targetPoint, ProjectileController.Speed);
+    //}
 }
