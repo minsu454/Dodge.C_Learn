@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 
-public class StartManager : MonoBehaviour
+public class TitleManager : MonoBehaviour
 {
     private void Start()
     {      
