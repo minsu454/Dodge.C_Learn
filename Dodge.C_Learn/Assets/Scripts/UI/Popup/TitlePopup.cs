@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class TitlePopup : BasePopup
 {
-    public override void Init()
+    protected override void Init()
     {
         base.Init();
     }
-    public override void Close()
+    protected override void Close()
     {
         base.Close();
     }

@@ -5,22 +5,22 @@ using System.IO;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
 
-public class MapGenerator : MonoBehaviour
+public class PattenGenerator : MonoBehaviour
 {
-    public static MapGenerator Instance;
+    public static PattenGenerator Instance;
 
     [Header("Prefab")]
     public Transform pointTr;
     public GameObject pointPrefab;
     private List<SpawnPoint> pointPrefabList = new List<SpawnPoint>();
 
-    public MapController controller { get; private set; }
+    public PattenController controller { get; private set; }
 
     private void Awake()
     {
         Instance = this;
 
-        controller = GetComponent<MapController>();
+        controller = GetComponent<PattenController>();
     }
 
     private void Start()
@@ -31,9 +31,11 @@ public class MapGenerator : MonoBehaviour
     /// <summary>
     /// json으로 데이터 직렬화해주는 함수
     /// </summary>
-    public string DataToJson()
+    public string DataToJson(string name)
     {
-        Patten spawnSO = new Patten();
+        Pattern patten = new Pattern();
+        //patten
+        patten.name = name;
 
         foreach (var spawnPoint in pointPrefabList)
         {
@@ -41,10 +43,10 @@ public class MapGenerator : MonoBehaviour
             enemySpawnData.EnemyType = spawnPoint.enemyType;
             enemySpawnData.Pos = spawnPoint.transform.position;
 
-            spawnSO.spawnPointList.Add(enemySpawnData);
+            patten.spawnPointList.Add(enemySpawnData);
         }
 
-        string s = JsonUtility.ToJson(spawnSO);
+        string s = JsonUtility.ToJson(patten);
 
         return s;
     }
@@ -55,7 +57,7 @@ public class MapGenerator : MonoBehaviour
     public void LoadData(string path)
     {
         string json = File.ReadAllText(path);
-        Patten spawnSO = JsonUtility.FromJson<Patten>(json);
+        Pattern pattern = JsonUtility.FromJson<Pattern>(json);
 
         try
         {
@@ -66,7 +68,7 @@ public class MapGenerator : MonoBehaviour
 
             pointPrefabList.Clear();
 
-            foreach (var spawnPoint in spawnSO.spawnPointList)
+            foreach (var spawnPoint in pattern.spawnPointList)
             {
                 CreatePoint(spawnPoint);
             }

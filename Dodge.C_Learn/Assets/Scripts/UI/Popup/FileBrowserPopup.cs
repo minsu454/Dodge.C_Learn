@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class FileBrowserPopup : BaseLockPopup
 {
-    public override void Init()
+    protected override void Init()
     {
         base.Init();
 
@@ -16,7 +16,7 @@ public class FileBrowserPopup : BaseLockPopup
         FileBrowser.AddQuickLink("Users", Application.dataPath, null);
     }
 
-    private void OnDisable()
+    protected void OnDisable()
     {
         Close();
     }
