@@ -33,9 +33,15 @@ public class Spawner : MonoBehaviour
 
     private void Spawn()
     {
+<<<<<<< Updated upstream
         GameObject enemy = ObjectPoolManager.Instance.GetObject(ObjectType.Object);
         enemy.transform.position = spawnPoint[UnityEngine.Random.Range(0, spawnPoint.Length)].position;
         EnemyMovePoint(enemy.GetComponent<EnemyController>(), Vector2.zero );         
+=======
+        GameObject enemy = ObjectPoolManager.Instance.GetObject(ObjectType.ProjectileA);
+        enemy.transform.position = spawnPoint[UnityEngine.Random.Range(1, spawnPoint.Length)].position;
+        PlayerShooter playerShooter = new PlayerShooter();
+>>>>>>> Stashed changes
     }
 
     private void EnemyMovePoint(EnemyController enemy, Vector2 position)
