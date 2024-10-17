@@ -23,6 +23,9 @@ public class BasePopup : MonoBehaviour
     /// </summary>
     public virtual void Close()
     {
+        if (!Managers.Popup.ComparerLastDepth(gameObject))
+            return;
+        
         ClossEvent?.Invoke();
         Managers.Popup.Close();
     }

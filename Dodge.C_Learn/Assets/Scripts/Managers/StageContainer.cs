@@ -1,28 +1,28 @@
-using System;
-using System.Collections.Generic;
-using UnityEngine;
+//using System;
+//using System.Collections.Generic;
+//using UnityEngine;
 
-public class StageContainer : IContainer
-{
-    private StageSO stageSO;
+//public class StageContainer : IContainer
+//{
+//    private StageSO stageSO;
 
-    public void Init()
-    {
-        stageSO = Resources.Load<StageSO>($"Stage/StageSO");
-    }
+//    public void Init()
+//    {
+//        stageSO = Resources.Load<StageSO>($"Stage/StageSO");
+//    }
 
-    public SpawnSO GetSpawn(int stageNum)
-    {
-        stageNum--;
+//    ////public SpawnSO GetSpawn(int stageNum)
+//    //{
+//    //    stageNum--;
 
-        List<SpawnSO> spawnList = stageSO.spawnSOList;
+//        List<SpawnSO> spawnList = stageSO.spawnSOList;
 
-        if (0 > stageNum || stageNum >= spawnList.Count)
-        {
-            throw new IndexOutOfRangeException();
-        }
+//        if (0 > stageNum || stageNum >= spawnList.Count)
+//        {
+//            throw new IndexOutOfRangeException();
+//        }
 
-        return spawnList[stageNum];
-    }
-}
+//        return spawnList[stageNum];
+//    }
+//}
 

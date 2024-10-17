@@ -1,12 +1,13 @@
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class SceneManagerEx : ICreate
+public class SceneManagerEx : MonoBehaviour, ICreate
 {
     private readonly Dictionary<SceneType, string> typeToStringDic = new Dictionary<SceneType, string>();
 
-    public void Init()
+    public virtual void Init()
     {
         
     }

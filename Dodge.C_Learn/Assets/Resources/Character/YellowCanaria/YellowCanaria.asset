@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16e544db0b2193a44a2ed9dd695b2cd1, type: 3}
   m_Name: YellowCanaria
   m_EditorClassIdentifier: 
-  size: 9
-  delay: 10
-  power: 11
-  speed: 12
+  size: 0
+  delay: 0
+  power: 0
+  speed: 0
   target:
     serializedVersion: 2
     m_Bits: 0

@@ -5,11 +5,8 @@ using UnityEngine.UI;
 
 public class InGamePopup : BasePopup
 {
-    public GameObject pausePanel;
-    public Text startTimeText;
-    public Text nowTimeText;
+    public Text startTimeText;  
     public float startTime;
-    public float pauseTime;
     private void Update()
     {
         startTime += Time.deltaTime;
@@ -17,16 +14,8 @@ public class InGamePopup : BasePopup
     }
     public void Pause()
     {       
-        pauseTime = startTime;
-        nowTimeText.text = pauseTime.ToString("0");      
-        Time.timeScale = 0f;
-        pausePanel.SetActive(true);
-    }
-
-    public void Resume()
-    {
-        startTime = pauseTime;
-        Time.timeScale = 1f;
-        pausePanel.SetActive(false);
+        BasePopup basePopup = Managers.Popup.CreatePopup(PopupType.PausePopup);
+        PausePopup pausePopup = basePopup as PausePopup;
+        pausePopup.SetNowtime(startTime);
     }
 }

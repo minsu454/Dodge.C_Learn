@@ -3,6 +3,10 @@
 /// </summary>
 public enum PopupType
 {
-    InGamePopup = 0,
-    PausePopup
+    MapEditorPopup = 0,
+    FileBrowserPopup,
+
+    InGamePopup = 10,
+    PausePopup,
+    PlayButtonPopup
 }

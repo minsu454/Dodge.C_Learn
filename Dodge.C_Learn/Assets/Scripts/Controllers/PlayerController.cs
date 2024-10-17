@@ -24,10 +24,4 @@ public class PlayerController : MonoBehaviour
         Vector2 nextVec = moveInput.normalized * speed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position +  nextVec);
     }
-
-    private void Shooter()
-    {
-        
-    }
-
 }
