@@ -20,4 +20,8 @@ public class PausePopup : BasePopup
         Time.timeScale = 1f;
         base.Close();
     }
+    public void Retry()
+    {
+        Managers.Scene.LoadScene(SceneType.Title);
+    }
 }
