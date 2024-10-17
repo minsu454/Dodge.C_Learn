@@ -2,11 +2,14 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject player;
     public PlayerType playerType;
+    
+    
 
     private void Start()
     {
@@ -21,5 +24,8 @@ public class GameManager : MonoBehaviour
         SpawnSO spawn = Managers.Stage.GetSpawn(1);
         Debug.Log($"{spawn.count} {spawn.spawnTime}");
 
+        Managers.Popup.CreatePopup(PopupType.InGamePopup);
+
     }
+    
 }
