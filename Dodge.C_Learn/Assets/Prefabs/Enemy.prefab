@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4737397417915981544}
   - component: {fileID: 4872361308655074038}
   - component: {fileID: 3376349615820256379}
+  - component: {fileID: 4016276164922936172}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -90,7 +91,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -106,6 +107,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4, y: 0.4}
   m_EdgeRadius: 0
+--- !u!114 &4016276164922936172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3836814126277472270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dd4a78958b6b1843b2edc0dc93e3338, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  maxHealth: 0
+  speed: 0
+  sprites:
+  - {fileID: 21300000, guid: baaee3c7724bb1342939ae426b64a2e4, type: 3}
+  - {fileID: 21300000, guid: 30e991a0c78c0cf46aac005a1055b177, type: 3}
+  projectile: {fileID: 8690834134288300692, guid: 7fb991dfb1c86424a8f6cf2010fd0707, type: 3}
+  firerate: 5
+  OT: 0
+  ET: 0
+  SR: {fileID: 400377034581767753}
+  RB: {fileID: 4872361308655074038}
 --- !u!1 &8288091149919771617
 GameObject:
   m_ObjectHideFlags: 0
