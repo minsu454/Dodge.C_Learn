@@ -8,7 +8,7 @@ public class SpawnPoint : MonoBehaviour
     private SpriteOutline outline;       //외곽선
     private bool isFollow = false;
 
-    public EnemyType enemyType = EnemyType.Easy;
+    public EnemyType enemyType = EnemyType.Corvette;
 
     private void Awake()
     {

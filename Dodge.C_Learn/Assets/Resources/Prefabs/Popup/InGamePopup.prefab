@@ -437,7 +437,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1084456004987056464}
+      - m_Target: {fileID: -7224669149948670461}
         m_TargetAssemblyTypeName: InGamePopup, Assembly-CSharp
         m_MethodName: Pause
         m_Mode: 1
@@ -460,7 +460,7 @@ GameObject:
   - component: {fileID: 7535951882105588853}
   - component: {fileID: 3592519514367908880}
   - component: {fileID: 2231987586546802668}
-  - component: {fileID: 1084456004987056464}
+  - component: {fileID: -7224669149948670461}
   m_Layer: 5
   m_Name: InGamePopup
   m_TagString: Untagged
@@ -527,7 +527,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1084456004987056464
+--- !u!114 &-7224669149948670461
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -539,12 +539,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34d960c3b3de6a4f8f489576b932cfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pausePanel: {fileID: 0}
   startTimeText: {fileID: 5667424555149298254}
-  nowTimeText: {fileID: 0}
   startTime: 0
-  pauseTime: 0
-  isPaused: 0
 --- !u!1 &7163867952853607717
 GameObject:
   m_ObjectHideFlags: 0

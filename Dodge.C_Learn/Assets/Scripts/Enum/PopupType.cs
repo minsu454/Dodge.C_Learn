@@ -7,5 +7,6 @@ public enum PopupType
     FileBrowserPopup,
 
     InGamePopup = 10,
-    PausePopup
+    PausePopup,
+    PlayButtonPopup
 }
