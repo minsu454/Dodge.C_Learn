@@ -45,7 +45,7 @@ public class PlayerShooter : MonoBehaviour
                 break;
         }
     }
-
+    
     private void SpawnBullet(ObjectType type , Vector3 vec)
     {
         GameObject bullet = ObjectPoolManager.Instance.GetObject(type, firePoint , vec);

@@ -15,14 +15,14 @@ public class StageContainer : IContainer
     //{
     //    stageNum--;
 
-    //    ////List<SpawnSO> spawnList = stageSO.spawnSOList;
+    //    List<SpawnSO> spawnList = stageSO.spawnSOList;
 
-    //    //if (0 > stageNum || stageNum >= spawnList.Count)
-    //    //{
-    //    //    throw new IndexOutOfRangeException();
-    //    //}
+    //    if (0 > stageNum || stageNum >= spawnList.Count)
+    //    {
+    //        throw new IndexOutOfRangeException();
+    //    }
 
-    //    //return spawnList[stageNum];
+    //    return spawnList[stageNum];
     //}
 }
 
