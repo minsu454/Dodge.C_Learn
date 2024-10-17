@@ -13,19 +13,19 @@ public class StageContainer : MonoBehaviour, IContainer
         stageSO = Resources.Load<TotalStageDataSO>($"Stage/StageSO");
     }
 
-    public Patten GetSpawn(int stageNum)
-    {
-        stageNum--;
+    //public Pattern GetSpawn(int stageNum)
+    //{
+    //    stageNum--;
 
-        List<Patten> spawnList = stageSO.spawnSOList;
+    //    List<Pattern> patternList = stageSO.PatternList;
 
-       if (0 > stageNum || stageNum >= spawnList.Count)
-       {
-           throw new IndexOutOfRangeException();
-       }
+    //    if (0 > stageNum || stageNum >= patternList.Count)
+    //    {
+    //        throw new IndexOutOfRangeException();
+    //    }
 
-       return spawnList[stageNum];
-    }
+    //    return patternList[stageNum];
+    //}
 
     // 실질적으로 Json 파일을 읽는 과정.
     public void InitiallizeStage(StageCase stageCase)

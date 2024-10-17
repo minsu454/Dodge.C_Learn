@@ -13,7 +13,7 @@ public class BasePopup : MonoBehaviour
     /// <summary>
     /// 생성 함수
     /// </summary>
-    public virtual void Init()
+    protected virtual void Init()
     {
         
     }
@@ -21,7 +21,7 @@ public class BasePopup : MonoBehaviour
     /// <summary>
     /// 닫기 함수
     /// </summary>
-    public virtual void Close()
+    protected virtual void Close()
     {
         if (!Managers.Popup.ComparerLastDepth(gameObject))
             return;

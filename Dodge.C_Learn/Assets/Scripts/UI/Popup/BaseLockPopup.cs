@@ -1,12 +1,12 @@
-﻿public class BaseLockPopup : BasePopup
+public class BaseLockPopup : BasePopup
 {
-    public override void Init()
+    protected override void Init()
     {
         base.Init();
         Managers.Event.Dispatch(GameEventType.LockInput, false);
     }
 
-    public override void Close()
+    protected override void Close()
     {
         Managers.Event.Dispatch(GameEventType.LockInput, true);
         base.Close();

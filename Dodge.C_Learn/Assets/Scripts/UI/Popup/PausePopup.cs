@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PausePopup : BasePopup
 {
     public Text nowTimeText;
-    public override void Init()
+    protected override void Init()
     {
         base.Init();
         Time.timeScale = 0f;
@@ -15,7 +15,7 @@ public class PausePopup : BasePopup
     {
         nowTimeText.text = time.ToString("0");
     }
-    public override void Close()
+    protected override void Close()
     {
         Time.timeScale = 1f;
         base.Close();

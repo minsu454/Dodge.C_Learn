@@ -2,8 +2,10 @@ using SimpleFileBrowser;
 using System;
 using System.Collections;
 using System.IO;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class MapEditorPopup : BasePopup
 {
@@ -14,19 +16,18 @@ public class MapEditorPopup : BasePopup
     [SerializeField] private GameObject PointDataUI;
     [SerializeField] private GameObject CreateUI;
 
-
     private bool isOnDataUI = true;
     private bool isOnPointDataUI = true;
     private bool isCreateUI = true;
 
-    public override void Init()
+    protected override void Init()
     {
         base.Init();
 
         inputX.onSubmit.AddListener(OnInputX);
         inputY.onSubmit.AddListener(OnInputY);
 
-        MapGenerator.Instance.controller.OnMove += OnSeeText;
+        PattenGenerator.Instance.controller.OnMove += OnSeeText;
     }
 
     private void OnSeeText(SpawnPoint spawnPoint)
@@ -37,14 +38,14 @@ public class MapEditorPopup : BasePopup
 
     private void OnInputX(string s)
     {
-        SpawnPoint go = MapGenerator.Instance.ChoiceSpawnPoint();
+        SpawnPoint go = PattenGenerator.Instance.ChoiceSpawnPoint();
         Vector2 pos = go.transform.position;
         go.transform.position = new Vector2(float.Parse(s), pos.y);
     }
 
     private void OnInputY(string s)
     {
-        SpawnPoint go = MapGenerator.Instance.ChoiceSpawnPoint();
+        SpawnPoint go = PattenGenerator.Instance.ChoiceSpawnPoint();
         Vector2 pos = go.transform.position;
         go.transform.position = new Vector2(pos.x, float.Parse(s));
     }
@@ -54,7 +55,7 @@ public class MapEditorPopup : BasePopup
     /// </summary>
     public void CreatePoint()
     {
-        MapGenerator.Instance.CreatePoint();
+        PattenGenerator.Instance.CreatePoint();
     }
 
     /// <summary>
@@ -62,13 +63,11 @@ public class MapEditorPopup : BasePopup
     /// </summary>
     public void Save()
     {
-        string json = MapGenerator.Instance.DataToJson();
-
         Managers.Popup.CreatePopup(PopupType.FileBrowserPopup, false, false);
 
         string initialFilename = "SaveData_" + DateTime.Now.ToString(("MM_dd_HH_mm_ss")) + ".json";
 
-        StartCoroutine(ShowSaveDialogCoroutine(json, initialFilename));
+        StartCoroutine(ShowSaveDialogCoroutine(initialFilename));
     }
 
     /// <summary>
@@ -126,14 +125,18 @@ public class MapEditorPopup : BasePopup
     /// <summary>
     /// save버튼이 누르면 파일로 만들어주는 코루틴
     /// </summary>
-    IEnumerator ShowSaveDialogCoroutine(string text, string initialFilename)
+    IEnumerator ShowSaveDialogCoroutine(string initialFilename)
     {
         yield return FileBrowser.WaitForSaveDialog(FileBrowser.PickMode.FilesAndFolders, false, null, initialFilename, "Save Files and Folders", "Save");
 
         if (FileBrowser.Success)
         {
             string path = FileBrowser.Result[0];
-            File.WriteAllText(path, text);
+
+            string name = Path.GetFileNameWithoutExtension(path);           //파일명만 따오는 함수
+            string json = PattenGenerator.Instance.DataToJson(name);
+
+            System.IO.File.WriteAllText(path, json);
         }
     }
 
@@ -146,7 +149,7 @@ public class MapEditorPopup : BasePopup
 
         if (FileBrowser.Success)
         {
-            MapGenerator.Instance.LoadData(FileBrowser.Result[0]);
+            PattenGenerator.Instance.LoadData(FileBrowser.Result[0]);
         }
     }
 }

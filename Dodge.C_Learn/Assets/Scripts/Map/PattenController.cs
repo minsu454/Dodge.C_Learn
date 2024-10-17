@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MapController : MonoBehaviour
+public class PattenController : MonoBehaviour
 {
     public SpawnPoint spawnPoint { get; set; }
     private Camera mainCamera;
@@ -93,7 +93,7 @@ public class MapController : MonoBehaviour
         if (spawnPoint == null)
             return;
 
-        MapGenerator.Instance.Remove(spawnPoint);
+        PattenGenerator.Instance.Remove(spawnPoint);
     }
 
     /// <summary>

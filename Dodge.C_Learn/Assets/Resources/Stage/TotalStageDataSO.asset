@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d75835be7fc4a8443bcdbd1fd346c9db, type: 3}
-  m_Name: SpawnSO
+  m_Script: {fileID: 11500000, guid: 225dc967530b71342b878d96ef62e859, type: 3}
+  m_Name: TotalStageDataSO
   m_EditorClassIdentifier: 
-  count: 5
-  spawnTime: 10
+  stageSOList:
+  - spawnTime: 30
+    PatternList: {fileID: 0}
+  - spawnTime: 50
+    PatternList: {fileID: 0}
