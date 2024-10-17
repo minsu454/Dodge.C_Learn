@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     public PlayerType playerType;
     
     
-
     private void Start()
     {
         var playerClass = Managers.Character.ReturnAll(playerType);
@@ -24,7 +23,7 @@ public class GameManager : MonoBehaviour
         //SpawnSO spawn = Managers.Stage.GetSpawn(1);
         //Debug.Log($"{spawn.count} {spawn.spawnTime}");
 
-        Managers.Popup.CreatePopup(PopupType.InGamePopup);
+        //Managers.Popup.CreatePopup(PopupType.InGamePopup);
 
     }
     
