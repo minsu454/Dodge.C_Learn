@@ -6,7 +6,7 @@ public class ObjectContainer : MonoBehaviour
     private Dictionary<ObjectType, Queue<GameObject>> objContainer = new Dictionary<ObjectType, Queue<GameObject>>();
 
     /// <summary>
-    /// 
+    /// 특정 ObjectType의 Pool에서 GameObject 하나를 꺼내옵니다.
     /// </summary>
     public GameObject GetObject(ObjectType key)
     {
@@ -33,7 +33,7 @@ public class ObjectContainer : MonoBehaviour
     }
 
     /// <summary>
-    ///
+    ///특정 ObjectType의 Pool에 GameObject 하나를 반환합니다.
     /// </summary>
     public void ReturnObject(ObjectType key, GameObject obj)
     {
@@ -46,7 +46,7 @@ public class ObjectContainer : MonoBehaviour
     }
 
     /// <summary>
-    /// Object를 instantiate 하여 Queue를 초기화합니다.
+    /// 특정 ObjectType의 Object를 instantiate 하여 Pool(Queue)를 초기화합니다.
     /// </summary>
     public void CreateObject(ObjectType key, GameObject prefab, int count)
     {

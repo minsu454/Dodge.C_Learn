@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     public PlayerType playerType;
     
     
-
     private void Start()
     {
         var playerClass = Managers.Character.ReturnAll(playerType);
