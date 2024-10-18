@@ -9,17 +9,17 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4737397417915981544}
+  - component: {fileID: 4016276164922936172}
+  - component: {fileID: 1459103476199945192}
   - component: {fileID: 4872361308655074038}
   - component: {fileID: 3376349615820256379}
-  - component: {fileID: 4016276164922936172}
-  - component: {fileID: 7003734965206592942}
   - component: {fileID: 5842817876504285572}
   m_Layer: 0
   m_Name: Enemy_02Frigate
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4737397417915981544
 Transform:
@@ -36,6 +36,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4016276164922936172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3836814126277472270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dd4a78958b6b1843b2edc0dc93e3338, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  maxHealth: 5
+  speed: 0
+  sprites:
+  - {fileID: 21300000, guid: baaee3c7724bb1342939ae426b64a2e4, type: 3}
+  - {fileID: 21300000, guid: 30e991a0c78c0cf46aac005a1055b177, type: 3}
+  objectType: 4
+  enemyType: 1
+--- !u!114 &1459103476199945192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3836814126277472270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 711f810fdc471344c9d9edb4f10ed805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Firerate: 5
+  FirePoint: {fileID: 0}
+  enemyType: 0
 --- !u!50 &4872361308655074038
 Rigidbody2D:
   serializedVersion: 4
@@ -108,42 +143,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4, y: 0.4}
   m_EdgeRadius: 0
---- !u!114 &4016276164922936172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3836814126277472270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dd4a78958b6b1843b2edc0dc93e3338, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  maxHealth: 5
-  speed: 0
-  sprites:
-  - {fileID: 21300000, guid: baaee3c7724bb1342939ae426b64a2e4, type: 3}
-  - {fileID: 21300000, guid: 30e991a0c78c0cf46aac005a1055b177, type: 3}
-  OT: 6
-  ET: 1
---- !u!114 &7003734965206592942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3836814126277472270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 711f810fdc471344c9d9edb4f10ed805, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firerate: 5
-  projectile: {fileID: 8690834134288300692, guid: 7fb991dfb1c86424a8f6cf2010fd0707, type: 3}
-  firePoint: {fileID: 4737397417915981544}
-  ET: 1
 --- !u!212 &5842817876504285572
 SpriteRenderer:
   m_ObjectHideFlags: 0
