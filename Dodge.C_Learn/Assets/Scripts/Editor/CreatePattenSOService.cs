@@ -12,7 +12,7 @@ public static class CreatePattenSOService
 
     public static string SavePath
     {
-        get { return Path.Combine(Application.dataPath, "Resources/Stage/Patten"); }
+        get { return Path.Combine(Application.dataPath, "Resources/Stage/Pattern"); }
     }
 
     public static void DeletePattenSO()
