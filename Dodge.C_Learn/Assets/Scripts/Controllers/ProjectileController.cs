@@ -29,7 +29,6 @@ public class ProjectileController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (collision.CompareTag("Player") && myType == ObjectType.Enemy)
         {
             ObjectPoolManager.Instance.ReturnObject(gameObject);
@@ -38,7 +37,7 @@ public class ProjectileController : MonoBehaviour
         {
             ObjectPoolManager.Instance.ReturnObject(gameObject);
         }
-        else if(collision.CompareTag("Boarder"))
+        else if (collision.CompareTag("Boarder"))
         {
             ObjectPoolManager.Instance.ReturnObject(gameObject);
         }

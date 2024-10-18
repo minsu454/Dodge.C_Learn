@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -31,29 +32,22 @@ public class EnemyController : MonoBehaviour
 
         if (health <= 0)
         {
-            DistroyEnemy();
+            Destroy(gameObject);
+            //ObjectPoolManager.Instance.ReturnObject(OT, gameObject);
         }
     }
 
-    private void DistroyEnemy()
-    {
-        float randomvalue = Random.Range(0f, 1f);
-        if (enemyType == EnemyType.Destroyer)
-        {
-            if (randomvalue <=  0.1f)
-            {
-                ObjectPoolManager.Instance.GetObject("ItemPower", transform, Vector3.zero);
-            }
-        }
-        else if(enemyType == EnemyType.Cruiser || enemyType == EnemyType.Battleship)
-        {
-            if (randomvalue <= 0.4f)
-            {
-                ObjectPoolManager.Instance.GetObject("ItemPower", transform, Vector3.zero);
-            }
-        }
-        Destroy(gameObject);
-        //ObjectPoolManager.Instance.ReturnObject(OT, gameObject);
+    public void SetEnemy(EnemyType enemyType)
+    { 
+        var charater = Managers.Character.ReturnAll(enemyType);
+        shooter.attackSO = charater.AttackSO;
+        sprites = charater.AttackSO.sprites;
+        Debug.Log(sprites.Length);
+
+        //sprRenderer.sprite = playerClass.Sprite;
+        //shooter.attackSO = playerClass.AttackSO;
+
+
     }
 
     void ReturnSprite()

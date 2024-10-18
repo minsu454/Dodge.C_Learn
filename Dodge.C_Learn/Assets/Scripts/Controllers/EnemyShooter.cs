@@ -7,50 +7,46 @@ using UnityEngine;
 public class EnemyShooter : Shooter
 {
     public EnemyType enemyType;
-    private const string projectTile_A = "ProjecTileA";
-    private const string projectTile_B = "ProjectileB";
+
+    bool isCooldown = false;
+
     private const string enemyProjectile = "EnemyProjectile";
 
     int num = 0;
+
     protected void Start()
     {
         switch (enemyType)
         {
-            case EnemyType.Enemy_01Corvette:
+            case EnemyType.Corvette01:
                 projectileSpeed = 2f;
                 StartCoroutine(CoFire());
                 break;
-            case EnemyType.Frigate:
+            case EnemyType.Frigate02:
                 projectileSpeed = 4f;
                 StartCoroutine(CoFireBurst());
                 break;
-            case EnemyType.Destroyer:
+            case EnemyType.Destroyer03:
                 projectileSpeed = 2f;
                 StartCoroutine(CoFireArc());
                 break;
-            case EnemyType.Cruiser:
+            case EnemyType.Cruiser04:
                 projectileSpeed = 5f;
                 StartCoroutine(CoFireArc());
                 break;
-            case EnemyType.Battleship:
+            case EnemyType.Battleship05:
                 projectileSpeed = 2f;
                 StartCoroutine(CoFireAround());
                 StartCoroutine(CoFireBurst());
                 break;
         }
     }
-    private void SpawnBullet(string curBullet, Vector3 pos, Vector2 dir)
-    {
-        GameObject bullet = ObjectPoolManager.Instance.GetObject(curBullet, transform, pos);
-        ProjectileController projectTileController = bullet.GetComponent<ProjectileController>();
-        projectTileController.myType = ObjectType.Enemy;
-        projectTileController.Shoot(dir * projectileSpeed);
-    }
+    
     private IEnumerator CoFire()
     {
         while (true)
         {
-            SpawnBullet(enemyProjectile, Vector3.zero, Vector2.down);
+            SpawnBullet(ObjectType.Enemy, enemyProjectile, Vector3.zero, Vector2.down);
 
             yield return YieldCache.WaitForSeconds(5f);
         }
@@ -61,7 +57,7 @@ public class EnemyShooter : Shooter
         {
             for (int i = 0; i < 4; i++)
             {
-                SpawnBullet(enemyProjectile, Vector3.zero, Vector2.down);
+                SpawnBullet(ObjectType.Enemy, enemyProjectile, Vector3.zero, Vector2.down);
                 yield return YieldCache.WaitForSeconds(0.1f); // 각 발사 사이에 딜레이
             }
             yield return YieldCache.WaitForSeconds(5f);
@@ -74,7 +70,7 @@ public class EnemyShooter : Shooter
             while (num < 50)
             {
                 Vector2 dirVec = new Vector2(Mathf.Cos(Mathf.PI * 5 * num / 50), -1);
-                SpawnBullet(enemyProjectile, Vector3.zero, dirVec);
+                SpawnBullet(ObjectType.Enemy, enemyProjectile, Vector3.zero, dirVec);
                 num++;
                 yield return YieldCache.WaitForSeconds(0.1f); // 각 발사 사이에 딜레이
             }
@@ -92,7 +88,7 @@ public class EnemyShooter : Shooter
                 while (num < 50)
                 {
                     Vector2 dirVec = new Vector2(Mathf.Cos(Mathf.PI * 2 * num / 50), Mathf.Sin(Mathf.PI * 2 * num / 50));
-                    SpawnBullet(enemyProjectile, Vector3.zero, dirVec);
+                    SpawnBullet(ObjectType.Enemy, enemyProjectile, Vector3.zero, dirVec);
                     num++;
                 }
                 count++;
