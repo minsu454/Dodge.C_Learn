@@ -29,14 +29,14 @@ public class ProjectileController : MonoBehaviour
         {
             if (collision.CompareTag("Player") || collision.CompareTag("Boarder"))
             {
-                ObjectPoolManager.Instance.ReturnObject(OT, gameObject);
+                ObjectPoolManager.Instance.ReturnObject(gameObject);
             }
         }
         else 
         {
             if (collision.CompareTag("Enemy") || collision.CompareTag("Boarder"))
             {
-                ObjectPoolManager.Instance.ReturnObject(OT, gameObject);
+                ObjectPoolManager.Instance.ReturnObject(gameObject);
             }
         }
     }

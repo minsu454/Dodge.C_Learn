@@ -1,14 +1,15 @@
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public class ObjectContainer : MonoBehaviour
 {
-    private Dictionary<ObjectType, Queue<GameObject>> objContainer = new Dictionary<ObjectType, Queue<GameObject>>();
+    private Dictionary<string, Queue<GameObject>> objContainer = new Dictionary<string, Queue<GameObject>>();
 
     /// <summary>
     /// 특정 ObjectType의 Pool에서 GameObject 하나를 꺼내옵니다.
     /// </summary>
-    public GameObject GetObject(ObjectType key)
+    public GameObject GetObject(string key)
     {
         if (!objContainer.ContainsKey(key))
         {
@@ -35,20 +36,20 @@ public class ObjectContainer : MonoBehaviour
     /// <summary>
     ///특정 ObjectType의 Pool에 GameObject 하나를 반환합니다.
     /// </summary>
-    public void ReturnObject(ObjectType key, GameObject obj)
+    public void ReturnObject(GameObject obj)
     {
         obj.SetActive(false); // 비활성화
-        if (!objContainer.ContainsKey(key))
+        if (!objContainer.ContainsKey(obj.name))
         {
-            objContainer[key] = new Queue<GameObject>();
+            objContainer[obj.name] = new Queue<GameObject>();
         }
-        objContainer[key].Enqueue(obj);
+        objContainer[obj.name].Enqueue(obj);
     }
 
     /// <summary>
     /// 특정 ObjectType의 Object를 instantiate 하여 Pool(Queue)를 초기화합니다.
     /// </summary>
-    public void CreateObject(ObjectType key, GameObject prefab, int count)
+    public void CreateObject(string key, GameObject prefab, int count)
     {
         if (!objContainer.ContainsKey(key))
         {

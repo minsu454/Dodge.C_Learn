@@ -62,7 +62,7 @@ public class EnemyShooter : MonoBehaviour
     }
     private void SpawnBullet(ObjectType type, Vector3 vec)
     {
-        GameObject bullet = ObjectPoolManager.Instance.GetObject(type, firePoint, vec);
+        GameObject bullet = ObjectPoolManager.Instance.GetObject(gameObject.name, firePoint, vec);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.down * projectileSpeed;
     }
@@ -82,7 +82,7 @@ public class EnemyShooter : MonoBehaviour
     private void FireArc(int fireamount) // 호를 그리면서 사격
     {
         projectileSpeed = 2f;
-        GameObject bullet = ObjectPoolManager.Instance.GetObject(ObjectType.EnemyProjectile);
+        GameObject bullet = ObjectPoolManager.Instance.GetObject("BullectA");
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         bullet.transform.position = transform.position;
         bullet.transform.rotation = Quaternion.identity;
@@ -103,7 +103,7 @@ public class EnemyShooter : MonoBehaviour
         projectileSpeed = 2f;
         for (int i = 0; i < roundamount; i++)
         {
-            GameObject bullet = ObjectPoolManager.Instance.GetObject(ObjectType.EnemyProjectile);
+            GameObject bullet = ObjectPoolManager.Instance.GetObject(ObjectType.EnemyProjectile.ToString());
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             bullet.transform.position = transform.position;
             bullet.transform.rotation = Quaternion.identity;

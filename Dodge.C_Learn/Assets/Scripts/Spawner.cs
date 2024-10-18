@@ -34,10 +34,24 @@ public class Spawner : MonoBehaviour
 
     private void Spawn()
     {
-        GameObject enemy = ObjectPoolManager.Instance.GetObject(ObjectType.EnemyProjectile);
-        enemy.transform.position = spawnPoint[UnityEngine.Random.Range(0, spawnPoint.Length)].position;
-        EnemyMovePoint(enemy.GetComponent<EnemyController>(), Vector2.zero );         
+/*        GameObject enemy = ObjectPoolManager.Instance.GetObject(ObjectType.EnemyProjectile);
+        enemy.transform.position = spawnPoint[UnityEngine.Random.Range(0, spawnPoint.Length)].position;*/
     }
+
+    public void SpawnStageEnemy(Pattern pattern)
+    {
+        for (int i = 0; i < pattern.spawnPointList.Count; i++)
+        {
+            EnemyType enemyType = pattern.spawnPointList[i].EnemyType;
+            Vector3 pos  = pattern.spawnPointList[i].Pos;
+
+            GameObject enemy = ObjectPoolManager.Instance.GetObject(enemyType.ToString());
+            enemy.transform.position = spawnPoint[UnityEngine.Random.Range(0, spawnPoint.Length)].position;
+
+            //EnemyMovePoint(enemy.GetComponent<EnemyController>(), pos);
+        }
+    }
+
 
     private void EnemyMovePoint(EnemyController enemy, Vector2 position)
     {
@@ -47,12 +61,12 @@ public class Spawner : MonoBehaviour
 
     private void SpawnProjectile()
     {
-        GameObject projectile = ObjectPoolManager.Instance.GetObject(ObjectType.ProjectileA);
+/*        GameObject projectile = ObjectPoolManager.Instance.GetObject(ObjectType.ProjectileA);
         ProjectileController controller = projectile.GetComponent<ProjectileController>();
         projectile.transform.position = spawnPoint[UnityEngine.Random.Range(0, spawnPoint.Length)].position;
-        //화면에 내에 있는 랜덤값 shoot
+        화면에 내에 있는 랜덤값 shoot
         controller.RandomShoot();
-        //MovePoint(projectile.GetComponent<ProjectileController>(), Vector2.zero);
+        MovePoint(projectile.GetComponent<ProjectileController>(), Vector2.zero);*/
     }
 
     private void MovePoint(ProjectileController projectile, Vector2 position)

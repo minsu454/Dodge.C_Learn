@@ -35,29 +35,31 @@ public class ObjectPoolManager : MonoBehaviour
         for (int i = 0; i < objectPrefabs.Length; i++)
         {
             ObjectCase objCase = objectPrefabs[i];
-            InitializePool(objCase.Type, objCase.GO, objCase.Count);
+            string objTypeToString = objCase.Type.ToString();
+            InitializePool(objTypeToString, objCase.GO, objCase.Count);
         }
     }
 
-    public void InitializePool(ObjectType key, GameObject prefab, int count)
+    public void InitializePool(string key, GameObject prefab, int count)
     {
         objectContainer.CreateObject(key, prefab, count);
     }
 
-    public GameObject GetObject(ObjectType key)
+    public GameObject GetObject(string key)
     {
         return objectContainer.GetObject(key);
     }
 
-    public GameObject GetObject(ObjectType key, Transform transform, Vector3 vec)
+    public GameObject GetObject(string key, Transform transform, Vector3 vec)
     {
         GameObject GO = objectContainer.GetObject(key);
         GO.transform.position = transform.position + vec;
         GO.transform.rotation = transform.rotation;
         return GO;
     }
-    public void ReturnObject(ObjectType key, GameObject obj)
+
+    public void ReturnObject(GameObject obj)
     {
-        objectContainer.ReturnObject(key, obj);
+        objectContainer.ReturnObject(obj);
     }
 }

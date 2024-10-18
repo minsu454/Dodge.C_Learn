@@ -31,9 +31,9 @@ public static class CreatePattenSOService
             string json = File.ReadAllText(_file);
             Pattern patten = JsonUtility.FromJson<Pattern>(json);
 
-            PattenSO pattenSO = new PattenSO();
+            PatternSO pattenSO = new PatternSO();
             pattenSO.name = patten.name;
-            pattenSO.patten = patten;
+            pattenSO.pattern = patten;
 
             string path = $"Assets/Resources/Stage/Patten/{patten.name}.asset";
             AssetDatabase.CreateAsset(pattenSO, path);

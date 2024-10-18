@@ -48,7 +48,7 @@ public class PlayerShooter : MonoBehaviour
     
     private void SpawnBullet(ObjectType type , Vector3 vec)
     {
-        GameObject bullet = ObjectPoolManager.Instance.GetObject(type, firePoint , vec);
+        GameObject bullet = ObjectPoolManager.Instance.GetObject(gameObject.name, firePoint , vec);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.velocity = firePoint.up * projectileSpeed;
     }
