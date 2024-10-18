@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class EnemyShooter : Shooter
 {
-    float time = 0f;
     public Transform FirePoint;
     public EnemyType enemyType;
 
     bool isCooldown = false;
+
+    private const string projectTile_A = "ProjecTileA";
+    private const string projectTile_B = "ProjectileB";
+    private const string enemyProjectile = "EnemyProjectile";
 
     int num = 0;
     protected void Start()
@@ -35,73 +38,20 @@ public class EnemyShooter : Shooter
                 break;
         }
     }
-    //protected override void Update()
-    //{
-    //    if (!isCooldown)
-    //    {
-    //        ApplyAttack();
-    //    }
-    //    else
-    //    {
-    //        time += Time.deltaTime;
-    //        if (time >= FireRate)
-    //        {
-    //            isCooldown = false;
-    //            time = 0f;
-    //        }
-    //    }
-    //}
 
-    private void ApplyAttack()
+    private void SpawnBullet(string curBullet, Vector3 pos, Vector2 dir)
     {
-        switch(enemyType)
-        {
-            case EnemyType.Corvette:
-                projectileSpeed = 2f;
-                Fire();
-                break;
-            case EnemyType.Frigate:
-                projectileSpeed = 4f;
-                FireBurst(2);
-                break;
-            case EnemyType.Destroyer:
-                FireAround(12, 4);
-                break;
-            case EnemyType.Cruiser:
-                FireArc(50);
-                break;
-            case EnemyType.Battleship:
-                FireAround(50, 2);
-                break;
-        }
+        GameObject bullet = ObjectPoolManager.Instance.GetObject(curBullet, FirePoint, pos);
+        ProjectileController projectTileController = bullet.GetComponent<ProjectileController>();
+        projectTileController.myType = ObjectType.Enemy;
+        projectTileController.Shoot(dir * projectileSpeed);
     }
 
-    private void SpawnBullet(ObjectType type, Vector3 pos, Vector2 dir)
-    {
-        GameObject bullet = ObjectPoolManager.Instance.GetObject(type, FirePoint, pos);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.velocity = dir * projectileSpeed;
-    }
-    private void Fire() // 일반적인 사격
-    {
-        SpawnBullet(ObjectType.EnemyProjectile, Vector3.zero, Vector2.down);
-        Reloading();
-    }
-    private void FireBurst(int fireamount) // 점사
-    {
-        isCooldown = true;
-        StartCoroutine(FireBurstCoroutine(fireamount));
-        //for(int i = 0; i < fireamount; i++)
-        //{
-        //    Invoke("Shoot", i * 0.1f);
-        //}
-        //Reloading();
-    }
     private IEnumerator FireBurstCoroutine(int fireamount)
     {
         for (int i = 0; i < fireamount; i++)
         {
-            SpawnBullet(ObjectType.EnemyProjectile, Vector3.zero, Vector2.down);
+            SpawnBullet(enemyProjectile, Vector3.zero, Vector2.down);
             yield return new WaitForSeconds(0.1f); // 각 발사 사이에 딜레이
         }
         Reloading();
@@ -140,7 +90,7 @@ public class EnemyShooter : Shooter
             //bullet.transform.rotation = Quaternion.identity;
             //rb.velocity = dirVec.normalized * projectileSpeed;
             Vector2 dirVec = new Vector2(Mathf.Cos(Mathf.PI * 5 * num / fireamount), -1);
-            SpawnBullet(ObjectType.EnemyProjectile, Vector3.zero, dirVec);
+            SpawnBullet(enemyProjectile, Vector3.zero, dirVec);
             num++;
             yield return new WaitForSeconds(0.8f); // 각 발사 사이에 딜레이
         }
@@ -178,7 +128,7 @@ public class EnemyShooter : Shooter
         {
             for (int i = 0; i < roundamount; i++)
             {
-                GameObject bullet = ObjectPoolManager.Instance.GetObject(enemyProjectTile);
+                GameObject bullet = ObjectPoolManager.Instance.GetObject(enemyProjectile);
                 Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
                 bullet.transform.position = transform.position;
                 bullet.transform.rotation = Quaternion.identity;
@@ -213,7 +163,7 @@ public class EnemyShooter : Shooter
     {
         while (true)
         {
-            SpawnBullet(ObjectType.EnemyProjectile, Vector3.zero, Vector2.down);
+            SpawnBullet(enemyProjectile, Vector3.zero, Vector2.down);
 
             yield return new WaitForSeconds(5f);
         }
@@ -224,7 +174,7 @@ public class EnemyShooter : Shooter
         {
             for (int i = 0; i < 4; i++)
             {
-                SpawnBullet(ObjectType.EnemyProjectile, Vector3.zero, Vector2.down);
+                SpawnBullet(enemyProjectile, Vector3.zero, Vector2.down);
                 yield return new WaitForSeconds(0.1f); // 각 발사 사이에 딜레이
             }
             yield return new WaitForSeconds(5f);

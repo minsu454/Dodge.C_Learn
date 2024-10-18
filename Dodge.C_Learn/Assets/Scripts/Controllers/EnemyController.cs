@@ -9,7 +9,6 @@ public class EnemyController : MonoBehaviour
     public float speed;
     public Sprite[] sprites;
 
-    [SerializeField] ObjectType objectType; 
     [SerializeField] EnemyType enemyType;
     EnemyShooter shooter;
     SpriteRenderer spriteRender;

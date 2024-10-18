@@ -6,17 +6,22 @@ public class ProjectileController : MonoBehaviour
 {
     private Rigidbody2D projectileRb;
     float speed = 0.5f;
-    [SerializeField] ObjectType OT;
     public int Damage;
+    public ObjectType myType;
 
     private void Awake()
     {
         projectileRb = GetComponent<Rigidbody2D>();
     }
-    
+
+    private void OnEnable()
+    {
+        Debug.Log("켜지니?");
+    }
+
     public void Shoot(Vector3 vec)
     {
-        projectileRb.velocity = vec*speed;
+        projectileRb.velocity = vec;
     }
     public void RandomShoot()
     {
@@ -25,19 +30,18 @@ public class ProjectileController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (OT == ObjectType.EnemyProjectile)
+
+        if (collision.CompareTag("Player") && myType == ObjectType.Enemy)
         {
-            if (collision.CompareTag("Player") || collision.CompareTag("Boarder"))
-            {
-                ObjectPoolManager.Instance.ReturnObject(gameObject);
-            }
+            ObjectPoolManager.Instance.ReturnObject(gameObject);
         }
-        else 
+        else if (collision.CompareTag("Enemy") && myType == ObjectType.Player)
         {
-            if (collision.CompareTag("Enemy") || collision.CompareTag("Boarder"))
-            {
-                ObjectPoolManager.Instance.ReturnObject(gameObject);
-            }
+            ObjectPoolManager.Instance.ReturnObject(gameObject);
+        }
+        else if(collision.CompareTag("Boarder"))
+        {
+            ObjectPoolManager.Instance.ReturnObject(gameObject);
         }
     }
 }

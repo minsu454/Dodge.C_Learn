@@ -35,8 +35,8 @@ public class ObjectPoolManager : MonoBehaviour
         for (int i = 0; i < objectPrefabs.Length; i++)
         {
             ObjectCase objCase = objectPrefabs[i];
-            string objTypeToString = objCase.Type.ToString();
-            InitializePool(objTypeToString, objCase.GO, objCase.Count);
+            string objName = objectPrefabs[i].GO.gameObject.name;
+            InitializePool(objName, objCase.GO, objCase.Count);
         }
     }
 
