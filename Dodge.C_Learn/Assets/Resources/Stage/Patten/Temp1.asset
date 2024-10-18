@@ -10,12 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf0c249d18e2a46488bd4b976ac351ce, type: 3}
-  m_Name: Temp
+  m_Name: Temp1
   m_EditorClassIdentifier: 
   patten:
-    name: Temp
+    name: Temp1
     spawnPointList:
     - EnemyType: 0
-      Pos: {x: -4.2137413, y: 4.175573, z: 0}
-    - EnemyType: 0
-      Pos: {x: 5.541986, y: 3.1832063, z: 0}
+      Pos: {x: 6.961833, y: 3.7465653, z: 0}
