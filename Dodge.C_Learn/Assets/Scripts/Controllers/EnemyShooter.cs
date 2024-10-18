@@ -74,6 +74,7 @@ public class EnemyShooter : MonoBehaviour
     }
     private void FireBurst(int fireamount) // 점사
     {
+        isCooldown = true;
         StartCoroutine(FireBurstCoroutine(fireamount));
         //for(int i = 0; i < fireamount; i++)
         //{
@@ -92,6 +93,7 @@ public class EnemyShooter : MonoBehaviour
     }
     private void FireArc(int fireamount) // 호를 그리면서 사격
     {
+        isCooldown = true;
         num = 0;
         StartCoroutine(FireArcCoroutine(fireamount));
         //projectileSpeed = 2f;
@@ -133,6 +135,7 @@ public class EnemyShooter : MonoBehaviour
     }
     private void FireAround(int roundamount ,int firecount) // 원 형태로 사격
     {
+        isCooldown = true;
         StartCoroutine(FireAroundCoroutine(roundamount, firecount));
         //projectileSpeed = 2f;
         //for (int i = 0; i < roundamount; i++)
@@ -177,6 +180,5 @@ public class EnemyShooter : MonoBehaviour
     private void Reloading()
     {
         num = 0;
-        isCooldown = true;    
     }
 }
