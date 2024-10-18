@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - PlayerProjectile
   - EnemyProjectile
+  - Power
+  - Life
   layers:
   - Default
   - TransparentFX

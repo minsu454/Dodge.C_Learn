@@ -5,7 +5,6 @@ using UnityEngine;
 public class ProjectileController : MonoBehaviour
 {
     private Rigidbody2D projectileRb;
-    float speed = 0.5f;
     public int Damage;
     public ObjectType myType;
 

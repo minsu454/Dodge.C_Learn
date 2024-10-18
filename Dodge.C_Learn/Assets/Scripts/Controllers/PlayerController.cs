@@ -9,7 +9,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 moveInput;
     PlayerShooter shooter;
-    bool isHit;
+    public float invincibilityDuration = 2f;
+    private bool isInvincible = false;
     /// <summary>
     /// 초기화 Awake : Rigidbody 가져오기
     /// </summary>
@@ -30,21 +31,39 @@ public class PlayerController : MonoBehaviour
     void OnHit()
     {
         shooter.Power --;
-        if (shooter.Power <= 0)
+        if (shooter.Power < 0)
         {
             Destroy(gameObject);
         }
+
     }
     void Upgrade()
     {
         shooter.Power++;
     }
+    IEnumerator ConHitEffect()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(invincibilityDuration);
+        isInvincible = false;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Enemy") || collision.CompareTag("EnemyProjectile"))
+        if (collision.CompareTag("Enemy") || collision.CompareTag("EnemyProjectile"))
         {
-            if(!isHit)
-            OnHit();
+            if (!isInvincible)
+            {
+                OnHit();
+                StartCoroutine(ConHitEffect());
+            }
+        }
+        else if (collision.CompareTag("Power"))
+        {
+            Upgrade();
+        }
+        else if (collision.CompareTag("Life"))
+        {
+
         }
     }
 }
