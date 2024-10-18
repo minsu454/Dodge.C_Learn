@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] float speed = 5.0f;
     private Rigidbody2D rb;
+    private Animator anim;
     private Vector2 moveInput;
     PlayerShooter shooter;
     public float invincibilityDuration = 2f;
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void Awake()
     {
+        anim = GetComponentInChildren<Animator>();
         shooter = GetComponent<PlayerShooter>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -44,8 +46,10 @@ public class PlayerController : MonoBehaviour
     IEnumerator ConHitEffect()
     {
         isInvincible = true;
+        anim.SetBool("isHit", true);
         yield return new WaitForSeconds(invincibilityDuration);
         isInvincible = false;
+        anim.SetBool("isHit", false);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
