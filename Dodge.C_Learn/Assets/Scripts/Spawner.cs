@@ -39,17 +39,6 @@ public class Spawner : MonoBehaviour
         }
     }       
     
-    //private void SpawnProjectile()
-    //{
-    //     GameObject projectile = ObjectPoolManager.Instance.GetObject(ObjectType.ProjectileA);
-    //    ProjectileController controller = projectile.GetComponent<ProjectileController>();
-    //    projectile.transform.position = spawnPoint[UnityEngine.Random.Range(0, spawnPoint.Length)].position;
-    //    화면에 내에 있는 랜덤값 shoot
-    //    controller.RandomShoot();
-    //    MovePoint(projectile.GetComponent<ProjectileController>(), Vector2.zero);
-    //}
-
-
     IEnumerator CoSpawnProjectile()
     {
         while (true)

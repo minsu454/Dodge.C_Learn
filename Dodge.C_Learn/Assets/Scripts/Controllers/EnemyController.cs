@@ -24,6 +24,7 @@ public class EnemyController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         shooter.enemyType = enemyType;
     }
+
     void OnHit(int dmg)
     {
         health -= dmg;
@@ -46,8 +47,6 @@ public class EnemyController : MonoBehaviour
 
         //sprRenderer.sprite = playerClass.Sprite;
         //shooter.attackSO = playerClass.AttackSO;
-
-
     }
 
     void ReturnSprite()

@@ -18,7 +18,7 @@ MonoBehaviour:
   bulletAmount: 0
   fireCount: 0
   sprites:
-  - {fileID: 21300000, guid: b3e81d7d3ea1953488f6979795ff6f93, type: 3}
+  - {fileID: 21300000, guid: f06218796013a384aa21e02a3492ece2, type: 3}
   - {fileID: 21300000, guid: ad08467101a3a4c4e872bc96d8b73bd7, type: 3}
   ProjectileA: 
   ProjectileB: 

@@ -2,42 +2,58 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PattenController : MonoBehaviour
 {
-    public SpawnPoint spawnPoint { get; set; }
     private Camera mainCamera;
+    private PlayerInput input;      //input
 
-    private PlayerInput input;
+    private SpawnPoint spawnPoint;  //내가 잡고있는 spawnPoint
 
-    public event Action<SpawnPoint> OnMove;
-    private bool isInputMouseScroll = false;
+    public event Action<SpawnPoint> OnSpawn;        //스폰할때 실행 하는 action
+    public event Action<SpawnPoint> OnMove;         //마우스 움직일때 실행 하는 action
 
-    private float scrollLimit = 10;
+    private bool isInputMouseLeftClick = false;         //마우스 클릭한 상태를 받는 변수
+    private bool isStayCameraView = false;              //카메라 잠궈줄건지 받는 변수
+
+    private float scrollLimit = 10;                     //카메라 size 리미트
 
     private void Awake()
     {
         mainCamera = Camera.main;
         input = GetComponent<PlayerInput>();
+
         Managers.Event.Subscribe(GameEventType.LockInput, OnLockInput);
+        Managers.Event.Subscribe(GameEventType.StayCameraView, OnStayCameraView);
     }
 
     private void Update()
     {
-        if (!isInputMouseScroll)
+        if (!isInputMouseLeftClick)
             return;
 
         OnMove?.Invoke(spawnPoint);
     }
 
     /// <summary>
-    /// Input을 잠구는 함수
+    /// Input System을 잠구는 함수
     /// </summary>
     public void OnLockInput(object args)
     {
         bool isActive = (bool)args;
         input.enabled = isActive;
+    }
+
+    /// <summary>
+    /// Input System을 잠구는 함수
+    /// </summary>
+    public void OnStayCameraView(object args)
+    {
+        bool isActive = (bool)args;
+        isStayCameraView = isActive;
     }
 
     /// <summary>
@@ -48,7 +64,7 @@ public class PattenController : MonoBehaviour
         if (!value.isPressed)
         {
             spawnPoint?.FollowMouse(false);
-            isInputMouseScroll = false;
+            isInputMouseLeftClick = false;
             return;
         }
 
@@ -64,25 +80,10 @@ public class PattenController : MonoBehaviour
             spawnPoint?.SetOutline(false);
         }
 
-        isInputMouseScroll = true;
+        isInputMouseLeftClick = true;
 
         spawnPoint = point;
-        spawnPoint.SetOutline(true);
-        spawnPoint.FollowMouse(true);
-    }
-
-    /// <summary>
-    /// 마우스 클릭방향으로 레이를 쏴서 spawnpoint가 있는지 체크하는 함수 
-    /// </summary>
-    public bool IsMouseHit(out RaycastHit2D hit)
-    {
-        Vector2 vec = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        hit = Physics2D.Linecast(vec, vec * 5);
-
-        if (!hit)
-            return false;
-
-        return true;
+        OnSpawn.Invoke(spawnPoint);
     }
 
     /// <summary>
@@ -101,12 +102,29 @@ public class PattenController : MonoBehaviour
     /// </summary>
     public void OnMouseScrollY(InputValue value)
     {
-        float v = value.Get<float>();
-        float size = mainCamera.orthographicSize - v;
-
-        if (size <= 0 || scrollLimit < size)
+        if (isStayCameraView)
             return;
 
-        mainCamera.orthographicSize -= v;
+        float y = value.Get<float>();
+        float size = mainCamera.orthographicSize - y;
+
+        if (size <= 4 || scrollLimit < size)
+            return;
+
+        mainCamera.orthographicSize -= y;
+    }
+
+    /// <summary>
+    /// 마우스 클릭방향으로 레이를 쏴서 spawnpoint가 있는지 체크하는 함수 
+    /// </summary>
+    public bool IsMouseHit(out RaycastHit2D hit)
+    {
+        Vector2 vec = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        hit = Physics2D.Linecast(vec, vec * 5);
+
+        if (!hit)
+            return false;
+
+        return true;
     }
 }

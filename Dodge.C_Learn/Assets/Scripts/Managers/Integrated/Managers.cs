@@ -24,10 +24,8 @@ public class Managers : MonoBehaviour
 
     #region Container
     public static CharacterContainer Character { get { return instance.characterContainer; } }
-    public static StageContainer Stage { get { return instance.stageContainer; } }
 
     private readonly CharacterContainer characterContainer = new CharacterContainer();
-    private readonly StageContainer stageContainer = new StageContainer();
     #endregion
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -41,7 +39,6 @@ public class Managers : MonoBehaviour
 
         Popup.Init();
         Character.Init();
-        Stage.Init();
     }
 
     /// <summary>
