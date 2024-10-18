@@ -18,23 +18,23 @@ public class EnemyShooter : Shooter
     {
         switch (enemyType)
         {
-            case EnemyType.Enemy_01Corvette:
+            case EnemyType.Corvette01:
                 projectileSpeed = 2f;
                 StartCoroutine(CoFire());
                 break;
-            case EnemyType.Frigate:
+            case EnemyType.Frigate02:
                 projectileSpeed = 4f;
                 StartCoroutine(CoFireBurst());
                 break;
-            case EnemyType.Destroyer:
+            case EnemyType.Destroyer03:
                 projectileSpeed = 2f;
                 StartCoroutine(CoFireArc());
                 break;
-            case EnemyType.Cruiser:
+            case EnemyType.Cruiser04:
                 projectileSpeed = 5f;
                 StartCoroutine(CoFireArc());
                 break;
-            case EnemyType.Battleship:
+            case EnemyType.Battleship05:
                 projectileSpeed = 2f;
                 StartCoroutine(CoFireAround());
                 StartCoroutine(CoFireBurst());

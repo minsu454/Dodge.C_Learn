@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -34,6 +35,19 @@ public class EnemyController : MonoBehaviour
             Destroy(gameObject);
             //ObjectPoolManager.Instance.ReturnObject(OT, gameObject);
         }
+    }
+
+    public void SetEnemy(EnemyType enemyType)
+    { 
+        var charater = Managers.Character.ReturnAll(enemyType);
+        shooter.attackSO = charater.AttackSO;
+        sprites = charater.AttackSO.sprites;
+        Debug.Log(sprites.Length);
+
+        //sprRenderer.sprite = playerClass.Sprite;
+        //shooter.attackSO = playerClass.AttackSO;
+
+
     }
 
     void ReturnSprite()
