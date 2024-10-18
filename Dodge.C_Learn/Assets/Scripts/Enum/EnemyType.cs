@@ -1,8 +1,8 @@
 public enum EnemyType
 {
-    Enemy_01Corvette, // 초계함 체력 1
-    Frigate , // 호위함  체력 5
-    Destroyer, // 구축함 체력 15
-    Cruiser, // 순양함 체력 25
-    Battleship, // 전함 체력 50
+    Corvette01, // 초계함 체력 1
+    Frigate02 , // 호위함  체력 5
+    Destroyer03, // 구축함 체력 15
+    Cruiser04, // 순양함 체력 25
+    Battleship05, // 전함 체력 50
 }   

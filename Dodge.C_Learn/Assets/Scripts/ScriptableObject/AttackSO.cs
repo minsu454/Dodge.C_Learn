@@ -12,8 +12,11 @@ public class AttackSO : ScriptableObject
     [Header("Enemy Info")]
     public int bulletAmount;
     public int fireCount;
+    public Sprite[] sprites;
 
-    [Header("Player Inof")]
+    [Header("Player Info")]
     public string ProjectileA;
     public string ProjectileB;
+
+
 }

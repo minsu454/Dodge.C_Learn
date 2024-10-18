@@ -1,5 +1,9 @@
 
+using Common.Yield;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditorInternal.Profiling.Memory.Experimental.FileFormat;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEngine.EventSystems.EventTrigger;
@@ -8,11 +12,7 @@ using static UnityEngine.EventSystems.EventTrigger;
 public class Spawner : MonoBehaviour
 {
     public Transform[] spawnPoint;
-    public Transform[] movePoint;
-
-    string path = "Stage/Patten/H";
-
-
+    //public Pattern();
 
     private void Awake()
     {
@@ -21,77 +21,46 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        var tempStageTest = Resources.Load<PatternSO>(path);
-        SpawnStageEnemy(tempStageTest.pattern); 
+        StartCoroutine(CoSpawnProjectile());
     }
 
 
-    private void Spawn()
+    public void SpawnStageEnemy(PatternSO patternSO)
     {
-/*        GameObject enemy = ObjectPoolManager.Instance.GetObject(ObjectType.EnemyProjectile);
-        enemy.transform.position = spawnPoint[UnityEngine.Random.Range(0, spawnPoint.Length)].position;*/
-    }
+        List<EnemySpawnData> sqawnDataList = patternSO.pattern.spawnPointList;
 
-    public void SpawnStageEnemy(Pattern pattern)
-    {
-        for (int i = 0; i < pattern.spawnPointList.Count; i++)
+        for (int i = 0; i < sqawnDataList.Count; i++)
         {
-            EnemyType enemyType = pattern.spawnPointList[i].EnemyType;
-            Vector3 pos  = pattern.spawnPointList[i].Pos;
+            GameObject enemy = ObjectPoolManager.Instance.GetObject(sqawnDataList[i].EnemyType.ToString());
+            enemy.transform.position = sqawnDataList[i].Pos;
+            EnemyController enemyController = enemy.GetComponent<EnemyController>();
+            enemyController.SetEnemy(sqawnDataList[i].EnemyType);
 
-            GameObject enemy = ObjectPoolManager.Instance.GetObject(enemyType.ToString());
-            enemy.transform.position = spawnPoint[UnityEngine.Random.Range(0, spawnPoint.Length)].position;
-
-            //EnemyMovePoint(enemy.GetComponent<EnemyController>(), pos);
         }
-    }
-
-
-    private void EnemyMovePoint(EnemyController enemy, Vector2 position)
-    {
-        enemy.transform.position = movePoint[UnityEngine.Random.Range(0, movePoint.Length)].position;
-        enemy.transform.position = Vector2.MoveTowards(enemy.transform.position, position, 0.2f);
-    }
-
-    private void SpawnProjectile()
-    {
-/*        GameObject projectile = ObjectPoolManager.Instance.GetObject(ObjectType.ProjectileA);
-        ProjectileController controller = projectile.GetComponent<ProjectileController>();
-        projectile.transform.position = spawnPoint[UnityEngine.Random.Range(0, spawnPoint.Length)].position;
-        화면에 내에 있는 랜덤값 shoot
-        controller.RandomShoot();
-        MovePoint(projectile.GetComponent<ProjectileController>(), Vector2.zero);*/
-    }
-
-    private void MovePoint(ProjectileController projectile, Vector2 position)
-    {
-        projectile.transform.position = movePoint[UnityEngine.Random.Range(0, movePoint.Length)].position;
-        projectile.transform.position = Vector2.MoveTowards(projectile.transform.position, position, 0.2f);
-    }
-
-
-
-
-
-
-
-
-
-
-    //private void ProjectileFire()
+    }       
+    
+    //private void SpawnProjectile()
     //{
-    //    ProjectileController projectileController = GetComponent<ProjectileController>();
-
-
-    //    float minAngle = -45f;
-    //    float maxAngle = 45f;
-
-    //    float randomAngle = UnityEngine.Random.Range(minAngle, maxAngle);
-    //    float radians = randomAngle * Mathf.Deg2Rad;
-
+    //     GameObject projectile = ObjectPoolManager.Instance.GetObject(ObjectType.ProjectileA);
+    //    ProjectileController controller = projectile.GetComponent<ProjectileController>();
+    //    projectile.transform.position = spawnPoint[UnityEngine.Random.Range(0, spawnPoint.Length)].position;
+    //    화면에 내에 있는 랜덤값 shoot
+    //    controller.RandomShoot();
+    //    MovePoint(projectile.GetComponent<ProjectileController>(), Vector2.zero);
     //}
 
 
+    IEnumerator CoSpawnProjectile()
+    {
+        while (true)
+        {
+            yield return YieldCache.WaitForSeconds(0.1f);
 
+            GameObject projectile = ObjectPoolManager.Instance.GetObject("EnemyProjectile");
+            ProjectileController projectileController = projectile.GetComponent<ProjectileController>();
+            projectile.transform.position = spawnPoint[UnityEngine.Random.Range(0, spawnPoint.Length)].position;
+            projectileController.RandomShoot();
 
+        }
+    }
 }
