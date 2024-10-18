@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     PlayerShooter shooter;
     bool isHit;
 
+    public float invincibilityDuration = 2f;
+    private bool isInvincible = false;
+
     /// <summary>
     /// 초기화 Awake : Rigidbody 가져오기
     /// </summary>
@@ -51,7 +54,33 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    IEnumerator ConHitEffect()
+    {
+        isInvincible = true;
+        animator.SetBool("isHit", true);
+        yield return new WaitForSeconds(invincibilityDuration);
+        isInvincible = false;
+        animator.SetBool("isHit", false);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy") || collision.CompareTag("EnemyProjectile"))
+        {
+            if (!isInvincible)
+            {
+                OnHit();
+                StartCoroutine(ConHitEffect());
+            }
+        }
+        else if (collision.CompareTag("Power"))
+        {
+            Upgrade();
+        }
+        else if (collision.CompareTag("Life"))
+        {
 
+        }
+    }
     void Upgrade()
     {
         shooter.Power++;
