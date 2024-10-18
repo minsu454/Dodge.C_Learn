@@ -21,10 +21,11 @@ public class BasePopup : MonoBehaviour
     /// <summary>
     /// 닫기 함수
     /// </summary>
-    protected virtual void Close()
+    public virtual void Close()
     {
         if (!Managers.Popup.ComparerLastDepth(gameObject))
             return;
+
         
         ClossEvent?.Invoke();
         Managers.Popup.Close();

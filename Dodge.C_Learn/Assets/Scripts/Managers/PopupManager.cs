@@ -48,6 +48,10 @@ public class PopupManager : MonoBehaviour, ICreate
             Close();
         }
     }
+    public void Clear()
+    {
+        depth.Clear();
+    }
 
     /// <summary>
     /// 팝업 생성 함수

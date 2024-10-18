@@ -281,7 +281,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8818686881749318615}
         m_TargetAssemblyTypeName: TitlePopup, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: LoadSceneAndClose
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 9143269831984006112}
   - component: {fileID: 8818686881749318615}
   m_Layer: 5
-  m_Name: PlayButtonPopup
+  m_Name: TitlePopup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
