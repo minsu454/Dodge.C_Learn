@@ -25,7 +25,7 @@ public class ProjectileController : MonoBehaviour
     public void RandomShoot()
     {
         Vector2 direction = Random.insideUnitCircle.normalized;
-        projectileRb.velocity = direction * 0.2f;
+        projectileRb.velocity = direction;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

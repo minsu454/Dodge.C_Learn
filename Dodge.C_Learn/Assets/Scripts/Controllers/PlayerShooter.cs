@@ -14,40 +14,8 @@ public class PlayerShooter : Shooter
 
     private void Start()
     {
+        objType = ObjectType.Player;
         StartCoroutine(CoShoot());
-    }
-
-    void Shoot()
-    {
-        switch (Power)
-        {
-            case 0:
-                SpawnBullet(ObjectType.Player, projectTile_A, Vector3.zero, Vector2.up);
-                break;
-            case 1:
-                SpawnBullet(ObjectType.Player, projectTile_A, Vector3.right * 0.08f, Vector2.up);
-                SpawnBullet(ObjectType.Player, projectTile_A, Vector3.left * 0.08f, Vector2.up);
-                break;
-            case 2:
-                SpawnBullet(ObjectType.Player, projectTile_A, Vector3.right * 0.1f, Vector2.up);
-                SpawnBullet(ObjectType.Player, projectTile_A, Vector3.left * 0.1f, Vector2.up);
-                SpawnBullet(ObjectType.Player, projectTile_A, Vector3.up * 0.1f, Vector2.up);
-                break;      
-            case 3:         
-                SpawnBullet(ObjectType.Player, projectTile_A, Vector3.right * 0.1f, Vector2.up);
-                SpawnBullet(ObjectType.Player, projectTile_A, Vector3.right * 0.2f, Vector2.up);
-                SpawnBullet(ObjectType.Player, projectTile_A, Vector3.left * 0.1f, Vector2.up);
-                SpawnBullet(ObjectType.Player, projectTile_A, Vector3.left * 0.2f, Vector2.up);
-                break;
-            case 4:
-                SpawnBullet(ObjectType.Player, projectTile_B, Vector3.zero, Vector2.up);
-                break;
-            case 5:
-                SpawnBullet(ObjectType.Player, projectTile_B, Vector3.up * 0.1f, Vector2.zero);
-                SpawnBullet(ObjectType.Player, projectTile_A, Vector3.right * 0.15f, Vector2.zero);
-                SpawnBullet(ObjectType.Player, projectTile_A, Vector3.left * 0.15f, Vector2.zero);
-                break;
-        }
     }
 
     IEnumerator CoShoot()
@@ -57,6 +25,39 @@ public class PlayerShooter : Shooter
             Shoot();
 
             yield return YieldCache.WaitForSeconds(attackSO.delay);
+        }
+    }
+
+    void Shoot()
+    {
+        switch (Power)
+        {
+            case 0:
+                SpawnBullet(projectTile_A, Vector3.zero, Vector2.up);
+                break;
+            case 1:
+                SpawnBullet(projectTile_A, Vector3.right * 0.08f, Vector2.up);
+                SpawnBullet(projectTile_A, Vector3.left * 0.08f, Vector2.up);
+                break;
+            case 2:
+                SpawnBullet(projectTile_A, Vector3.right * 0.1f, Vector2.up);
+                SpawnBullet(projectTile_A, Vector3.left * 0.1f, Vector2.up);
+                SpawnBullet(projectTile_A, Vector3.up * 0.1f, Vector2.up);
+                break;
+            case 3:
+                SpawnBullet(projectTile_A, Vector3.right * 0.1f, Vector2.up);
+                SpawnBullet(projectTile_A, Vector3.right * 0.2f, Vector2.up);
+                SpawnBullet(projectTile_A, Vector3.left * 0.1f, Vector2.up);
+                SpawnBullet(projectTile_A, Vector3.left * 0.2f, Vector2.up);
+                break;
+            case 4:
+                SpawnBullet(projectTile_B, Vector3.zero, Vector2.up);
+                break;
+            case 5:
+                SpawnBullet(projectTile_B, Vector3.up * 0.1f, Vector2.zero);
+                SpawnBullet(projectTile_A, Vector3.right * 0.15f, Vector2.zero);
+                SpawnBullet(projectTile_A, Vector3.left * 0.15f, Vector2.zero);
+                break;
         }
     }
 }

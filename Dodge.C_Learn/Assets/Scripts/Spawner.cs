@@ -12,7 +12,6 @@ using static UnityEngine.EventSystems.EventTrigger;
 public class Spawner : MonoBehaviour
 {
     public Transform[] spawnPoint;
-    //public Pattern();
 
     private void Awake()
     {
@@ -43,7 +42,7 @@ public class Spawner : MonoBehaviour
     {
         while (true)
         {
-            yield return YieldCache.WaitForSeconds(0.1f);
+            yield return YieldCache.WaitForSeconds(1f);
 
             GameObject projectile = ObjectPoolManager.Instance.GetObject("EnemyProjectile");
             ProjectileController projectileController = projectile.GetComponent<ProjectileController>();
