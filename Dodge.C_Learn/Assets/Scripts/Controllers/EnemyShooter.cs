@@ -3,35 +3,54 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyShooter : MonoBehaviour 
+public class EnemyShooter : Shooter
 {
     float time = 0f;
-    public float Firerate;
-    private float projectileSpeed = 5f;
     public Transform FirePoint;
     public EnemyType enemyType;
 
     bool isCooldown = false;
 
-
     int num = 0;
-
-    private void Update()
+    protected void Start()
     {
-        if (!isCooldown)
+        switch (enemyType)
         {
-            ApplyAttack();
-        }
-        else
-        {
-            time += Time.deltaTime;
-            if (time >= Firerate)
-            {
-                isCooldown = false;
-                time = 0f;
-            }
+            case EnemyType.Corvette:
+                projectileSpeed = 2f;
+                StartCoroutine(CoFire());
+                break;
+            case EnemyType.Frigate:
+                projectileSpeed = 4f;
+                StartCoroutine(CoFireBurst());
+                break;
+            case EnemyType.Destroyer:
+                FireAround(12, 4);
+                break;
+            case EnemyType.Cruiser:
+                FireArc(50);
+                break;
+            case EnemyType.Battleship:
+                FireAround(50, 2);
+                break;
         }
     }
+    //protected override void Update()
+    //{
+    //    if (!isCooldown)
+    //    {
+    //        ApplyAttack();
+    //    }
+    //    else
+    //    {
+    //        time += Time.deltaTime;
+    //        if (time >= FireRate)
+    //        {
+    //            isCooldown = false;
+    //            time = 0f;
+    //        }
+    //    }
+    //}
 
     private void ApplyAttack()
     {
@@ -57,19 +76,15 @@ public class EnemyShooter : MonoBehaviour
         }
     }
 
-    private void Shoot()
+    private void SpawnBullet(ObjectType type, Vector3 pos, Vector2 dir)
     {
-        SpawnBullet(ObjectType.EnemyProjectile, Vector3.zero);
-    }
-    private void SpawnBullet(ObjectType type, Vector3 vec)
-    {
-        GameObject bullet = ObjectPoolManager.Instance.GetObject(type, FirePoint, vec);
+        GameObject bullet = ObjectPoolManager.Instance.GetObject(type, FirePoint, pos);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.velocity = Vector2.down * projectileSpeed;
+        rb.velocity = dir * projectileSpeed;
     }
     private void Fire() // 일반적인 사격
     {
-        Shoot();
+        SpawnBullet(ObjectType.EnemyProjectile, Vector3.zero, Vector2.down);
         Reloading();
     }
     private void FireBurst(int fireamount) // 점사
@@ -86,7 +101,7 @@ public class EnemyShooter : MonoBehaviour
     {
         for (int i = 0; i < fireamount; i++)
         {
-            Shoot();
+            SpawnBullet(ObjectType.EnemyProjectile, Vector3.zero, Vector2.down);
             yield return new WaitForSeconds(0.1f); // 각 발사 사이에 딜레이
         }
         Reloading();
@@ -119,14 +134,13 @@ public class EnemyShooter : MonoBehaviour
         projectileSpeed = 2f;
         while (num < fireamount)
         {
-            GameObject bullet = ObjectPoolManager.Instance.GetObject(ObjectType.EnemyProjectile);
-            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            bullet.transform.position = transform.position;
-            bullet.transform.rotation = Quaternion.identity;
-
+            //GameObject bullet = ObjectPoolManager.Instance.GetObject(ObjectType.EnemyProjectile);
+            //Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            //bullet.transform.position = transform.position;
+            //bullet.transform.rotation = Quaternion.identity;
+            //rb.velocity = dirVec.normalized * projectileSpeed;
             Vector2 dirVec = new Vector2(Mathf.Cos(Mathf.PI * 5 * num / fireamount), -1);
-            rb.velocity = dirVec.normalized * projectileSpeed;
-
+            SpawnBullet(ObjectType.EnemyProjectile, Vector3.zero, dirVec);
             num++;
             yield return new WaitForSeconds(0.8f); // 각 발사 사이에 딜레이
         }
@@ -177,8 +191,44 @@ public class EnemyShooter : MonoBehaviour
         Reloading();
         projectileSpeed = 5f;
     }
+    private IEnumerator FireAroundCoroutine(int roundamount, int firecount, Action spawnbullet)
+    {
+        projectileSpeed = 2f;
+        for (int count = 0; count < firecount; count++)
+        {
+            for (int i = 0; i < roundamount; i++)
+            {
+                spawnbullet();
+            }
+            yield return new WaitForSeconds(1f); // 각 발사 사이에 딜레이
+        }
+        Reloading();
+        projectileSpeed = 5f;
+    }
     private void Reloading()
     {
         num = 0;
     }
+    private IEnumerator CoFire()
+    {
+        while (true)
+        {
+            SpawnBullet(ObjectType.EnemyProjectile, Vector3.zero, Vector2.down);
+
+            yield return new WaitForSeconds(5f);
+        }
+    }
+    private IEnumerator CoFireBurst()
+    {
+        while (true)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                SpawnBullet(ObjectType.EnemyProjectile, Vector3.zero, Vector2.down);
+                yield return new WaitForSeconds(0.1f); // 각 발사 사이에 딜레이
+            }
+            yield return new WaitForSeconds(5f);
+        }
+    }
+
 }
