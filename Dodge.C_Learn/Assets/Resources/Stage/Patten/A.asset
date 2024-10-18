@@ -9,25 +9,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf0c249d18e2a46488bd4b976ac351ce, type: 3}
+  m_Script: {fileID: 11500000, guid: a91272c30cb479543ab54beddd7a5b8e, type: 3}
   m_Name: A
   m_EditorClassIdentifier: 
-  patten:
+  pattern:
     name: A
     spawnPointList:
     - EnemyType: 0
-      Pos: {x: -0.18292692, y: 3.3231707, z: 0}
+      Pos: {x: 0, y: 4, z: 0}
     - EnemyType: 0
-      Pos: {x: -1.8445127, y: 0.91463387, z: 0}
+      Pos: {x: -2, y: 2, z: 0}
     - EnemyType: 0
-      Pos: {x: 0.97560996, y: 0.82317054, z: 0}
+      Pos: {x: 2, y: 2, z: 0}
     - EnemyType: 0
-      Pos: {x: -0.3353654, y: 0.8993906, z: 0}
+      Pos: {x: 0, y: 2, z: 0}
     - EnemyType: 0
-      Pos: {x: -1.0365858, y: 2.5152433, z: 0}
+      Pos: {x: -1, y: 3, z: 0}
     - EnemyType: 0
-      Pos: {x: 0.47256154, y: 2.3323174, z: 0}
+      Pos: {x: 1, y: 3, z: 0}
     - EnemyType: 0
-      Pos: {x: -2.728659, y: -0.27439028, z: 0}
+      Pos: {x: -3, y: 1, z: 0}
     - EnemyType: 0
-      Pos: {x: 1.4481715, y: -0.2591461, z: 0}
+      Pos: {x: 3, y: 1, z: 0}

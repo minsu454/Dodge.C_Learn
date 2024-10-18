@@ -1,65 +1,62 @@
+using Common.Yield;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
-public class PlayerShooter : MonoBehaviour
+public class PlayerShooter : Shooter
 {
-    public GameObject projectileA;
-    public GameObject projectileB;
     public Transform firePoint;
-    public float projectileSpeed = 100f;
-    float time = 0f;
-    public float fireRate;
     public float Power;
+
+    private const string projectTile_A = "ProjectileA";
+    private const string projectTile_B = "ProjectileB";
+
+    private void Start()
+    {
+        StartCoroutine(CoShoot());
+    }
 
     void Shoot()
     {
         switch (Power)
         {
             case 0:
-                SpawnBullet(ObjectType.ProjectileA, Vector3.zero);
+                SpawnBullet(ObjectType.Player, projectTile_A, Vector3.zero, Vector2.up);
                 break;
             case 1:
-                SpawnBullet(ObjectType.ProjectileA, Vector3.right * 0.08f);
-                SpawnBullet(ObjectType.ProjectileA, Vector3.left * 0.08f);
+                SpawnBullet(ObjectType.Player, projectTile_A, Vector3.right * 0.08f, Vector2.up);
+                SpawnBullet(ObjectType.Player, projectTile_A, Vector3.left * 0.08f, Vector2.up);
                 break;
             case 2:
-                SpawnBullet(ObjectType.ProjectileA, Vector3.right * 0.1f);
-                SpawnBullet(ObjectType.ProjectileA, Vector3.left * 0.1f);
-                SpawnBullet(ObjectType.ProjectileA, Vector3.up * 0.1f);
-                break;
-            case 3:
-                SpawnBullet(ObjectType.ProjectileA, Vector3.right * 0.1f);
-                SpawnBullet(ObjectType.ProjectileA, Vector3.right * 0.2f);
-                SpawnBullet(ObjectType.ProjectileA, Vector3.left * 0.1f);
-                SpawnBullet(ObjectType.ProjectileA, Vector3.left * 0.2f);
+                SpawnBullet(ObjectType.Player, projectTile_A, Vector3.right * 0.1f, Vector2.up);
+                SpawnBullet(ObjectType.Player, projectTile_A, Vector3.left * 0.1f, Vector2.up);
+                SpawnBullet(ObjectType.Player, projectTile_A, Vector3.up * 0.1f, Vector2.up);
+                break;      
+            case 3:         
+                SpawnBullet(ObjectType.Player, projectTile_A, Vector3.right * 0.1f, Vector2.up);
+                SpawnBullet(ObjectType.Player, projectTile_A, Vector3.right * 0.2f, Vector2.up);
+                SpawnBullet(ObjectType.Player, projectTile_A, Vector3.left * 0.1f, Vector2.up);
+                SpawnBullet(ObjectType.Player, projectTile_A, Vector3.left * 0.2f, Vector2.up);
                 break;
             case 4:
-                SpawnBullet(ObjectType.ProjectileB, Vector3.zero);
+                SpawnBullet(ObjectType.Player, projectTile_B, Vector3.zero, Vector2.up);
                 break;
             case 5:
-                SpawnBullet(ObjectType.ProjectileB, Vector3.up * 0.1f);
-                SpawnBullet(ObjectType.ProjectileA, Vector3.right * 0.15f);
-                SpawnBullet(ObjectType.ProjectileA, Vector3.left * 0.15f);
+                SpawnBullet(ObjectType.Player, projectTile_B, Vector3.up * 0.1f, Vector2.zero);
+                SpawnBullet(ObjectType.Player, projectTile_A, Vector3.right * 0.15f, Vector2.zero);
+                SpawnBullet(ObjectType.Player, projectTile_A, Vector3.left * 0.15f, Vector2.zero);
                 break;
         }
     }
-    
-    private void SpawnBullet(ObjectType type , Vector3 vec)
-    {
-        GameObject bullet = ObjectPoolManager.Instance.GetObject(type, firePoint , vec);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.velocity = firePoint.up * projectileSpeed;
-    }
 
-    private void Update()
+    IEnumerator CoShoot()
     {
-        time += Time.deltaTime;
-        if (time >= fireRate)
+        while (true)
         {
             Shoot();
-            time = 0f;
+
+            yield return YieldCache.WaitForSeconds(attackSO.delay);
         }
     }
 }

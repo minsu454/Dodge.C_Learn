@@ -5,10 +5,15 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 public class AttackSO : ScriptableObject
 {
     [Header("Attack Info")]
-    public float size;
+    public float FireRate;
     public float delay;
-    public float power;
-    public float speed;
-    public LayerMask target;
+    public float Speed;
 
+    [Header("Enemy Info")]
+    public int bulletAmount;
+    public int fireCount;
+
+    [Header("Player Inof")]
+    public string ProjectileA;
+    public string ProjectileB;
 }

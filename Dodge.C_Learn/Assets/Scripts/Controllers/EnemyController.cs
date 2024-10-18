@@ -8,23 +8,25 @@ public class EnemyController : MonoBehaviour
     public float maxHealth;
     public float speed;
     public Sprite[] sprites;
+    public float Score;
 
-    [SerializeField] ObjectType OT; 
-    [SerializeField] EnemyType ET; 
-
-    SpriteRenderer SR;
-    Rigidbody2D RB;
+    [SerializeField] EnemyType enemyType;
+    EnemyShooter shooter;
+    SpriteRenderer spriteRender;
+    Rigidbody2D rb;
 
     private void Awake()
     {
         health = maxHealth;
-        SR = GetComponent<SpriteRenderer>();
-        RB = GetComponent<Rigidbody2D>();
+        shooter = GetComponent<EnemyShooter>(); 
+        spriteRender = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
+        shooter.enemyType = enemyType;
     }
     void OnHit(int dmg)
     {
         health -= dmg;
-        SR.sprite = sprites[1];
+        spriteRender.sprite = sprites[1];
         Invoke("ReturnSprite", 0.05f);
 
         if (health <= 0)
@@ -36,7 +38,7 @@ public class EnemyController : MonoBehaviour
 
     void ReturnSprite()
     {
-        SR.sprite = sprites[0];
+        spriteRender.sprite = sprites[0];
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
