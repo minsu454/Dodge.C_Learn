@@ -8,29 +8,23 @@ using static UnityEngine.EventSystems.EventTrigger;
 public class Spawner : MonoBehaviour
 {
     public Transform[] spawnPoint;
-
-    float timer;
-
-    float spawnTime = 1;
-
     public Transform[] movePoint;
+
+    string path = "Stage/Patten/H";
+
+
 
     private void Awake()
     {
         spawnPoint = GetComponentsInChildren<Transform>();
     }
 
-    void Update()
+    private void Start()
     {
-        timer += Time.deltaTime;
-
-        if (timer > spawnTime)
-        {
-            Spawn();
-            SpawnProjectile();
-            timer = 0;
-        }
+        var tempStageTest = Resources.Load<PatternSO>(path);
+        SpawnStageEnemy(tempStageTest.pattern); 
     }
+
 
     private void Spawn()
     {
