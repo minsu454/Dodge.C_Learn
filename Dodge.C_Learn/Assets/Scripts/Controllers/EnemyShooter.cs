@@ -13,6 +13,8 @@ public class EnemyShooter : MonoBehaviour
 
     bool isCooldown = false;
 
+    private const string enemyProjectTile = "EnemyProjectile";
+
 
     int num = 0;
 
@@ -59,11 +61,11 @@ public class EnemyShooter : MonoBehaviour
 
     private void Shoot()
     {
-        SpawnBullet(ObjectType.EnemyProjectile, Vector3.zero);
+        SpawnBullet(enemyProjectTile, Vector3.zero);
     }
-    private void SpawnBullet(ObjectType type, Vector3 vec)
+    private void SpawnBullet(string enemyBullet, Vector3 vec)
     {
-        GameObject bullet = ObjectPoolManager.Instance.GetObject(type, FirePoint, vec);
+        GameObject bullet = ObjectPoolManager.Instance.GetObject(enemyBullet, FirePoint, vec);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.down * projectileSpeed;
     }
@@ -164,7 +166,7 @@ public class EnemyShooter : MonoBehaviour
         {
             for (int i = 0; i < roundamount; i++)
             {
-                GameObject bullet = ObjectPoolManager.Instance.GetObject(ObjectType.EnemyProjectile);
+                GameObject bullet = ObjectPoolManager.Instance.GetObject(enemyProjectTile);
                 Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
                 bullet.transform.position = transform.position;
                 bullet.transform.rotation = Quaternion.identity;

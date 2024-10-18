@@ -13,42 +13,45 @@ public class PlayerShooter : MonoBehaviour
     public float fireRate;
     public float Power;
 
+    private const string projectTile_A = "ProjectileA";
+    private const string projectTile_B = "ProjectileB";
+
     void Shoot()
     {
         switch (Power)
         {
             case 0:
-                SpawnBullet(ObjectType.ProjectileA, Vector3.zero);
+                SpawnBullet(projectTile_A, Vector3.zero);
                 break;
             case 1:
-                SpawnBullet(ObjectType.ProjectileA, Vector3.right * 0.08f);
-                SpawnBullet(ObjectType.ProjectileA, Vector3.left * 0.08f);
+                SpawnBullet(projectTile_A, Vector3.right * 0.08f);
+                SpawnBullet(projectTile_A, Vector3.left * 0.08f);
                 break;
             case 2:
-                SpawnBullet(ObjectType.ProjectileA, Vector3.right * 0.1f);
-                SpawnBullet(ObjectType.ProjectileA, Vector3.left * 0.1f);
-                SpawnBullet(ObjectType.ProjectileA, Vector3.up * 0.1f);
-                break;
-            case 3:
-                SpawnBullet(ObjectType.ProjectileA, Vector3.right * 0.1f);
-                SpawnBullet(ObjectType.ProjectileA, Vector3.right * 0.2f);
-                SpawnBullet(ObjectType.ProjectileA, Vector3.left * 0.1f);
-                SpawnBullet(ObjectType.ProjectileA, Vector3.left * 0.2f);
+                SpawnBullet(projectTile_A, Vector3.right * 0.1f);
+                SpawnBullet(projectTile_A, Vector3.left * 0.1f);
+                SpawnBullet(projectTile_A, Vector3.up * 0.1f);
+                break;      
+            case 3:         
+                SpawnBullet(projectTile_A, Vector3.right * 0.1f);
+                SpawnBullet(projectTile_A, Vector3.right * 0.2f);
+                SpawnBullet(projectTile_A, Vector3.left * 0.1f);
+                SpawnBullet(projectTile_A, Vector3.left * 0.2f);
                 break;
             case 4:
-                SpawnBullet(ObjectType.ProjectileB, Vector3.zero);
+                SpawnBullet(projectTile_B, Vector3.zero);
                 break;
             case 5:
-                SpawnBullet(ObjectType.ProjectileB, Vector3.up * 0.1f);
-                SpawnBullet(ObjectType.ProjectileA, Vector3.right * 0.15f);
-                SpawnBullet(ObjectType.ProjectileA, Vector3.left * 0.15f);
+                SpawnBullet(projectTile_B, Vector3.up * 0.1f);
+                SpawnBullet(projectTile_A, Vector3.right * 0.15f);
+                SpawnBullet(projectTile_A, Vector3.left * 0.15f);
                 break;
         }
     }
     
-    private void SpawnBullet(ObjectType type , Vector3 vec)
+    private void SpawnBullet(string projectTile, Vector3 vec)
     {
-        GameObject bullet = ObjectPoolManager.Instance.GetObject(gameObject.name, firePoint , vec);
+        GameObject bullet = ObjectPoolManager.Instance.GetObject(projectTile, firePoint , vec);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.velocity = firePoint.up * projectileSpeed;
     }
