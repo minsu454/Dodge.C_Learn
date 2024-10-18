@@ -44,7 +44,7 @@ public class EnemyShooter : Shooter
     }
     private void SpawnBullet(string curBullet, Vector3 pos, Vector2 dir)
     {
-        GameObject bullet = ObjectPoolManager.Instance.GetObject(curBullet, FirePoint, pos);
+        GameObject bullet = ObjectPoolManager.Instance.GetObject(curBullet, transform, pos);
         ProjectileController projectTileController = bullet.GetComponent<ProjectileController>();
         projectTileController.myType = ObjectType.Enemy;
         projectTileController.Shoot(dir * projectileSpeed);

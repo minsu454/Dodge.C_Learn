@@ -22,7 +22,6 @@ public class EnemyController : MonoBehaviour
         spriteRender = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         shooter.enemyType = enemyType;
-        shooter.FirePoint = gameObject.transform;
     }
     void OnHit(int dmg)
     {
