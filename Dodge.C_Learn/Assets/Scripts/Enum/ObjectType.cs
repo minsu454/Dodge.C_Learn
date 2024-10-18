@@ -2,5 +2,6 @@ public enum ObjectType
 {
     None,
     Player,
-    Enemy
+    Enemy,
+    Item
 }   

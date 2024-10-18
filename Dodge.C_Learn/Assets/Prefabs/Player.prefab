@@ -191,6 +191,7 @@ MonoBehaviour:
   FireRate: 0.1
   projectileSpeed: 10
   time: 0
+  FirePoint: {fileID: 0}
   firePoint: {fileID: 3257569468252211184}
   Power: 0
 --- !u!114 &3191669984450097093
@@ -307,6 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff779d762fa4f6d4784f97c7a1d67d26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 5
   speed: 5
 --- !u!70 &7674222950971642459
 CapsuleCollider2D:
