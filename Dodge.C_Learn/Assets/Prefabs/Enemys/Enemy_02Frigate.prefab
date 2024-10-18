@@ -49,12 +49,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  maxHealth: 5
+  maxHealth: 10
   speed: 0
   sprites:
   - {fileID: 21300000, guid: baaee3c7724bb1342939ae426b64a2e4, type: 3}
   - {fileID: 21300000, guid: 30e991a0c78c0cf46aac005a1055b177, type: 3}
-  objectType: 4
   enemyType: 1
 --- !u!114 &1459103476199945192
 MonoBehaviour:
@@ -68,7 +67,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 711f810fdc471344c9d9edb4f10ed805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Firerate: 5
+  FireRate: 0
+  projectileSpeed: 0
+  time: 0
   FirePoint: {fileID: 0}
   enemyType: 0
 --- !u!50 &4872361308655074038
