@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
-public class PlayerShooter : MonoBehaviour
+public class PlayerShooter : Shooter
 {
-    public GameObject projectileA;
-    public GameObject projectileB;
     public Transform firePoint;
-    public float projectileSpeed = 100f;
     float time = 0f;
-    public float fireRate;
     public float Power;
 
     private const string projectTile_A = "ProjectileA";
@@ -56,10 +52,10 @@ public class PlayerShooter : MonoBehaviour
         rb.velocity = firePoint.up * projectileSpeed;
     }
 
-    private void Update()
+    protected override void Update()
     {
         time += Time.deltaTime;
-        if (time >= fireRate)
+        if (time >= FireRate)
         {
             Shoot();
             time = 0f;
