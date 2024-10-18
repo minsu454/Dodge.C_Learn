@@ -231,29 +231,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectPrefabs:
-  - Type: 2
-    GO: {fileID: 2530923033056240135, guid: 94eff87c0b0997e4e91fcbe4f3cbd486, type: 3}
+  - GO: {fileID: 2530923033056240135, guid: 94eff87c0b0997e4e91fcbe4f3cbd486, type: 3}
     Count: 20
-  - Type: 3
-    GO: {fileID: 2530923033056240135, guid: 11731580b2bb2da4bb955dd3bf461a8b, type: 3}
+  - GO: {fileID: 2530923033056240135, guid: 11731580b2bb2da4bb955dd3bf461a8b, type: 3}
     Count: 20
-  - Type: 4
-    GO: {fileID: 8690834134288300692, guid: 7fb991dfb1c86424a8f6cf2010fd0707, type: 3}
+  - GO: {fileID: 8690834134288300692, guid: 7fb991dfb1c86424a8f6cf2010fd0707, type: 3}
     Count: 50
-  - Type: 5
-    GO: {fileID: 7449122610795647660, guid: 1ec0dcbf1e1d21c41b9a9ee598b23172, type: 3}
+  - GO: {fileID: 7449122610795647660, guid: 1ec0dcbf1e1d21c41b9a9ee598b23172, type: 3}
     Count: 10
-  - Type: 6
-    GO: {fileID: 3836814126277472270, guid: 72f4580e80757fa4a831fa704f5f6080, type: 3}
+  - GO: {fileID: 3836814126277472270, guid: 72f4580e80757fa4a831fa704f5f6080, type: 3}
     Count: 10
-  - Type: 7
-    GO: {fileID: 2964122219916754637, guid: c33fdb94e5fcfe144bc978f6999d8d5c, type: 3}
+  - GO: {fileID: 2964122219916754637, guid: c33fdb94e5fcfe144bc978f6999d8d5c, type: 3}
     Count: 10
-  - Type: 8
-    GO: {fileID: 3086820790859058501, guid: 33d28996bb248aa40a95cbd175a50ec8, type: 3}
+  - GO: {fileID: 3086820790859058501, guid: 33d28996bb248aa40a95cbd175a50ec8, type: 3}
     Count: 10
-  - Type: 9
-    GO: {fileID: 4870064830017222008, guid: 5e273dec784d96e4ab2af544acfadd13, type: 3}
+  - GO: {fileID: 4870064830017222008, guid: 5e273dec784d96e4ab2af544acfadd13, type: 3}
     Count: 10
 --- !u!4 &449887437
 Transform:
@@ -538,7 +530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 828303008}
-  playerType: 2
+  playerType: 0
 --- !u!1 &5153086771465876583
 GameObject:
   m_ObjectHideFlags: 0

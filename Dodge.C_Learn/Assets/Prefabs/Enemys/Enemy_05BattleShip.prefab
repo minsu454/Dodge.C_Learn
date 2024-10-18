@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7199449669393126400}
   - component: {fileID: 1626826258766832899}
-  - component: {fileID: -4924623500528741681}
+  - component: {fileID: -8910972851032403494}
   - component: {fileID: 6845274900136364427}
   - component: {fileID: 8588485996694435418}
   - component: {fileID: 4274687611266703755}
@@ -19,7 +19,7 @@ GameObject:
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7199449669393126400
 Transform:
@@ -49,14 +49,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  maxHealth: 50
+  maxHealth: 100
   speed: 0
   sprites:
   - {fileID: 21300000, guid: b3e81d7d3ea1953488f6979795ff6f93, type: 3}
   - {fileID: 21300000, guid: ad08467101a3a4c4e872bc96d8b73bd7, type: 3}
-  OT: 9
-  ET: 4
---- !u!114 &-4924623500528741681
+  enemyType: 4
+--- !u!114 &-8910972851032403494
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -68,10 +67,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 711f810fdc471344c9d9edb4f10ed805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firerate: 5
-  projectile: {fileID: 8690834134288300692, guid: 7fb991dfb1c86424a8f6cf2010fd0707, type: 3}
-  firePoint: {fileID: 7199449669393126400}
-  ET: 4
+  FireRate: 0
+  projectileSpeed: 0
+  time: 0
+  FirePoint: {fileID: 0}
+  enemyType: 0
 --- !u!50 &6845274900136364427
 Rigidbody2D:
   serializedVersion: 4

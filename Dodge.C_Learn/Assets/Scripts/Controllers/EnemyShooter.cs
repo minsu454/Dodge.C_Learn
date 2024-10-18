@@ -1,128 +1,108 @@
+using Common.Yield;
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyShooter : MonoBehaviour 
+public class EnemyShooter : Shooter
 {
-    float time = 0f;
-    public float firerate;
-    private float projectileSpeed = 5f;
-    public GameObject projectile;
-    public Transform firePoint;
+    public EnemyType enemyType;
 
     bool isCooldown = false;
 
-    public EnemyType ET;
+    private const string projectTile_A = "ProjecTileA";
+    private const string projectTile_B = "ProjectileB";
+    private const string enemyProjectile = "EnemyProjectile";
 
     int num = 0;
-
-    private void Update()
+    protected void Start()
     {
-        if (!isCooldown)
+        switch (enemyType)
         {
-            ApplyAttack();
-            Reloading();
-        }
-        else
-        {
-            time += Time.deltaTime;
-            if (time >= firerate)
-            {
-                isCooldown = false;
-                time = 0f;
-            }
-        }
-    }
-
-    private void ApplyAttack()
-    {
-        switch( ET )
-        {
-            case EnemyType.Corvette:
-                Fire();
+            case EnemyType.Enemy_01Corvette:
+                projectileSpeed = 2f;
+                StartCoroutine(CoFire());
                 break;
             case EnemyType.Frigate:
-                FireBurst(2);
+                projectileSpeed = 4f;
+                StartCoroutine(CoFireBurst());
                 break;
             case EnemyType.Destroyer:
-                FireAround(12, 1);
+                projectileSpeed = 2f;
+                StartCoroutine(CoFireArc());
                 break;
             case EnemyType.Cruiser:
-                FireArc(50);
+                projectileSpeed = 5f;
+                StartCoroutine(CoFireArc());
                 break;
             case EnemyType.Battleship:
-                FireAround(50, 5);
+                projectileSpeed = 2f;
+                StartCoroutine(CoFireAround());
+                StartCoroutine(CoFireBurst());
                 break;
         }
     }
-
-    private void Shoot()
+    private void SpawnBullet(string curBullet, Vector3 pos, Vector2 dir)
     {
-        SpawnBullet(ObjectType.EnemyProjectile, Vector3.zero);
+        GameObject bullet = ObjectPoolManager.Instance.GetObject(curBullet, transform, pos);
+        ProjectileController projectTileController = bullet.GetComponent<ProjectileController>();
+        projectTileController.myType = ObjectType.Enemy;
+        projectTileController.Shoot(dir * projectileSpeed);
     }
-    private void SpawnBullet(ObjectType type, Vector3 vec)
+    private IEnumerator CoFire()
     {
-        GameObject bullet = ObjectPoolManager.Instance.GetObject(type, firePoint, vec);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.velocity = Vector2.down * projectileSpeed;
-    }
-    private void Fire() // 일반적인 사격
-    {
-        Shoot();
-        Reloading();
-    }
-    private void FireBurst(int fireamount) // 점사
-    {
-        for(int i = 0; i < fireamount; i++)
+        while (true)
         {
-            Invoke("Shoot", i * 0.1f);
-        }
-        Reloading();
-    }
-    private void FireArc(int fireamount) // 호를 그리면서 사격
-    {
-        projectileSpeed = 2f;
-        GameObject bullet = ObjectPoolManager.Instance.GetObject(ObjectType.EnemyProjectile);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        bullet.transform.position = transform.position;
-        bullet.transform.rotation = Quaternion.identity;
+            SpawnBullet(enemyProjectile, Vector3.zero, Vector2.down);
 
-        Vector2 dirVec = new Vector2(Mathf.Sin(Mathf.PI* 2 * num /fireamount), -1);
-        rb.velocity = dirVec * projectileSpeed;
-
-        num++;
-        if (num < fireamount)
-            Invoke("ArcFire", 0.1f);
-        else
-        {
-            projectileSpeed = 5f;
+            yield return YieldCache.WaitForSeconds(5f);
         }
     }
-    private void FireAround(int roundamount ,int firecount) // 원 형태로 사격
+    private IEnumerator CoFireBurst()
     {
-        projectileSpeed = 2f;
-        for (int i = 0; i < roundamount; i++)
+        while (true)
         {
-            GameObject bullet = ObjectPoolManager.Instance.GetObject(ObjectType.EnemyProjectile);
-            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            bullet.transform.position = transform.position;
-            bullet.transform.rotation = Quaternion.identity;
-
-            Vector2 dirVec = new Vector2(Mathf.Cos(Mathf.PI * 2 * i / roundamount), Mathf.Sin(Mathf.PI * 2 * i / roundamount));
-            rb.velocity = dirVec * projectileSpeed;
-        }
-        num++;
-        if (num < firecount)
-            Invoke("FireAround", 1f);
-        else
-        {
-            Reloading();
-            projectileSpeed = 5f;
+            for (int i = 0; i < 4; i++)
+            {
+                SpawnBullet(enemyProjectile, Vector3.zero, Vector2.down);
+                yield return YieldCache.WaitForSeconds(0.1f); // 각 발사 사이에 딜레이
+            }
+            yield return YieldCache.WaitForSeconds(5f);
         }
     }
-    private void Reloading()
+    private IEnumerator CoFireArc()
     {
-        isCooldown = true;
-        num = 0;
+        while (true)
+        {
+            while (num < 50)
+            {
+                Vector2 dirVec = new Vector2(Mathf.Cos(Mathf.PI * 5 * num / 50), -1);
+                SpawnBullet(enemyProjectile, Vector3.zero, dirVec);
+                num++;
+                yield return YieldCache.WaitForSeconds(0.1f); // 각 발사 사이에 딜레이
+            }
+            yield return YieldCache.WaitForSeconds(5f);
+            num = 0;
+        }
+    }
+    private IEnumerator CoFireAround()
+    {
+        while (true)
+        {
+            int count = 0;
+            while (count < 4)
+            {
+                while (num < 50)
+                {
+                    Vector2 dirVec = new Vector2(Mathf.Cos(Mathf.PI * 2 * num / 50), Mathf.Sin(Mathf.PI * 2 * num / 50));
+                    SpawnBullet(enemyProjectile, Vector3.zero, dirVec);
+                    num++;
+                }
+                count++;
+                yield return YieldCache.WaitForSeconds(0.1f);
+            }
+            yield return YieldCache.WaitForSeconds(1f);
+            num = 0;
+        }
     }
 }
