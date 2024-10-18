@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     public float maxHealth;
     public float speed;
     public Sprite[] sprites;
+    public float Score;
 
     [SerializeField] EnemyType enemyType;
     EnemyShooter shooter;
@@ -21,7 +22,6 @@ public class EnemyController : MonoBehaviour
         spriteRender = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         shooter.enemyType = enemyType;
-        shooter.FirePoint = gameObject.transform;
     }
     void OnHit(int dmg)
     {

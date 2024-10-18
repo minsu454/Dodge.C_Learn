@@ -5,23 +5,33 @@ using UnityEngine;
 
 public class CharacterContainer : IContainer
 {
-    private readonly Dictionary<PlayerType, Character> playerClassDic = new Dictionary<PlayerType, Character>();
+    private readonly Dictionary<ObjectType, Dictionary<int, Character>> characterDic = new Dictionary<ObjectType, Dictionary<int, Character>>();
 
     public void Init()
     {
-        foreach (PlayerType type in Enum.GetValues(typeof(PlayerType)))
+        characterDic.Add(ObjectType.Player, CreateDic<PlayerType>("Character/Player"));
+        characterDic.Add(ObjectType.Enemy, CreateDic<EnemyType>("Character/Enemy"));
+    }
+
+    private Dictionary<int, Character> CreateDic<T>(string path) where T : Enum
+    { 
+        Dictionary<int, Character> tempDic = new Dictionary<int, Character>();
+
+        foreach (T type in Enum.GetValues(typeof(T)))
         {
             string sType = type.ToString();
-            string name = $"Character/{sType}/{sType}";
+            string name = $"{path}/{sType}/{sType}";
             Character character = new Character(name);
 
-            playerClassDic.Add(type, character);
+            tempDic.Add((int)(object)type, character);
         }
+
+        return tempDic;
     }
 
     public Character ReturnAll(PlayerType type)
     {
-        if (!playerClassDic.TryGetValue(type, out Character result))
+        if (!characterDic[ObjectType.Player].TryGetValue((int)type, out Character result))
         {
             Debug.Log($"Is Not Find PlayerClassDic {type}");
             return null;
@@ -32,7 +42,7 @@ public class CharacterContainer : IContainer
 
     public Sprite ReturnSprite(PlayerType type)
     {
-        if (!playerClassDic.TryGetValue(type, out Character result))
+        if (!characterDic[ObjectType.Player].TryGetValue((int)type, out Character result))
         {
             Debug.Log($"Is Not Find PlayerClassDic {type}");
             return null;
@@ -43,7 +53,7 @@ public class CharacterContainer : IContainer
 
     public RuntimeAnimatorController ReturnAnimator(PlayerType type)
     {
-        if (!playerClassDic.TryGetValue(type, out Character result))
+        if (!characterDic[ObjectType.Player].TryGetValue((int)type, out Character result))
         {
             Debug.Log($"Is Not Find PlayerClassDic {type}");
             return null;
@@ -54,7 +64,51 @@ public class CharacterContainer : IContainer
 
     public AttackSO ReturnAttackSO(PlayerType type)
     {
-        if (!playerClassDic.TryGetValue(type, out Character result))
+        if (!characterDic[ObjectType.Player].TryGetValue((int)type, out Character result))
+        {
+            Debug.Log($"Is Not Find PlayerClassDic {type}");
+            return null;
+        }
+
+        return result.AttackSO;
+    }
+
+    public Character ReturnAll(EnemyType type)
+    {
+        if (!characterDic[ObjectType.Enemy].TryGetValue((int)type, out Character result))
+        {
+            Debug.Log($"Is Not Find PlayerClassDic {type}");
+            return null;
+        }
+
+        return result;
+    }
+
+    public Sprite ReturnSprite(EnemyType type)
+    {
+        if (!characterDic[ObjectType.Enemy].TryGetValue((int)type, out Character result))
+        {
+            Debug.Log($"Is Not Find PlayerClassDic {type}");
+            return null;
+        }
+
+        return result.Sprite;
+    }
+
+    public RuntimeAnimatorController ReturnAnimator(EnemyType type)
+    {
+        if (!characterDic[ObjectType.Enemy].TryGetValue((int)type, out Character result))
+        {
+            Debug.Log($"Is Not Find PlayerClassDic {type}");
+            return null;
+        }
+
+        return result.Animator;
+    }
+
+    public AttackSO ReturnAttackSO(EnemyType type)
+    {
+        if (!characterDic[ObjectType.Enemy].TryGetValue((int)type, out Character result))
         {
             Debug.Log($"Is Not Find PlayerClassDic {type}");
             return null;

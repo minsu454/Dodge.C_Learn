@@ -22,10 +22,6 @@ public class GameManager : MonoBehaviour
         spriteRenderer.sprite = playerClass.Sprite;
 
         Managers.Popup.CreatePopup(PopupType.InGamePopup);
-
-        WaitForSeconds waitForSec = YieldCache.WaitForSeconds(0.1f);
-
-        StartCoroutine(CoTimer.Start(3f, () => { Debug.Log("HI!"); } ));
     }
     
 }
