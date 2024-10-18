@@ -21,7 +21,8 @@ public class ObjectContainer : MonoBehaviour
         // 마지막 하나가 남았을 때 복제해서 넣어준다.
         if (objContainer[key].Count == 1)
         {
-            obj = Object.Instantiate(obj);
+            obj = Object.Instantiate(obj, transform);
+            obj.name = key;
         }
         else
         {
@@ -59,6 +60,7 @@ public class ObjectContainer : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             GameObject obj = Instantiate(prefab, transform);
+            obj.name = prefab.name;
             obj.SetActive(false); // 비활성화 상태로 생성
             objContainer[key].Enqueue(obj);
         }

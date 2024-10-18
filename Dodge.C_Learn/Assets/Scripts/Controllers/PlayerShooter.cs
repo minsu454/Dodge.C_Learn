@@ -11,6 +11,8 @@ public class PlayerShooter : Shooter
     private const string projectTile_A = "ProjectileA";
     private const string projectTile_B = "ProjectileB";
 
+    public float time = 0.1f;
+
     void Shoot()
     {
         switch (Power)
@@ -51,7 +53,7 @@ public class PlayerShooter : Shooter
         rb.velocity = firePoint.up * projectileSpeed;
     }
 
-    protected override void Update()
+    public void Update()
     {
         time += Time.deltaTime;
         if (time >= FireRate)

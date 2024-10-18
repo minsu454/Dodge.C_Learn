@@ -19,7 +19,7 @@ public class EnemyShooter : Shooter
     {
         switch (enemyType)
         {
-            case EnemyType.Corvette:
+            case EnemyType.Enemy_01Corvette:
                 projectileSpeed = 2f;
                 StartCoroutine(CoFire());
                 break;
