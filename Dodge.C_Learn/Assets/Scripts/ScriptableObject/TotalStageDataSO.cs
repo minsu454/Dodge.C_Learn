@@ -12,5 +12,5 @@ public class TotalStageDataSO : ScriptableObject
 public class StageSO
 {
     public int spawnTime;
-    public PattenSO PatternList;
+    public PatternSO PatternList;
 }

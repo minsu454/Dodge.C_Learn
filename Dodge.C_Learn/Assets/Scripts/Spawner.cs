@@ -1,6 +1,7 @@
 
 using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static UnityEngine.EventSystems.EventTrigger;
 
 
@@ -33,16 +34,24 @@ public class Spawner : MonoBehaviour
 
     private void Spawn()
     {
-<<<<<<< Updated upstream
-        GameObject enemy = ObjectPoolManager.Instance.GetObject(ObjectType.Object);
-        enemy.transform.position = spawnPoint[UnityEngine.Random.Range(0, spawnPoint.Length)].position;
-        EnemyMovePoint(enemy.GetComponent<EnemyController>(), Vector2.zero );         
-=======
-        GameObject enemy = ObjectPoolManager.Instance.GetObject(ObjectType.ProjectileA);
-        enemy.transform.position = spawnPoint[UnityEngine.Random.Range(1, spawnPoint.Length)].position;
-        PlayerShooter playerShooter = new PlayerShooter();
->>>>>>> Stashed changes
+/*        GameObject enemy = ObjectPoolManager.Instance.GetObject(ObjectType.EnemyProjectile);
+        enemy.transform.position = spawnPoint[UnityEngine.Random.Range(0, spawnPoint.Length)].position;*/
     }
+
+    public void SpawnStageEnemy(Pattern pattern)
+    {
+        for (int i = 0; i < pattern.spawnPointList.Count; i++)
+        {
+            EnemyType enemyType = pattern.spawnPointList[i].EnemyType;
+            Vector3 pos  = pattern.spawnPointList[i].Pos;
+
+            GameObject enemy = ObjectPoolManager.Instance.GetObject(enemyType.ToString());
+            enemy.transform.position = spawnPoint[UnityEngine.Random.Range(0, spawnPoint.Length)].position;
+
+            //EnemyMovePoint(enemy.GetComponent<EnemyController>(), pos);
+        }
+    }
+
 
     private void EnemyMovePoint(EnemyController enemy, Vector2 position)
     {
@@ -52,9 +61,12 @@ public class Spawner : MonoBehaviour
 
     private void SpawnProjectile()
     {
-        GameObject projectile = ObjectPoolManager.Instance.GetObject(ObjectType.ProjectileA);
+/*        GameObject projectile = ObjectPoolManager.Instance.GetObject(ObjectType.ProjectileA);
+        ProjectileController controller = projectile.GetComponent<ProjectileController>();
         projectile.transform.position = spawnPoint[UnityEngine.Random.Range(0, spawnPoint.Length)].position;
-        MovePoint(projectile.GetComponent<ProjectileController>(), Vector2.zero);
+        화면에 내에 있는 랜덤값 shoot
+        controller.RandomShoot();
+        MovePoint(projectile.GetComponent<ProjectileController>(), Vector2.zero);*/
     }
 
     private void MovePoint(ProjectileController projectile, Vector2 position)
@@ -62,8 +74,6 @@ public class Spawner : MonoBehaviour
         projectile.transform.position = movePoint[UnityEngine.Random.Range(0, movePoint.Length)].position;
         projectile.transform.position = Vector2.MoveTowards(projectile.transform.position, position, 0.2f);
     }
-
-    // 방향 
 
 
 

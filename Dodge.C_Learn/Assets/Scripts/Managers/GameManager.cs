@@ -1,3 +1,5 @@
+using Common.Timer;
+using Common.Yield;
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,8 +10,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject player;
     public PlayerType playerType;
-    
-    
+
     private void Start()
     {
         var playerClass = Managers.Character.ReturnAll(playerType);
@@ -22,6 +23,9 @@ public class GameManager : MonoBehaviour
 
         Managers.Popup.CreatePopup(PopupType.InGamePopup);
 
+        WaitForSeconds waitForSec = YieldCache.WaitForSeconds(0.1f);
+
+        StartCoroutine(CoTimer.Start(3f, () => { Debug.Log("HI!"); } ));
     }
     
 }
