@@ -8,19 +8,16 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject player;
+    public PlayerController player;
     public PlayerType playerType;
+
+    private void Awake()
+    {
+        player.SetPlayer(playerType);
+    }
 
     private void Start()
     {
-        var playerClass = Managers.Character.ReturnAll(playerType);
-
-        Animator anim = player.GetComponentInChildren<Animator>();
-        SpriteRenderer spriteRenderer =  player.GetComponentInChildren<SpriteRenderer>();
-
-        anim.runtimeAnimatorController = playerClass.Animator;
-        spriteRenderer.sprite = playerClass.Sprite;
-
         Managers.Popup.CreatePopup(PopupType.InGamePopup);
     }
     
