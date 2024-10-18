@@ -4,7 +4,7 @@ public class Shooter : MonoBehaviour
 {
     public float FireRate;
     public float projectileSpeed;
-    public ObjectType objType;
+    public AttackerType objType;
 
     public AttackSO attackSO;
 

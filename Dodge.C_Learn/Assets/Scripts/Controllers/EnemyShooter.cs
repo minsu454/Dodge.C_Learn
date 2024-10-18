@@ -16,7 +16,7 @@ public class EnemyShooter : Shooter
 
     protected void Start()
     {
-        objType = ObjectType.Enemy;
+        objType = AttackerType.Enemy;
 
         switch (enemyType)
         {

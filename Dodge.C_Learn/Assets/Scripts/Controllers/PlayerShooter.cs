@@ -14,7 +14,7 @@ public class PlayerShooter : Shooter
 
     private void Start()
     {
-        objType = ObjectType.Player;
+        objType = AttackerType.Player;
         StartCoroutine(CoShoot());
     }
 
