@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerShooter : Shooter
 {
     public Transform firePoint;
-    float time = 0f;
     public float Power;
 
     private const string projectTile_A = "ProjectileA";
