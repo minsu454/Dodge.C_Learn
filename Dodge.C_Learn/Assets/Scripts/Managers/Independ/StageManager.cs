@@ -31,7 +31,7 @@ public class StageManager : MonoBehaviour
     {
         _instance = this;
 
-        totalStageSO = Resources.Load<TotalStageDataSO>($"Stage/TotalStageDataSO");
+        totalStageSO = Resources.Load<TotalStageDataSO>($"StageSO/TotalStageDataSO");
     }
 
     private void Start()

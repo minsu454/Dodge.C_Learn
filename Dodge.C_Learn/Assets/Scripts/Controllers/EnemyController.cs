@@ -43,10 +43,9 @@ public class EnemyController : MonoBehaviour
         var charater = Managers.Character.ReturnAll(enemyType);
         shooter.attackSO = charater.AttackSO;
         sprites = charater.AttackSO.sprites;
-        Debug.Log(sprites.Length);
 
-        //sprRenderer.sprite = playerClass.Sprite;
-        //shooter.attackSO = playerClass.AttackSO;
+        spriteRender.sprite = charater.Sprite;
+        shooter.attackSO = charater.AttackSO;
     }
 
     void ReturnSprite()

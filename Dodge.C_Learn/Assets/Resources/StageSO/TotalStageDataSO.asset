@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 225dc967530b71342b878d96ef62e859, type: 3}
   m_Name: TotalStageDataSO
   m_EditorClassIdentifier: 
-  stageSOList: []
+  stageSOList:
+  - spawnTime: 30
+    PatternList: {fileID: 11400000, guid: 141e21241d9623144bcb306b803bbf70, type: 2}

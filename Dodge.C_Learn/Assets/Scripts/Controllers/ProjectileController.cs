@@ -13,11 +13,6 @@ public class ProjectileController : MonoBehaviour
         projectileRb = GetComponent<Rigidbody2D>();
     }
 
-    private void OnEnable()
-    {
-        Debug.Log("켜지니?");
-    }
-
     public void Shoot(Vector3 vec)
     {
         projectileRb.velocity = vec;
