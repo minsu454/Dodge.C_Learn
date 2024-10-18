@@ -9,8 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d75835be7fc4a8443bcdbd1fd346c9db, type: 3}
-  m_Name: SpawnSO
+  m_Script: {fileID: 11500000, guid: cf0c249d18e2a46488bd4b976ac351ce, type: 3}
+  m_Name: Temp
   m_EditorClassIdentifier: 
-  count: 5
-  spawnTime: 10
+  patten:
+    name: Temp
+    spawnPointList:
+    - EnemyType: 0
+      Pos: {x: -4.2137413, y: 4.175573, z: 0}
+    - EnemyType: 0
+      Pos: {x: 5.541986, y: 3.1832063, z: 0}
