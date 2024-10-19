@@ -19,7 +19,8 @@ public class MapEditorPopup : BasePopup
     [SerializeField] private TMP_Dropdown dropdown;             //드롭바
 
     [Header("Toggle")]
-    [SerializeField] private Toggle toggle;                     //선택박스
+    [SerializeField] private Toggle stayCameraViewToggle;       //카메라잠구기 선택박스
+    [SerializeField] private Toggle fallowCameraToggle;         //spawnPoint 카메라 따라올지 선택박스
 
     [SerializeField] private List<ArrowButton> arrowButtonList; //화살표로 움직일 수 있는 obj List
 
@@ -31,7 +32,9 @@ public class MapEditorPopup : BasePopup
         inputY.onSubmit.AddListener(OnInputYEvent);
 
         dropdown.onValueChanged.AddListener(OnDropdownEvent);
-        toggle.onValueChanged.AddListener(OnToggleEvent);
+
+        stayCameraViewToggle.onValueChanged.AddListener(OnStayCameraViewEvent);
+        fallowCameraToggle.onValueChanged.AddListener(OnFollowCameraEvent);
 
         SetDropdown();
         PattenGenerator.Instance.controller.OnMove += OnMoveSeeText;
@@ -107,9 +110,14 @@ public class MapEditorPopup : BasePopup
 
     #endregion
 
-    private void OnToggleEvent(bool isOn)
+    private void OnStayCameraViewEvent(bool isOn)
     {
         Managers.Event.Dispatch(GameEventType.StayCameraView, isOn);
+    }
+
+    private void OnFollowCameraEvent(bool isOn)
+    {
+        Managers.Event.Dispatch(GameEventType.FollowCamera, isOn);
     }
 
     #region Data

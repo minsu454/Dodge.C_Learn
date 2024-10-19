@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -16,6 +17,7 @@ public class PattenController : MonoBehaviour
 
     private bool isInputMouseLeftClick = false;         //마우스 클릭한 상태를 받는 변수
     private bool isStayCameraView = false;              //카메라 잠궈줄건지 받는 변수
+    private bool isFollow = false;                      //카메라가 따라올건지 받는 변수
 
     private float scrollLimit = 10;                     //카메라 size 리미트
 
@@ -26,6 +28,7 @@ public class PattenController : MonoBehaviour
 
         Managers.Event.Subscribe(GameEventType.LockInput, OnLockInput);
         Managers.Event.Subscribe(GameEventType.StayCameraView, OnStayCameraView);
+        Managers.Event.Subscribe(GameEventType.FollowCamera, OnFollowCamera);
     }
 
     private void Update()
@@ -41,8 +44,7 @@ public class PattenController : MonoBehaviour
     /// </summary>
     public void OnLockInput(object args)
     {
-        bool isActive = (bool)args;
-        input.enabled = isActive;
+        input.enabled = (bool)args;
     }
 
     /// <summary>
@@ -50,8 +52,15 @@ public class PattenController : MonoBehaviour
     /// </summary>
     public void OnStayCameraView(object args)
     {
-        bool isActive = (bool)args;
-        isStayCameraView = isActive;
+        isStayCameraView = (bool)args;
+    }
+
+    /// <summary>
+    /// Input System을 잠구는 함수
+    /// </summary>
+    public void OnFollowCamera(object args)
+    {
+        isFollow = (bool)args;
     }
 
     /// <summary>
@@ -81,7 +90,7 @@ public class PattenController : MonoBehaviour
         isInputMouseLeftClick = true;
 
         point.SetOutline(true);
-        point.FollowMouse(true);
+        point.FollowMouse(isFollow);
         PattenGenerator.Instance.spawnPoint = point;
         OnSpawn.Invoke(point.EnemyType);
     }
