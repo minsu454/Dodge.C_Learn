@@ -12,8 +12,6 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class Spawner : MonoBehaviour
 {
-    public Transform[] spawnPoint;
-
     [SerializeField] private PatternSO spawnProjectile;
     private List<EnemySpawnData> projectileSpawnList;
 
