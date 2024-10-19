@@ -6,4 +6,6 @@ public enum GameEventType
     LockInput = 0,
     StayCameraView,
     FollowCamera,
+
+    MoveCompleted = 100,
 }

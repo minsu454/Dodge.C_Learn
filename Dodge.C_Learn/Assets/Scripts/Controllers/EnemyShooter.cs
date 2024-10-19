@@ -16,7 +16,10 @@ public class EnemyShooter : Shooter
     protected void Start()
     {
         objType = AttackerType.Enemy;
+    }
 
+    public void Shoot(object args)
+    {
         switch (enemyType)
         {
             case EnemyType.Corvette01:

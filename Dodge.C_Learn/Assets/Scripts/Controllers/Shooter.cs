@@ -12,6 +12,6 @@ public class Shooter : MonoBehaviour
         GameObject bullet = ObjectPoolManager.Instance.GetObject(curBullet, transform, pos);
         ProjectileController projectTileController = bullet.GetComponent<ProjectileController>();
         projectTileController.myType = objType;
-        projectTileController.Shoot(dir * projectileSpeed);
+        projectTileController.Move(dir * projectileSpeed);
     }
 }

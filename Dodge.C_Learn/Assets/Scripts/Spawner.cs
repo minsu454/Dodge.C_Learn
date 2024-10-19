@@ -12,23 +12,38 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private PatternSO spawnProjectile;
+    [SerializeField] private PatternSO startProjectile;
     private List<EnemySpawnData> projectileSpawnList;
 
-    //[SerializeField] public PatternSO spawnEnemy;
-    //private List<EnemySpawnData> enemySpawnList;
+    [SerializeField] public List<PatternSO> startEnemyList;
+    private readonly Dictionary<EnemyType, List<Vector3>> startEnemyDic = new Dictionary<EnemyType, List<Vector3>>();
 
     private void Awake()
-    {
-        spawnPoint = GetComponentsInChildren<Transform>();
+    {           
+        projectileSpawnList = startProjectile.pattern.spawnPointList;
 
-        projectileSpawnList = spawnProjectile.pattern.spawnPointList;
-        //enemySpawnList = spawnProjectile.pattern.spawnPointList;
+        SetStartEnemyDic();
     }
 
     private void Start()
     {
         StartCoroutine(CoSpawnProjectile());
+    }
+
+    private void SetStartEnemyDic()
+    {
+        foreach (var patternSO in startEnemyList)
+        {
+            List<EnemySpawnData> tempList = patternSO.pattern.spawnPointList;
+            List<Vector3> posList = new List<Vector3>();
+
+            for (int i = 0; i < tempList.Count; i++)
+            {
+                posList.Add(tempList[i].Pos);
+            }
+
+            startEnemyDic.Add(tempList[0].EnemyType, posList);
+        }
     }
 
     public void SpawnStageEnemy(PatternSO patternSO)
@@ -39,8 +54,11 @@ public class Spawner : MonoBehaviour
         {
             GameObject enemy = ObjectPoolManager.Instance.GetObject(sqawnDataList[i].EnemyType.ToString());
             enemy.transform.position = sqawnDataList[i].Pos;
+
             EnemyController enemyController = enemy.GetComponent<EnemyController>();
             enemyController.SetEnemy(sqawnDataList[i].EnemyType);
+
+            enemyController.SetMove(sqawnDataList[i].Pos);
         }
     }
 
@@ -68,6 +86,6 @@ public class Spawner : MonoBehaviour
 
         controller.transform.position = pos;
 
-        controller.Shoot(dir);
+        controller.Move(dir);
     }
 }

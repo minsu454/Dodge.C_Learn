@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TreeEditor;
 using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 
@@ -7,9 +8,7 @@ public class EnemyController : MonoBehaviour
 {
     public float health;
     public float maxHealth;
-    public float speed;
     public Sprite[] sprites;
-    public float Score;
 
     [SerializeField] EnemyType enemyType;
     EnemyShooter shooter;
@@ -25,12 +24,35 @@ public class EnemyController : MonoBehaviour
         shooter.enemyType = enemyType;
     }
 
+    private void OnEnable()
+    {
+        Managers.Event.Subscribe(GameEventType.MoveCompleted, shooter.Shoot);
+    }
+
+    public void SetEnemy(EnemyType enemyType)
+    {
+        var charater = Managers.Character.ReturnAll(enemyType);
+
+        spriteRender.sprite = charater.Sprite;
+
+        EnemyInfoSO enemyInfoSO = charater.Info as EnemyInfoSO;
+        sprites = enemyInfoSO.sprites;
+        shooter.EnemyInfoSO = enemyInfoSO;
+    }
+
+    public void SetMove(Vector3 endVec)
+    {
+        //Vector3 dir = (endVec - transform.position).normalized;
+        //rb.velocity = dir * shooter.EnemyInfoSO.speed;
+
+
+    }
+
     void OnHit(int dmg)
     {
         health -= dmg;
         spriteRender.sprite = sprites[1];
         Invoke("ReturnSprite", 0.05f);
-
         if (health <= 0)
         {
             DieEnemy();
@@ -57,22 +79,6 @@ public class EnemyController : MonoBehaviour
         //ObjectPoolManager.Instance.ReturnObject(OT, gameObject);
     }
 
-    public void SetEnemy(EnemyType enemyType)
-    { 
-        var charater = Managers.Character.ReturnAll(enemyType);
-
-        spriteRender.sprite = charater.Sprite;
-
-        EnemyInfoSO enemyInfoSO = charater.Info as EnemyInfoSO;
-        sprites = enemyInfoSO.sprites;
-        shooter.EnemyInfoSO = enemyInfoSO;
-    }
-
-    void ReturnSprite()
-    {
-        spriteRender.sprite = sprites[0];
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Boarder"))
@@ -86,5 +92,10 @@ public class EnemyController : MonoBehaviour
             ProjectileController bullet = collision.gameObject.GetComponent<ProjectileController>();
             OnHit(bullet.Damage);
         }
+    }
+
+    private void OnDisable()
+    {
+        Managers.Event.Unsubscribe(GameEventType.MoveCompleted, shooter.Shoot);
     }
 }

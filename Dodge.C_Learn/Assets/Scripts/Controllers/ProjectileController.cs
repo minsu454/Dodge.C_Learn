@@ -13,7 +13,7 @@ public class ProjectileController : MonoBehaviour
         projectileRb = GetComponent<Rigidbody2D>();
     }
 
-    public void Shoot(Vector3 vec)
+    public void Move(Vector3 vec)
     {
         projectileRb.velocity = vec;
     }

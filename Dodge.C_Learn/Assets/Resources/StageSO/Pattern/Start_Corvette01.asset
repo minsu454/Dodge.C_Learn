@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a91272c30cb479543ab54beddd7a5b8e, type: 3}
-  m_Name: SpawnCorvette01
+  m_Name: Start_Corvette01
   m_EditorClassIdentifier: 
   pattern:
-    name: SpawnCorvette01
+    name: Start_Corvette01
     spawnPointList:
     - EnemyType: 0
       Pos: {x: -8, y: 6, z: 0}

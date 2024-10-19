@@ -1488,22 +1488,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea0ac04ce91b3f4bbba4ae16f63e3fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  spawnProjectile: {fileID: 11400000, guid: a204a9f878b0eed46a0e42f1ea437c90, type: 2}
+  startProjectile: {fileID: 11400000, guid: 84fd7d925f0a6274d91924c987ab1c13, type: 2}
+  startEnemyList:
+  - {fileID: 11400000, guid: b8d074435cb7dab4b99402ef6050b967, type: 2}
+  - {fileID: 11400000, guid: 26ee898f5dc069941b66b4b0ab4205e5, type: 2}
+  - {fileID: 11400000, guid: 78d23a47c9d59c94e97a0f878e857603, type: 2}
+  - {fileID: 11400000, guid: 8fad96c2534a2fe4e9f7307ee7ab5804, type: 2}
+  - {fileID: 11400000, guid: aaae1be77c3e59b449b3e53cedba3791, type: 2}
 --- !u!114 &1747021633419439127
 MonoBehaviour:
   m_ObjectHideFlags: 0
