@@ -17,11 +17,7 @@ public class ProjectileController : MonoBehaviour
     {
         projectileRb.velocity = vec;
     }
-    public void RandomShoot()
-    {
-        Vector2 direction = Random.insideUnitCircle.normalized;
-        projectileRb.velocity = direction;
-    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && myType == AttackerType.Enemy)
