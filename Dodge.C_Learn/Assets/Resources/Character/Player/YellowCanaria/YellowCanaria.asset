@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: YellowCanaria
   m_EditorClassIdentifier: 
   FireRate: 1
-  delay: 0.4
-  Speed: 1
+  delay: 0.5
+  Speed: 0.5
   ProjectileA: ProjectileE
   ProjectileB: ProjectileF
