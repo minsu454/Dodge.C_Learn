@@ -11,9 +11,6 @@ public class PattenController : MonoBehaviour
     private Camera mainCamera;
     private PlayerInput input;      //input
 
-    private SpawnPoint spawnPoint;  //내가 잡고있는 spawnPoint
-
-    public event Action<SpawnPoint> OnSpawn;        //스폰할때 실행 하는 action
     public event Action<SpawnPoint> OnMove;         //마우스 움직일때 실행 하는 action
 
     private bool isInputMouseLeftClick = false;         //마우스 클릭한 상태를 받는 변수
@@ -35,7 +32,7 @@ public class PattenController : MonoBehaviour
         if (!isInputMouseLeftClick)
             return;
 
-        OnMove?.Invoke(spawnPoint);
+        OnMove?.Invoke(PattenGenerator.Instance.spawnPoint);
     }
 
     /// <summary>
@@ -63,7 +60,7 @@ public class PattenController : MonoBehaviour
     {
         if (!value.isPressed)
         {
-            spawnPoint?.FollowMouse(false);
+            PattenGenerator.Instance.spawnPoint?.FollowMouse(false);
             isInputMouseLeftClick = false;
             return;
         }
@@ -75,15 +72,16 @@ public class PattenController : MonoBehaviour
 
         SpawnPoint point = hit.collider.GetComponent<SpawnPoint>();
 
-        if (point != spawnPoint)
+        if (point != PattenGenerator.Instance.spawnPoint)
         {
-            spawnPoint?.SetOutline(false);
+            PattenGenerator.Instance.spawnPoint?.SetOutline(false);
         }
 
         isInputMouseLeftClick = true;
 
-        spawnPoint = point;
-        OnSpawn.Invoke(spawnPoint);
+        point.SetOutline(true);
+        point.FollowMouse(true);
+        PattenGenerator.Instance.spawnPoint = point;
     }
 
     /// <summary>
@@ -91,10 +89,10 @@ public class PattenController : MonoBehaviour
     /// </summary>
     public void OnDelete(InputValue value)
     {
-        if (spawnPoint == null)
+        if (PattenGenerator.Instance.spawnPoint == null)
             return;
 
-        PattenGenerator.Instance.Remove(spawnPoint);
+        PattenGenerator.Instance.Remove();
     }
 
     /// <summary>

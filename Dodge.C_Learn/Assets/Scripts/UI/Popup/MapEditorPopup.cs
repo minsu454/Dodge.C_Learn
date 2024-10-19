@@ -45,7 +45,7 @@ public class MapEditorPopup : BasePopup
     private void OnDropdownEvent(int index)
     {
         dropdown.value = index;
-        SpawnPoint go = PattenGenerator.Instance.curSpawnPoint;
+        SpawnPoint go = PattenGenerator.Instance.spawnPoint;
 
         if (go == null)
             return;
@@ -85,7 +85,7 @@ public class MapEditorPopup : BasePopup
 
     private void OnInputXEvent(string s)
     {
-        SpawnPoint go = PattenGenerator.Instance.curSpawnPoint;
+        SpawnPoint go = PattenGenerator.Instance.spawnPoint;
 
         Vector2 pos = go.transform.position;
         go.transform.position = new Vector2(float.Parse(s), pos.y);
@@ -93,7 +93,7 @@ public class MapEditorPopup : BasePopup
 
     private void OnInputYEvent(string s)
     {
-        SpawnPoint go = PattenGenerator.Instance.curSpawnPoint;
+        SpawnPoint go = PattenGenerator.Instance.spawnPoint;
 
         Vector2 pos = go.transform.position;
         go.transform.position = new Vector2(pos.x, float.Parse(s));

@@ -14,7 +14,7 @@ public class PattenGenerator : MonoBehaviour
     public GameObject pointPrefab;      //프리팹위치
     private HashSet<SpawnPoint> pointPrefabList = new HashSet<SpawnPoint>();  //point 담아줄 list
 
-    public SpawnPoint curSpawnPoint { get; private set; }               //현재 잡고있는 spawnPoint
+    public SpawnPoint spawnPoint;                                    //현재 잡고있는 spawnPoint
 
     public PattenController controller { get; private set; }            //pattencontroller
 
@@ -23,7 +23,6 @@ public class PattenGenerator : MonoBehaviour
         Instance = this;
 
         controller = GetComponent<PattenController>();
-        controller.OnSpawn += OnSpawn;
     }
 
     private void Start()
@@ -100,19 +99,9 @@ public class PattenGenerator : MonoBehaviour
     }
 
     /// <summary>
-    /// spawnpoint 라인과 따라오게 설정하는 함수
-    /// </summary>
-    public void OnSpawn(SpawnPoint spawnPoint)
-    {
-        spawnPoint.SetOutline(true);
-        spawnPoint.FollowMouse(true);
-        curSpawnPoint = spawnPoint;
-    }
-
-    /// <summary>
     /// spawnpoint 지워주는 함수
     /// </summary>
-    public void Remove(SpawnPoint spawnPoint)
+    public void Remove()
     {
         spawnPoint.SetOutline(false);
         Destroy(spawnPoint.gameObject);
@@ -122,6 +111,5 @@ public class PattenGenerator : MonoBehaviour
     private void OnDestroy()
     {
         Instance = null;
-
     }
 }
