@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
         animator.runtimeAnimatorController = playerClass.Animator;
         sprRenderer.sprite = playerClass.Sprite;
-        shooter.attackSO = playerClass.AttackSO;
+        shooter.attackSO = playerClass.Info as PlayerInfoSO;
     }
 
     void OnMove(InputValue value)
@@ -48,13 +48,12 @@ public class PlayerController : MonoBehaviour
 
     void OnHit()
     {
-        shooter.Power --;
+        shooter.Power--;
         if (shooter.Power < 0)
         {
             Destroy(gameObject);
         }
     }
-
     IEnumerator ConHitEffect()
     {
         isInvincible = true;
@@ -63,7 +62,6 @@ public class PlayerController : MonoBehaviour
         isInvincible = false;
         animator.SetBool("isHit", false);
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy") || collision.CompareTag("EnemyProjectile"))
@@ -83,7 +81,6 @@ public class PlayerController : MonoBehaviour
 
         }
     }
-
     void Upgrade()
     {
         shooter.Power++;

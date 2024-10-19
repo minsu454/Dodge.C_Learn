@@ -5,8 +5,8 @@ public class Shooter : MonoBehaviour
     public float FireRate;
     public float projectileSpeed;
     public AttackerType objType;
-    public const float FIRERATE_DELAY = 0.05f;
-    public AttackSO attackSO;
+
+    public BaseInfoSO attackSO;
 
     protected void SpawnBullet(string curBullet, Vector3 pos, Vector2 dir)
     {

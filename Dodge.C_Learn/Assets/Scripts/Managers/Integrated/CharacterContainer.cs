@@ -73,7 +73,7 @@ public class CharacterContainer : IContainer
     /// <summary>
     /// AttackSO 리턴해주는 함수
     /// </summary>
-    public AttackSO ReturnAttackSO(Enum type)
+    public ScriptableObject ReturnAttackSO(Enum type)
     {
         if (!characterDic.TryGetValue(type, out Character result))
         {
@@ -81,6 +81,6 @@ public class CharacterContainer : IContainer
             return null;
         }
 
-        return result.AttackSO;
+        return result.Info;
     }
 }
