@@ -31,11 +31,17 @@ public static class CreatePattenSOService
             string json = File.ReadAllText(_file);
             Pattern patten = JsonUtility.FromJson<Pattern>(json);
 
+            string path = $"Assets/Resources/StageSO/Pattern/{patten.name}.asset";
+
+            if (AssetDatabase.LoadAssetAtPath<PatternSO>(path) != null)
+            {
+                continue;
+            }
+
             PatternSO pattenSO = new PatternSO();
             pattenSO.name = patten.name;
             pattenSO.pattern = patten;
 
-            string path = $"Assets/Resources/StageSO/Pattern/{patten.name}.asset";
             AssetDatabase.CreateAsset(pattenSO, path);
         }
     }
