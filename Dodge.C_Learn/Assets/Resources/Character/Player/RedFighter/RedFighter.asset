@@ -15,5 +15,5 @@ MonoBehaviour:
   FireRate: 2
   delay: 0.2
   Speed: 2
-  ProjectileA: ProjectileA
-  ProjectileB: ProjectileB
+  ProjectileA: ProjectileC
+  ProjectileB: ProjectileD
