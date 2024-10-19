@@ -10,17 +10,20 @@ public class PattenGenerator : MonoBehaviour
     public static PattenGenerator Instance;
 
     [Header("Prefab")]
-    public Transform pointTr;
-    public GameObject pointPrefab;
-    private List<SpawnPoint> pointPrefabList = new List<SpawnPoint>();
+    public Transform pointTr;           //point부모위치
+    public GameObject pointPrefab;      //프리팹위치
+    private HashSet<SpawnPoint> pointPrefabList = new HashSet<SpawnPoint>();  //point 담아줄 list
 
-    public PattenController controller { get; private set; }
+    public SpawnPoint curSpawnPoint { get; private set; }               //현재 잡고있는 spawnPoint
+
+    public PattenController controller { get; private set; }            //pattencontroller
 
     private void Awake()
     {
         Instance = this;
 
         controller = GetComponent<PattenController>();
+        controller.OnSpawn += OnSpawn;
     }
 
     private void Start()
@@ -40,7 +43,7 @@ public class PattenGenerator : MonoBehaviour
         foreach (var spawnPoint in pointPrefabList)
         {
             EnemySpawnData enemySpawnData = new EnemySpawnData();
-            enemySpawnData.EnemyType = spawnPoint.enemyType;
+            enemySpawnData.EnemyType = spawnPoint.EnemyType;
             enemySpawnData.Pos = spawnPoint.transform.position;
 
             patten.spawnPointList.Add(enemySpawnData);
@@ -89,27 +92,36 @@ public class PattenGenerator : MonoBehaviour
 
         if (data != null)
         {
-            spawnPoint.enemyType = data.EnemyType;
+            spawnPoint.EnemyType = data.EnemyType;
             spawnPoint.transform.position = data.Pos;
         }
 
         pointPrefabList.Add(spawnPoint);
     }
 
-    private void OnDestroy()
+    /// <summary>
+    /// spawnpoint 라인과 따라오게 설정하는 함수
+    /// </summary>
+    public void OnSpawn(SpawnPoint spawnPoint)
     {
-        Instance = null;
+        spawnPoint.SetOutline(true);
+        spawnPoint.FollowMouse(true);
+        curSpawnPoint = spawnPoint;
     }
 
-    internal SpawnPoint ChoiceSpawnPoint()
-    {
-        return controller.spawnPoint;
-    }
-
-    internal void Remove(SpawnPoint spawnPoint)
+    /// <summary>
+    /// spawnpoint 지워주는 함수
+    /// </summary>
+    public void Remove(SpawnPoint spawnPoint)
     {
         spawnPoint.SetOutline(false);
         Destroy(spawnPoint.gameObject);
         spawnPoint = null;
+    }
+
+    private void OnDestroy()
+    {
+        Instance = null;
+
     }
 }

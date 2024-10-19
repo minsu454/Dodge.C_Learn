@@ -10,9 +10,6 @@ public class StageManager : MonoBehaviour
 
     private int curStageIdx = 0;
 
-    string path = "Stage/Pattern/H";
-
-    
     [Header("Spawner")]
     [SerializeField] Spawner spawner;
 
@@ -34,15 +31,13 @@ public class StageManager : MonoBehaviour
     {
         _instance = this;
 
-        totalStageSO = Resources.Load<TotalStageDataSO>($"Stage/TotalStageDataSO");
+        totalStageSO = Resources.Load<TotalStageDataSO>($"StageSO/TotalStageDataSO");
     }
 
     private void Start()
     {
         RequestEnemySpawn();
     }
-
-
 
     // Spawner에게 TotalStageSO / StageIdx를 넘긴다.
     public void RequestEnemySpawn()

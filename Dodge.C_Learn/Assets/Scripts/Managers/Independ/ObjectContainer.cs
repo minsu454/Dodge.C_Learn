@@ -29,7 +29,6 @@ public class ObjectContainer : MonoBehaviour
             objContainer[key].Dequeue();
         }
 
-        Debug.Log(objContainer[key].Count);
         obj.SetActive(true); // 사용하기 위해 활성화
         return obj;
     }

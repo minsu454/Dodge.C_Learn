@@ -7,12 +7,12 @@ public static class CreatePattenSOService
 {
     public static string LoadPath
     {
-        get { return Path.GetFullPath(Application.dataPath + "../../../SavePatten"); }
+        get { return Path.GetFullPath(Application.dataPath + "../../../SavePattern"); }
     }
 
     public static string SavePath
     {
-        get { return Path.Combine(Application.dataPath, "Resources/Stage/Patten"); }
+        get { return Path.Combine(Application.dataPath, "Resources/StageSO/Pattern"); }
     }
 
     public static void DeletePattenSO()
@@ -35,7 +35,7 @@ public static class CreatePattenSOService
             pattenSO.name = patten.name;
             pattenSO.pattern = patten;
 
-            string path = $"Assets/Resources/Stage/Patten/{patten.name}.asset";
+            string path = $"Assets/Resources/StageSO/Pattern/{patten.name}.asset";
             AssetDatabase.CreateAsset(pattenSO, path);
         }
     }

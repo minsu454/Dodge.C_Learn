@@ -16,6 +16,8 @@ public class EnemyShooter : Shooter
 
     protected void Start()
     {
+        objType = AttackerType.Enemy;
+
         switch (enemyType)
         {
             case EnemyType.Corvette01:
@@ -46,7 +48,7 @@ public class EnemyShooter : Shooter
     {
         while (true)
         {
-            SpawnBullet(ObjectType.Enemy, enemyProjectile, Vector3.zero, Vector2.down);
+            SpawnBullet(enemyProjectile, Vector3.zero, Vector2.down);
 
             yield return YieldCache.WaitForSeconds(5f);
         }
@@ -57,7 +59,7 @@ public class EnemyShooter : Shooter
         {
             for (int i = 0; i < 4; i++)
             {
-                SpawnBullet(ObjectType.Enemy, enemyProjectile, Vector3.zero, Vector2.down);
+                SpawnBullet(enemyProjectile, Vector3.zero, Vector2.down);
                 yield return YieldCache.WaitForSeconds(0.1f); // 각 발사 사이에 딜레이
             }
             yield return YieldCache.WaitForSeconds(5f);
@@ -70,7 +72,7 @@ public class EnemyShooter : Shooter
             while (num < 50)
             {
                 Vector2 dirVec = new Vector2(Mathf.Cos(Mathf.PI * 5 * num / 50), -1);
-                SpawnBullet(ObjectType.Enemy, enemyProjectile, Vector3.zero, dirVec);
+                SpawnBullet(enemyProjectile, Vector3.zero, dirVec);
                 num++;
                 yield return YieldCache.WaitForSeconds(0.1f); // 각 발사 사이에 딜레이
             }
@@ -88,7 +90,7 @@ public class EnemyShooter : Shooter
                 while (num < 50)
                 {
                     Vector2 dirVec = new Vector2(Mathf.Cos(Mathf.PI * 2 * num / 50), Mathf.Sin(Mathf.PI * 2 * num / 50));
-                    SpawnBullet(ObjectType.Enemy, enemyProjectile, Vector3.zero, dirVec);
+                    SpawnBullet(enemyProjectile, Vector3.zero, dirVec);
                     num++;
                 }
                 count++;

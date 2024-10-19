@@ -1,4 +1,4 @@
-public enum ObjectType
+public enum AttackerType
 {
     None,
     Player,
