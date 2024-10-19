@@ -80,10 +80,10 @@ public class PattenController : MonoBehaviour
 
         isInputMouseLeftClick = true;
 
-        OnSpawn.Invoke(point.EnemyType);
         point.SetOutline(true);
         point.FollowMouse(true);
         PattenGenerator.Instance.spawnPoint = point;
+        OnSpawn.Invoke(point.EnemyType);
     }
 
     /// <summary>
@@ -94,7 +94,7 @@ public class PattenController : MonoBehaviour
         if (PattenGenerator.Instance.spawnPoint == null)
             return;
 
-        PattenGenerator.Instance.Remove();
+        PattenGenerator.Instance.RemoveSpawnPoint();
     }
 
     /// <summary>

@@ -61,6 +61,8 @@ public class PattenGenerator : MonoBehaviour
         string json = File.ReadAllText(path);
         Pattern pattern = JsonUtility.FromJson<Pattern>(json);
 
+        RemoveSpawnPoint();
+
         try
         {
             foreach (var enemyPoint in pointPrefabList)
@@ -101,9 +103,14 @@ public class PattenGenerator : MonoBehaviour
     /// <summary>
     /// spawnpoint 지워주는 함수
     /// </summary>
-    public void Remove()
+    public void RemoveSpawnPoint()
     {
+        if (spawnPoint == null)
+            return;
+
         spawnPoint.SetOutline(false);
+
+        pointPrefabList.Remove(spawnPoint);
         Destroy(spawnPoint.gameObject);
         spawnPoint = null;
     }

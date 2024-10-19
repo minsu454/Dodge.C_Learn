@@ -45,12 +45,12 @@ public class MapEditorPopup : BasePopup
     /// </summary>
     private void OnDropdownEvent(int index)
     {
-        dropdown.value = index;
         SpawnPoint go = PattenGenerator.Instance.spawnPoint;
 
         if (go == null)
             return;
 
+        dropdown.value = index;
         go.EnemyType = (EnemyType)index;
     }
 
@@ -73,7 +73,7 @@ public class MapEditorPopup : BasePopup
 
     private void SetDropdown(EnemyType type)
     {
-        dropdown.captionText.text = type.ToString();
+        dropdown.value = (int)type;
     }
 
     #endregion
