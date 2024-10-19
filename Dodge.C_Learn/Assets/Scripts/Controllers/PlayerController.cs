@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
         animator.runtimeAnimatorController = playerClass.Animator;
         sprRenderer.sprite = playerClass.Sprite;
-        shooter.attackSO = playerClass.Info as PlayerInfoSO;
+        shooter.PlayerInfoSO = playerClass.Info as PlayerInfoSO;
     }
 
     void OnMove(InputValue value)

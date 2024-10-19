@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c37e23825e03d045a2d57c4d976cbfe, type: 3}
   m_Name: RedFighter
   m_EditorClassIdentifier: 
-  FireRate: 0
-  delay: 0
-  Speed: 0
-  ProjectileA: 
-  ProjectileB: 
+  FireRate: 2
+  delay: 0.2
+  Speed: 2
+  ProjectileA: ProjectileA
+  ProjectileB: ProjectileB

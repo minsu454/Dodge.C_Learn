@@ -57,15 +57,15 @@ public class EnemyController : MonoBehaviour
         //ObjectPoolManager.Instance.ReturnObject(OT, gameObject);
     }
 
-        public void SetEnemy(EnemyType enemyType)
+    public void SetEnemy(EnemyType enemyType)
     { 
         var charater = Managers.Character.ReturnAll(enemyType);
 
         spriteRender.sprite = charater.Sprite;
 
-        EnemyInfoSO attackSO = charater.Info as EnemyInfoSO;
-        sprites = attackSO.sprites;
-        shooter.attackSO = attackSO;
+        EnemyInfoSO enemyInfoSO = charater.Info as EnemyInfoSO;
+        sprites = enemyInfoSO.sprites;
+        shooter.EnemyInfoSO = enemyInfoSO;
     }
 
     void ReturnSprite()

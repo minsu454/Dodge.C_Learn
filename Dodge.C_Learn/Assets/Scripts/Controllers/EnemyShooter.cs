@@ -7,8 +7,7 @@ using UnityEngine;
 public class EnemyShooter : Shooter
 {
     public EnemyType enemyType;
-
-    bool isCooldown = false;
+    public EnemyInfoSO EnemyInfoSO;
 
     private const string enemyProjectile = "EnemyProjectile";
 
