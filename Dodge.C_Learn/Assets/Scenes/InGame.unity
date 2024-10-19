@@ -418,6 +418,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 368826824822699124, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
+      propertyPath: Power
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 700855967420834392, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
       propertyPath: m_Size.x
       value: 0.64
@@ -425,6 +429,14 @@ PrefabInstance:
     - target: {fileID: 700855967420834392, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
       propertyPath: m_Size.y
       value: 0.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 700855967420834392, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e0887cdf12828924cb5bc912cbf7c1f5, type: 3}
+    - target: {fileID: 700855967420834392, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1561953771616224546, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -485,7 +497,7 @@ PrefabInstance:
     - target: {fileID: 6047336651672078958, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 5ef8172659782af46b1225fe79a17a3f, type: 2}
+      objectReference: {fileID: 22100000, guid: f89b21fa535c411498f587c66f83e4b3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -973,7 +985,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 828303010}
-  playerType: 0
+  playerType: 2
 --- !u!1 &5153086771465876583
 GameObject:
   m_ObjectHideFlags: 0

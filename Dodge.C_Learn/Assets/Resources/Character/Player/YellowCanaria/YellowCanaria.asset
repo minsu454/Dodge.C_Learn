@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16e544db0b2193a44a2ed9dd695b2cd1, type: 3}
   m_Name: YellowCanaria
   m_EditorClassIdentifier: 
-  FireRate: 0
-  delay: 2
-  Speed: 0
+  FireRate: 5
+  delay: 0.5
+  Speed: 2
   bulletAmount: 0
   fireCount: 0
-  ProjectileA: 
-  ProjectileB: 
+  sprites: []
+  ProjectileA: ProjectileA
+  ProjectileB: ProjectileB

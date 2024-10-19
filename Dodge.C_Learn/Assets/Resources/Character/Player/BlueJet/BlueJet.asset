@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16e544db0b2193a44a2ed9dd695b2cd1, type: 3}
   m_Name: BlueJet
   m_EditorClassIdentifier: 
-  size: 1
-  delay: 2
-  power: 3
-  speed: 4
-  target:
-    serializedVersion: 2
-    m_Bits: 0
+  FireRate: 1
+  delay: 0.1
+  Speed: 5
+  bulletAmount: 0
+  fireCount: 0
+  sprites: []
+  ProjectileA: ProjectileB
+  ProjectileB: ProjectileA

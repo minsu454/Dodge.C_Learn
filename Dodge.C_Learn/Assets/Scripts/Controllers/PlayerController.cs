@@ -49,11 +49,12 @@ public class PlayerController : MonoBehaviour
     void OnHit()
     {
         shooter.Power --;
-        if (shooter.Power <= 0)
+        if (shooter.Power < 0)
         {
             Destroy(gameObject);
         }
     }
+
     IEnumerator ConHitEffect()
     {
         isInvincible = true;
@@ -62,6 +63,7 @@ public class PlayerController : MonoBehaviour
         isInvincible = false;
         animator.SetBool("isHit", false);
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy") || collision.CompareTag("EnemyProjectile"))
@@ -81,6 +83,7 @@ public class PlayerController : MonoBehaviour
 
         }
     }
+
     void Upgrade()
     {
         shooter.Power++;

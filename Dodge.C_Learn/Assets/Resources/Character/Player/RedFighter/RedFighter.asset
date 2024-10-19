@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16e544db0b2193a44a2ed9dd695b2cd1, type: 3}
   m_Name: RedFighter
   m_EditorClassIdentifier: 
-  size: 5
-  delay: 6
-  power: 7
-  speed: 8
-  target:
-    serializedVersion: 2
-    m_Bits: 0
+  FireRate: 2
+  delay: 0.2
+  Speed: 5
+  bulletAmount: 0
+  fireCount: 0
+  sprites: []
+  ProjectileA: ProjectileA
+  ProjectileB: ProjectileB

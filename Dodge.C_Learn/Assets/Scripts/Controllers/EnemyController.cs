@@ -33,12 +33,31 @@ public class EnemyController : MonoBehaviour
 
         if (health <= 0)
         {
-            Destroy(gameObject);
-            //ObjectPoolManager.Instance.ReturnObject(OT, gameObject);
+            DieEnemy();
         }
     }
+    private void DieEnemy()
+    {
+        float randomvalue = Random.Range(0f, 1f);
+        if (enemyType == EnemyType.Destroyer03)
+        {
+            if (randomvalue <= 0.1f)
+            {
+                ObjectPoolManager.Instance.GetObject("ItemPower", transform, Vector3.zero);
+            }
+        }
+        else if (enemyType == EnemyType.Cruiser04 || enemyType == EnemyType.Battleship05)
+        {
+            if (randomvalue <= 0.4f)
+            {
+                ObjectPoolManager.Instance.GetObject("ItemPower", transform, Vector3.zero);
+            }
+        }
+        Destroy(gameObject);
+        //ObjectPoolManager.Instance.ReturnObject(OT, gameObject);
+    }
 
-    public void SetEnemy(EnemyType enemyType)
+        public void SetEnemy(EnemyType enemyType)
     { 
         var charater = Managers.Character.ReturnAll(enemyType);
         shooter.attackSO = charater.AttackSO;
