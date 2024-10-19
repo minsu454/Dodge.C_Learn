@@ -5,4 +5,4 @@ public enum EnemyType
     Destroyer03, // 구축함 체력 15
     Cruiser04, // 순양함 체력 25
     Battleship05, // 전함 체력 50
-}   
+}
