@@ -41,11 +41,12 @@ public class EnemyController : MonoBehaviour
     public void SetEnemy(EnemyType enemyType)
     { 
         var charater = Managers.Character.ReturnAll(enemyType);
-        shooter.attackSO = charater.AttackSO;
-        sprites = charater.AttackSO.sprites;
 
         spriteRender.sprite = charater.Sprite;
-        shooter.attackSO = charater.AttackSO;
+
+        EnemyInfoSO attackSO = charater.Info as EnemyInfoSO;
+        sprites = attackSO.sprites;
+        shooter.attackSO = attackSO;
     }
 
     void ReturnSprite()

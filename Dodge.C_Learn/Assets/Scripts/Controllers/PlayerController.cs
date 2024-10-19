@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
         animator.runtimeAnimatorController = playerClass.Animator;
         sprRenderer.sprite = playerClass.Sprite;
-        shooter.attackSO = playerClass.AttackSO;
+        shooter.attackSO = playerClass.Info as PlayerInfoSO;
     }
 
     void OnMove(InputValue value)
@@ -48,8 +48,8 @@ public class PlayerController : MonoBehaviour
 
     void OnHit()
     {
-        shooter.Power --;
-        if (shooter.Power <= 0)
+        shooter.Power--;
+        if (shooter.Power < 0)
         {
             Destroy(gameObject);
         }

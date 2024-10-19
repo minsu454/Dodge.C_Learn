@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16e544db0b2193a44a2ed9dd695b2cd1, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c37e23825e03d045a2d57c4d976cbfe, type: 3}
   m_Name: YellowCanaria
   m_EditorClassIdentifier: 
   FireRate: 0
-  delay: 2
+  delay: 0
   Speed: 0
-  bulletAmount: 0
-  fireCount: 0
   ProjectileA: 
   ProjectileB: 
