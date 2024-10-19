@@ -11,6 +11,7 @@ public class PattenController : MonoBehaviour
     private Camera mainCamera;
     private PlayerInput input;      //input
 
+    public event Action<EnemyType> OnSpawn;        //스폰할때 실행 하는 action
     public event Action<SpawnPoint> OnMove;         //마우스 움직일때 실행 하는 action
 
     private bool isInputMouseLeftClick = false;         //마우스 클릭한 상태를 받는 변수
@@ -79,6 +80,7 @@ public class PattenController : MonoBehaviour
 
         isInputMouseLeftClick = true;
 
+        OnSpawn.Invoke(point.EnemyType);
         point.SetOutline(true);
         point.FollowMouse(true);
         PattenGenerator.Instance.spawnPoint = point;

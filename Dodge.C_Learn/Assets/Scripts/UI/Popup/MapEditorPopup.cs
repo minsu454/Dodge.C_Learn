@@ -35,6 +35,7 @@ public class MapEditorPopup : BasePopup
 
         SetDropdown();
         PattenGenerator.Instance.controller.OnMove += OnMoveSeeText;
+        PattenGenerator.Instance.controller.OnSpawn += SetDropdown;
     }
 
     #region DropDown
@@ -68,6 +69,11 @@ public class MapEditorPopup : BasePopup
         }
 
         dropdown.AddOptions(optionList);
+    }
+
+    private void SetDropdown(EnemyType type)
+    {
+        dropdown.captionText.text = type.ToString();
     }
 
     #endregion
