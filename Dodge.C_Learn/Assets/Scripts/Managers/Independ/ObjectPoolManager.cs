@@ -55,6 +55,7 @@ public class ObjectPoolManager : MonoBehaviour
         GameObject GO = objectContainer.GetObject(key);
         GO.transform.position = transform.position + vec;
         GO.transform.rotation = transform.rotation;
+
         return GO;
     }
 

@@ -4,9 +4,8 @@ using UnityEngine;
 public class EnemyInfoSO : BaseInfoSO
 {
     [Header("Enemy Info")]
-    public int bulletAmount;
-    public int fireCount;
-    public int score;
-    public int speed;
-    public Sprite[] sprites;
+    public int BulletAmount;
+    public int FireCount;
+    public int Score;
+    public Sprite[] Sprites;
 }

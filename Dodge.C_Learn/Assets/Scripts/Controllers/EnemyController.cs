@@ -6,27 +6,32 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public float health;
-    public float maxHealth;
-    public Sprite[] sprites;
+    [SerializeField] private EnemyType enemyType;
 
-    [SerializeField] EnemyType enemyType;
-    EnemyShooter shooter;
-    SpriteRenderer spriteRender;
-    Rigidbody2D rb;
+    public float curhealth;
+    public float maxHealth;
+
+    [Header("Test")]
+    public bool isTest = false;
+
+    private Sprite[] sprites;
+    private EnemyShooter shooter;
+    private SpriteRenderer spriteRender;
+    private Rigidbody2D rb;
 
     private void Awake()
     {
-        health = maxHealth;
+        curhealth = maxHealth;
         shooter = GetComponent<EnemyShooter>(); 
         spriteRender = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         shooter.enemyType = enemyType;
     }
 
-    private void OnEnable()
+    public void Start()
     {
-        Managers.Event.Subscribe(GameEventType.MoveCompleted, shooter.Shoot);
+        if (isTest)
+            SetEnemy(enemyType);
     }
 
     public void SetEnemy(EnemyType enemyType)
@@ -36,11 +41,13 @@ public class EnemyController : MonoBehaviour
         spriteRender.sprite = charater.Sprite;
 
         EnemyInfoSO enemyInfoSO = charater.Info as EnemyInfoSO;
-        sprites = enemyInfoSO.sprites;
+        sprites = enemyInfoSO.Sprites;
         shooter.EnemyInfoSO = enemyInfoSO;
+
+        shooter.Shoot();
     }
 
-    public void SetMove(Vector3 endVec)
+    public void SetDoMove(Vector3 endVec)
     {
         //Vector3 dir = (endVec - transform.position).normalized;
         //rb.velocity = dir * shooter.EnemyInfoSO.speed;
@@ -48,12 +55,17 @@ public class EnemyController : MonoBehaviour
 
     }
 
+    public void SetMove(Vector3 dir)
+    {
+        rb.velocity = dir * shooter.EnemyInfoSO.MoveSpeed;
+    }
+
     void OnHit(int dmg)
     {
-        health -= dmg;
+        curhealth -= dmg;
         spriteRender.sprite = sprites[1];
         Invoke("ReturnSprite", 0.05f);
-        if (health <= 0)
+        if (curhealth <= 0)
         {
             DieEnemy();
         }
@@ -92,10 +104,5 @@ public class EnemyController : MonoBehaviour
             ProjectileController bullet = collision.gameObject.GetComponent<ProjectileController>();
             OnHit(bullet.Damage);
         }
-    }
-
-    private void OnDisable()
-    {
-        Managers.Event.Unsubscribe(GameEventType.MoveCompleted, shooter.Shoot);
     }
 }

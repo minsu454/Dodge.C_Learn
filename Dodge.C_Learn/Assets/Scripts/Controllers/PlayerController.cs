@@ -10,9 +10,10 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer sprRenderer;
+
     private Vector2 moveInput;
-    PlayerShooter shooter;
-    bool isHit;
+    private PlayerShooter shooter;
+    private bool isHit;
 
     public float invincibilityDuration = 2f;
     private bool isInvincible = false;

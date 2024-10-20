@@ -13,9 +13,9 @@ public class ProjectileController : MonoBehaviour
         projectileRb = GetComponent<Rigidbody2D>();
     }
 
-    public void Move(Vector3 vec)
+    public void Move(Vector3 vec, float speed)
     {
-        projectileRb.velocity = vec;
+        projectileRb.velocity = vec * speed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

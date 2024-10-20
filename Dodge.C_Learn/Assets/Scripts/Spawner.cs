@@ -12,6 +12,8 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class Spawner : MonoBehaviour
 {
+    private const float PROJECTILE_SPEED = 2;
+
     [SerializeField] private PatternSO startProjectile;
     private List<EnemySpawnData> projectileSpawnList;
 
@@ -58,7 +60,7 @@ public class Spawner : MonoBehaviour
             EnemyController enemyController = enemy.GetComponent<EnemyController>();
             enemyController.SetEnemy(sqawnDataList[i].EnemyType);
 
-            enemyController.SetMove(sqawnDataList[i].Pos);
+            //enemyController.SetMove(sqawnDataList[i].Pos);
         }
     }
 
@@ -86,6 +88,6 @@ public class Spawner : MonoBehaviour
 
         controller.transform.position = pos;
 
-        controller.Move(dir);
+        controller.Move(dir, PROJECTILE_SPEED);
     }
 }

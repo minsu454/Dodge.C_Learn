@@ -9,16 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16e544db0b2193a44a2ed9dd695b2cd1, type: 3}
+  m_Script: {fileID: 11500000, guid: 01c38cf9166e4494a97298b62bf08f8e, type: 3}
   m_Name: Destroyer03
   m_EditorClassIdentifier: 
-  FireRate: 0
-  delay: 0
-  Speed: 0
-  bulletAmount: 0
-  fireCount: 0
-  sprites:
+  MaxFireRateCount: 25
+  Delay: 5
+  ProjectileSpeed: 2
+  MoveSpeed: 0
+  BulletAmount: 0
+  FireCount: 0
+  Score: 0
+  Sprites:
   - {fileID: 21300000, guid: 051b3aec6dda7834dbc12b5237f6376a, type: 3}
   - {fileID: 21300000, guid: 18da81bb2b839c34e8d96d86dba06d0f, type: 3}
-  ProjectileA: 
-  ProjectileB: 

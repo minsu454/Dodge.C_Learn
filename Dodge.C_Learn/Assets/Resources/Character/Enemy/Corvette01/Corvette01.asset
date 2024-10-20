@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01c38cf9166e4494a97298b62bf08f8e, type: 3}
   m_Name: Corvette01
   m_EditorClassIdentifier: 
-  FireRate: 0
-  delay: 0
-  Speed: 0
-  bulletAmount: 0
-  fireCount: 0
-  sprites:
+  MaxFireRateCount: 0
+  Delay: 5
+  ProjectileSpeed: 2
+  MoveSpeed: 0
+  BulletAmount: 0
+  FireCount: 0
+  Score: 0
+  Sprites:
   - {fileID: 21300000, guid: 68465e3ecd59f9741b9cf5744f065ff5, type: 3}
   - {fileID: 21300000, guid: b649082bba7a05b43944d8189a47709c, type: 3}
