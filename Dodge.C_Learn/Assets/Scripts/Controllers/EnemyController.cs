@@ -71,15 +71,20 @@ public class EnemyController : MonoBehaviour
     void OnHit(int dmg)
     {
         curhealth -= dmg;
-        spriteRender.sprite = sprites[1];
+        
         if (curhealth <= 0)
         {
             DieEnemy();
         }
+        else
+        {
+            StartCoroutine(CoSpriteChanger());
+        }
     }
 
-    private IEnumerator CoReturnSprite()
+    private IEnumerator CoSpriteChanger()
     {
+        spriteRender.sprite = sprites[1];
         yield return YieldCache.WaitForSeconds(0.05f);
         spriteRender.sprite = sprites[0];
     }
@@ -88,7 +93,6 @@ public class EnemyController : MonoBehaviour
     {
         float randomvalue = UnityEngine.Random.Range(0f, 1f);
         shooter.Stop();
-        StopCoroutine(CoReturnSprite());
         if (enemyType == EnemyType.Destroyer03)
         {
             if (randomvalue <= 0.1f)
@@ -111,7 +115,7 @@ public class EnemyController : MonoBehaviour
         if(collision.CompareTag("Boarder"))
         {
             shooter.Stop();
-            StopCoroutine(CoReturnSprite());
+            StopCoroutine(CoSpriteChanger());
             ObjectPoolManager.Instance.ReturnObject(gameObject);
         }
 
