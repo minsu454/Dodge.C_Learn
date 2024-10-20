@@ -15,6 +15,6 @@ MonoBehaviour:
   MaxFireRateCount: 1
   Delay: 0.5
   ProjectileSpeed: 5
-  MoveSpeed: 5
+  MoveSpeed: 4
   ProjectileA: ProjectileE
   ProjectileB: ProjectileF
