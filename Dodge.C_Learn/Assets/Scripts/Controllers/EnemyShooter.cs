@@ -37,7 +37,28 @@ public class EnemyShooter : Shooter
                 break;
         }
     }
-    
+
+    public void Stop()
+    {
+        switch (enemyType)
+        {
+            case EnemyType.Corvette01:
+                StopCoroutine(CoFire());
+                break;
+            case EnemyType.Frigate02:
+                StopCoroutine(CoFireBurst());
+                break;
+            case EnemyType.Destroyer03:
+            case EnemyType.Cruiser04:
+                StopCoroutine(CoFireArc());
+                break;
+            case EnemyType.BattleShip05:
+                StopCoroutine(CoFireBurst());
+                StopCoroutine(CoFireAround());
+                break;
+        }
+    }
+
     private IEnumerator CoFire()
     {
         while (true)

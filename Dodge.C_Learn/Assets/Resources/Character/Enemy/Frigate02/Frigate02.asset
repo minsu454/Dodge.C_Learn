@@ -15,7 +15,7 @@ MonoBehaviour:
   MaxFireRateCount: 4
   Delay: 5
   ProjectileSpeed: 4
-  MoveSpeed: 0
+  MoveSpeed: 1
   BulletAmount: 0
   FireCount: 0
   Score: 0

@@ -1,3 +1,4 @@
+using Common.Timer;
 using Common.Yield;
 using System;
 using System.Collections;
@@ -14,6 +15,8 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] public List<PatternSO> startEnemyList;
     private readonly Dictionary<EnemyType, List<Vector3>> startEnemyDic = new Dictionary<EnemyType, List<Vector3>>();
+
+    private event Action<Vector3> TimeOutMoveEnemyEvent;
 
     private void Awake()
     {           
@@ -43,9 +46,9 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    public void SpawnStageEnemy(PatternSO patternSO)
+    public void SpawnStageEnemy(StageSO stageSO)
     {
-        List<EnemySpawnData> sqawnDataList = patternSO.pattern.spawnPointList;
+        List<EnemySpawnData> sqawnDataList = stageSO.PatternList.pattern.spawnPointList;
 
         for (int i = 0; i < sqawnDataList.Count; i++)
         {
@@ -60,6 +63,8 @@ public class Spawner : MonoBehaviour
 
             enemyController.SetDoMove(sqawnDataList[i].Pos);
         }
+
+        StartCoroutine(CoTimer.Start(stageSO.spawnTime, () => Managers.Event.Dispatch(GameEventType.EnemyMoveTimerCompleted, Vector3.down)));
     }
 
     IEnumerator CoSpawnProjectile()

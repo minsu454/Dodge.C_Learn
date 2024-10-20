@@ -11,6 +11,6 @@ public class TotalStageDataSO : ScriptableObject
 [Serializable]
 public class StageSO
 {
-    public int spawnTime;
+    public float spawnTime;
     public PatternSO PatternList;
 }

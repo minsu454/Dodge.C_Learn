@@ -4,6 +4,8 @@ using TreeEditor;
 using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 using DG.Tweening;
+using System;
+using System.Runtime.CompilerServices;
 
 public class EnemyController : MonoBehaviour
 {
@@ -35,6 +37,11 @@ public class EnemyController : MonoBehaviour
             SetEnemy(enemyType);
     }
 
+    public void OnEnable()
+    {
+        Managers.Event.Subscribe(GameEventType.EnemyMoveTimerCompleted, SetMove);
+    }
+
     public void SetEnemy(EnemyType enemyType)
     {
         var charater = Managers.Character.ReturnAll(enemyType);
@@ -44,20 +51,16 @@ public class EnemyController : MonoBehaviour
         EnemyInfoSO enemyInfoSO = charater.Info as EnemyInfoSO;
         sprites = enemyInfoSO.Sprites;
         shooter.EnemyInfoSO = enemyInfoSO;
-
-        shooter.Shoot();
     }
 
     public void SetDoMove(Vector3 endVec)
     {
         transform.DOMove(endVec, 3).OnComplete(shooter.Shoot);
-        //Vector3 dir = (endVec - transform.position).normalized;
-        //rb.velocity = dir * shooter.EnemyInfoSO.speed;
     }
 
-    public void SetMove(Vector3 dir)
+    public void SetMove(object args)
     {
-        rb.velocity = dir * shooter.EnemyInfoSO.MoveSpeed;
+        rb.velocity = (Vector3)args * shooter.EnemyInfoSO.MoveSpeed;
     }
 
     void OnHit(int dmg)
@@ -72,7 +75,7 @@ public class EnemyController : MonoBehaviour
     }
     private void DieEnemy()
     {
-        float randomvalue = Random.Range(0f, 1f);
+        float randomvalue = UnityEngine.Random.Range(0f, 1f);
         if (enemyType == EnemyType.Destroyer03)
         {
             if (randomvalue <= 0.1f)
@@ -104,5 +107,11 @@ public class EnemyController : MonoBehaviour
             ProjectileController bullet = collision.gameObject.GetComponent<ProjectileController>();
             OnHit(bullet.Damage);
         }
+    }
+
+    private void OnDisable()
+    {
+        Managers.Event.Unsubscribe(GameEventType.EnemyMoveTimerCompleted, SetMove);
+        shooter?.Stop();
     }
 }
