@@ -8,10 +8,9 @@ public class StageManager : MonoBehaviour
     private static StageManager _instance;
     public float patternTime;
 
-    private int curStageIdx = 0;
-
     [Header("Spawner")]
     [SerializeField] Spawner spawner;
+    [SerializeField] private int curStageIdx = 0;
 
     private TotalStageDataSO totalStageSO;
 
