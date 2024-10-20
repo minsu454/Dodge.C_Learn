@@ -10,8 +10,10 @@ public class Managers : MonoBehaviour
 
     #region MonoBehaviour
     public static PopupManager Popup { get { return instance.popupManager; } }
+    public static SoundManager Sound { get { return instance.soundManager; } }
 
     private PopupManager popupManager;                                                      //팝업매니저
+    private SoundManager soundManager;                                                      //팝업매니저
     #endregion
 
     #region No MonoBehaviour
@@ -36,8 +38,11 @@ public class Managers : MonoBehaviour
         DontDestroyOnLoad(managers);
 
         instance.popupManager = instance.CreateManager<PopupManager>("PopupManager", managers.transform);
+        instance.soundManager = instance.CreateManager<SoundManager>("SoundManager", managers.transform);
 
         Popup.Init();
+        Sound.Init();
+
         Character.Init();
     }
 
