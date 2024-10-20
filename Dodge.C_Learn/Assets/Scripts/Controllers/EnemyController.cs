@@ -6,6 +6,8 @@ using UnityEngine;
 using DG.Tweening;
 using System;
 using System.Runtime.CompilerServices;
+using Common.Timer;
+using Common.Yield;
 
 public class EnemyController : MonoBehaviour
 {
@@ -55,7 +57,10 @@ public class EnemyController : MonoBehaviour
 
     public void SetDoMove(Vector3 endVec)
     {
-        transform.DOMove(endVec, 3).OnComplete(shooter.Shoot);
+        transform.DOMove(endVec, 3).OnComplete( () => {
+            if(gameObject.activeSelf)
+                shooter.Shoot();
+        });
     }
 
     public void SetMove(object args)
@@ -66,16 +71,28 @@ public class EnemyController : MonoBehaviour
     void OnHit(int dmg)
     {
         curhealth -= dmg;
-        spriteRender.sprite = sprites[1];
-        Invoke("ReturnSprite", 0.05f);
+        
         if (curhealth <= 0)
         {
             DieEnemy();
         }
+        else
+        {
+            StartCoroutine(CoSpriteChanger());
+        }
     }
+
+    private IEnumerator CoSpriteChanger()
+    {
+        spriteRender.sprite = sprites[1];
+        yield return YieldCache.WaitForSeconds(0.05f);
+        spriteRender.sprite = sprites[0];
+    }
+
     private void DieEnemy()
     {
         float randomvalue = UnityEngine.Random.Range(0f, 1f);
+        shooter.Stop();
         if (enemyType == EnemyType.Destroyer03)
         {
             if (randomvalue <= 0.1f)
@@ -90,16 +107,16 @@ public class EnemyController : MonoBehaviour
                 ObjectPoolManager.Instance.GetObject("ItemPower", transform, Vector3.zero);
             }
         }
-        Destroy(gameObject);
-        //ObjectPoolManager.Instance.ReturnObject(OT, gameObject);
+        ObjectPoolManager.Instance.ReturnObject(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Boarder"))
         {
-            Destroy(gameObject);
-            //ObjectPoolManager.Instance.ReturnObject(OT, gameObject);
+            shooter.Stop();
+            StopCoroutine(CoSpriteChanger());
+            ObjectPoolManager.Instance.ReturnObject(gameObject);
         }
 
         if(collision.CompareTag("PlayerProjectile"))
@@ -112,6 +129,5 @@ public class EnemyController : MonoBehaviour
     private void OnDisable()
     {
         Managers.Event.Unsubscribe(GameEventType.EnemyMoveTimerCompleted, SetMove);
-        shooter?.Stop();
     }
 }
