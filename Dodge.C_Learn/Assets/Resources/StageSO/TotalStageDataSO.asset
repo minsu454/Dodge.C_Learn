@@ -13,7 +13,17 @@ MonoBehaviour:
   m_Name: TotalStageDataSO
   m_EditorClassIdentifier: 
   stageSOList:
+  - spawnTime: 8
+    PatternList: {fileID: 11400000, guid: 7657e005e0af0f54d8b1f866eb141f0a, type: 2}
+  - spawnTime: 8
+    PatternList: {fileID: 11400000, guid: 33b4221b16864ef449e4cffb0b987653, type: 2}
+  - spawnTime: 10
+    PatternList: {fileID: 11400000, guid: 6825fc6afc726aa45aa1d242c57abfb9, type: 2}
+  - spawnTime: 10
+    PatternList: {fileID: 11400000, guid: e9227d31784a22f4c9d3eeacdb9381d9, type: 2}
+  - spawnTime: 10
+    PatternList: {fileID: 11400000, guid: a8bf606a870cbcc4290a4cf664b2af44, type: 2}
+  - spawnTime: 10
+    PatternList: {fileID: 11400000, guid: ab0f79310af288e4f85b19d21aafba00, type: 2}
   - spawnTime: 30
-    PatternList: {fileID: 11400000, guid: 141e21241d9623144bcb306b803bbf70, type: 2}
-  - spawnTime: 30
-    PatternList: {fileID: 11400000, guid: 141e21241d9623144bcb306b803bbf70, type: 2}
+    PatternList: {fileID: 11400000, guid: 4066421474deb194487ad6ccf7f39691, type: 2}

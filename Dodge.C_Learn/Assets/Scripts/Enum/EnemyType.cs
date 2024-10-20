@@ -4,5 +4,5 @@ public enum EnemyType
     Frigate02 , // 호위함  체력 5
     Destroyer03, // 구축함 체력 15
     Cruiser04, // 순양함 체력 25
-    Battleship05, // 전함 체력 50
+    BattleShip05, // 전함 체력 50
 }

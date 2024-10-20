@@ -10,24 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a91272c30cb479543ab54beddd7a5b8e, type: 3}
-  m_Name: A
+  m_Name: Frigate_with_Corvertte_2
   m_EditorClassIdentifier: 
   pattern:
-    name: A
+    name: Frigate_with_Corvertte_4
     spawnPointList:
+    - EnemyType: 1
+      Pos: {x: 0, y: 3, z: 0}
     - EnemyType: 0
-      Pos: {x: 0, y: 4, z: 0}
+      Pos: {x: 4, y: 3, z: 0}
     - EnemyType: 0
-      Pos: {x: -2, y: 2, z: 0}
+      Pos: {x: -2, y: 3, z: 0}
     - EnemyType: 0
-      Pos: {x: 2, y: 2, z: 0}
+      Pos: {x: -4, y: 3, z: 0}
     - EnemyType: 0
-      Pos: {x: 0, y: 2, z: 0}
-    - EnemyType: 0
-      Pos: {x: -1, y: 3, z: 0}
-    - EnemyType: 0
-      Pos: {x: 1, y: 3, z: 0}
-    - EnemyType: 0
-      Pos: {x: -3, y: 1, z: 0}
-    - EnemyType: 0
-      Pos: {x: 3, y: 1, z: 0}
+      Pos: {x: 2, y: 3, z: 0}

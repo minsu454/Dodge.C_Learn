@@ -35,7 +35,12 @@ public class StageManager : MonoBehaviour
 
     private void Start()
     {
-        RequestEnemySpawn();
+        //RequestEnemySpawn();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) RequestEnemySpawn();
     }
 
     // Spawner에게 TotalStageSO / StageIdx를 넘긴다.
@@ -47,13 +52,9 @@ public class StageManager : MonoBehaviour
 
         Pattern pattern = curStageSO.PatternList.pattern;
 
+        spawner.SpawnStageEnemy(curPatternSO);
+
         // 현재 스테이지의 인덱스를 올려준다.
         curStageIdx++;
-
-        spawner.SpawnStageEnemy(curPatternSO);
     }
-
-
-
-
 }

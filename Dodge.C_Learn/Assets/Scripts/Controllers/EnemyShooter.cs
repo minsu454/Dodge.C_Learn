@@ -31,7 +31,7 @@ public class EnemyShooter : Shooter
             case EnemyType.Cruiser04:
                 StartCoroutine(CoFireArc());
                 break;
-            case EnemyType.Battleship05:
+            case EnemyType.BattleShip05:
                 StartCoroutine(CoTimer.Start(EnemyInfoSO.Delay / 2, () => { StartCoroutine(CoFireBurst()); }));
                 StartCoroutine(CoFireAround());
                 break;

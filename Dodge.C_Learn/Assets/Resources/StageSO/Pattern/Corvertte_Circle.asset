@@ -10,20 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a91272c30cb479543ab54beddd7a5b8e, type: 3}
-  m_Name: B
+  m_Name: Corvertte_Circle
   m_EditorClassIdentifier: 
   pattern:
-    name: B
+    name: Corvertte_Circle
     spawnPointList:
     - EnemyType: 0
-      Pos: {x: -4, y: 0, z: 0}
+      Pos: {x: -0.05021943, y: 3.1387324, z: 0}
     - EnemyType: 0
-      Pos: {x: 0.031841278, y: 2, z: 0}
+      Pos: {x: -2.5, y: 2, z: 0}
     - EnemyType: 0
-      Pos: {x: -2, y: 1, z: 0}
+      Pos: {x: 2.2598882, y: 1.9836789, z: 0}
     - EnemyType: 0
-      Pos: {x: 2, y: 0.90746284, z: 0}
+      Pos: {x: -3.51538, y: 0.17576933, z: 0}
     - EnemyType: 0
-      Pos: {x: 0, y: 0.0477612, z: 0}
+      Pos: {x: -2.4356563, y: -1.7827997, z: 0}
     - EnemyType: 0
-      Pos: {x: 4, y: 0, z: 0}
+      Pos: {x: -0.07532915, y: -2.962963, z: 0}
+    - EnemyType: 0
+      Pos: {x: 2.360327, y: -1.75769, z: 0}
+    - EnemyType: 0
+      Pos: {x: 3.490271, y: 0.07532954, z: 0}

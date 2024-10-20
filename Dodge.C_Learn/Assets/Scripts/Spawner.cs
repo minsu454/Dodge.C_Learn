@@ -53,7 +53,7 @@ public class Spawner : MonoBehaviour
             var posList = startEnemyDic[sqawnDataList[i].EnemyType];
             int randIdx = UnityEngine.Random.Range(0, posList.Count);
 
-            enemy.transform.position = posList[randIdx];
+             enemy.transform.position = posList[randIdx];
 
             EnemyController enemyController = enemy.GetComponent<EnemyController>();
             enemyController.SetEnemy(sqawnDataList[i].EnemyType);

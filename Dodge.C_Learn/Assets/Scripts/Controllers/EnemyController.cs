@@ -80,7 +80,7 @@ public class EnemyController : MonoBehaviour
                 ObjectPoolManager.Instance.GetObject("ItemPower", transform, Vector3.zero);
             }
         }
-        else if (enemyType == EnemyType.Cruiser04 || enemyType == EnemyType.Battleship05)
+        else if (enemyType == EnemyType.Cruiser04 || enemyType == EnemyType.BattleShip05)
         {
             if (randomvalue <= 0.4f)
             {
