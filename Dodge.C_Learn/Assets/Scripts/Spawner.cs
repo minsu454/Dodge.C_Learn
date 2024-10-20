@@ -64,7 +64,7 @@ public class Spawner : MonoBehaviour
             enemyController.SetDoMove(sqawnDataList[i].Pos);
         }
 
-        StartCoroutine(CoTimer.Start(stageSO.spawnTime, () => Managers.Event.Dispatch(GameEventType.EnemyMoveTimerCompleted, Vector3.down)));
+        StartCoroutine(CoTimer.Start(stageSO.DurationTime, () => Managers.Event.Dispatch(GameEventType.EnemyMoveTimerCompleted, Vector3.down)));
     }
 
     IEnumerator CoSpawnProjectile()

@@ -1,3 +1,4 @@
+using Common.Timer;
 using System;
 using UnityEngine;
 
@@ -31,17 +32,24 @@ public class StageManager : MonoBehaviour
         _instance = this;
 
         totalStageSO = Resources.Load<TotalStageDataSO>($"StageSO/TotalStageDataSO");
+        Managers.Event.Subscribe(GameEventType.EnemyMoveTimerCompleted, CompletePattern);
     }
 
     private void Start()
     {
-        //RequestEnemySpawn();
+        RequestEnemySpawn();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space)) RequestEnemySpawn();
     }
+
+    public void CompletePattern(object args)
+    {
+        StartCoroutine(CoTimer.Start(totalStageSO.stageSOList[curStageIdx].NextStageTime, RequestEnemySpawn));
+    }
+
 
     // Spawner에게 TotalStageSO / StageIdx를 넘긴다.
     public void RequestEnemySpawn()
