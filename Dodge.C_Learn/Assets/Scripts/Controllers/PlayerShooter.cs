@@ -38,30 +38,30 @@ public class PlayerShooter : Shooter
         switch (Power)
         {
             case 0:
-                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.zero, Vector2.up * PlayerInfoSO.MoveSpeed, PlayerInfoSO.ProjectileSpeed);
+                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.zero, Vector2.up, PlayerInfoSO.ProjectileSpeed);
                 break;
             case 1:
-                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.right * 0.08f, Vector2.up * PlayerInfoSO.MoveSpeed, PlayerInfoSO.ProjectileSpeed);
-                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.left * 0.08f, Vector2.up * PlayerInfoSO.MoveSpeed, PlayerInfoSO.ProjectileSpeed);
+                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.right * 0.08f, Vector2.up, PlayerInfoSO.ProjectileSpeed);
+                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.left * 0.08f, Vector2.up, PlayerInfoSO.ProjectileSpeed);
                 break;
             case 2:
-                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.right * 0.1f, Vector2.up * PlayerInfoSO.MoveSpeed, PlayerInfoSO.ProjectileSpeed);
-                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.left * 0.1f, Vector2.up * PlayerInfoSO.MoveSpeed, PlayerInfoSO.ProjectileSpeed);
-                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.up * 0.1f, Vector2.up * PlayerInfoSO.MoveSpeed, PlayerInfoSO.ProjectileSpeed);
+                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.right * 0.1f, Vector2.up, PlayerInfoSO.ProjectileSpeed);
+                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.left * 0.1f, Vector2.up, PlayerInfoSO.ProjectileSpeed);
+                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.up * 0.1f, Vector2.up, PlayerInfoSO.ProjectileSpeed);
                 break;
             case 3:
-                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.right * 0.1f, Vector2.up * PlayerInfoSO.MoveSpeed, PlayerInfoSO.ProjectileSpeed);
-                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.right * 0.2f, Vector2.up * PlayerInfoSO.MoveSpeed, PlayerInfoSO.ProjectileSpeed);
-                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.left * 0.1f, Vector2.up * PlayerInfoSO.MoveSpeed, PlayerInfoSO.ProjectileSpeed);
-                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.left * 0.2f, Vector2.up * PlayerInfoSO.MoveSpeed, PlayerInfoSO.ProjectileSpeed);
+                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.right * 0.1f, Vector2.up, PlayerInfoSO.ProjectileSpeed);
+                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.right * 0.2f, Vector2.up, PlayerInfoSO.ProjectileSpeed);
+                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.left * 0.1f, Vector2.up, PlayerInfoSO.ProjectileSpeed);
+                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.left * 0.2f, Vector2.up, PlayerInfoSO.ProjectileSpeed);
                 break;
             case 4:
-                SpawnBullet(PlayerInfoSO.ProjectileB, Vector3.zero, Vector2.up * PlayerInfoSO.MoveSpeed, PlayerInfoSO.ProjectileSpeed);
+                SpawnBullet(PlayerInfoSO.ProjectileB, Vector3.zero, Vector2.up, PlayerInfoSO.ProjectileSpeed);
                 break;
             case 5:
-                SpawnBullet(PlayerInfoSO.ProjectileB, Vector3.up * 0.1f, Vector2.up * PlayerInfoSO.MoveSpeed, PlayerInfoSO.ProjectileSpeed);
-                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.right * 0.15f, Vector2.up * PlayerInfoSO.MoveSpeed, PlayerInfoSO.ProjectileSpeed);
-                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.left * 0.15f, Vector2.up * PlayerInfoSO.MoveSpeed, PlayerInfoSO.ProjectileSpeed);
+                SpawnBullet(PlayerInfoSO.ProjectileB, Vector3.up * 0.1f, Vector2.up, PlayerInfoSO.ProjectileSpeed);
+                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.right * 0.15f, Vector2.up, PlayerInfoSO.ProjectileSpeed);
+                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.left * 0.15f, Vector2.up, PlayerInfoSO.ProjectileSpeed);
                 break;
         }
     }

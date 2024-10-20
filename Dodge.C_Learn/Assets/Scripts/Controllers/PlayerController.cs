@@ -6,14 +6,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float speed = 5.0f;
-    private Rigidbody2D rb;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer sprRenderer;
+    private Rigidbody2D rb;
 
     private Vector2 moveInput;
     private PlayerShooter shooter;
     private bool isHit;
+    public float speed;
 
     public float invincibilityDuration = 2f;
     private bool isInvincible = false;
@@ -33,7 +33,9 @@ public class PlayerController : MonoBehaviour
 
         animator.runtimeAnimatorController = playerClass.Animator;
         sprRenderer.sprite = playerClass.Sprite;
+        
         shooter.PlayerInfoSO = playerClass.Info as PlayerInfoSO;
+        speed = shooter.PlayerInfoSO.MoveSpeed;
     }
 
     void OnMove(InputValue value)
@@ -86,6 +88,4 @@ public class PlayerController : MonoBehaviour
     {
         shooter.Power++;
     }
-
-    
 }
