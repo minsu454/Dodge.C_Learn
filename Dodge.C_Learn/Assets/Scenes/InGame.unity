@@ -1008,6 +1008,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patternTime: 0
   spawner: {fileID: 544271333307651256}
+  curStageIdx: 0
 --- !u!4 &1067995044
 Transform:
   m_ObjectHideFlags: 0

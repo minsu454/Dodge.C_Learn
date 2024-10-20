@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TreeEditor;
 using UnityEditor.U2D.Aseprite;
 using UnityEngine;
+using DG.Tweening;
 
 public class EnemyController : MonoBehaviour
 {
@@ -49,10 +50,9 @@ public class EnemyController : MonoBehaviour
 
     public void SetDoMove(Vector3 endVec)
     {
+        transform.DOMove(endVec, 3).OnComplete(shooter.Shoot);
         //Vector3 dir = (endVec - transform.position).normalized;
         //rb.velocity = dir * shooter.EnemyInfoSO.speed;
-
-
     }
 
     public void SetMove(Vector3 dir)

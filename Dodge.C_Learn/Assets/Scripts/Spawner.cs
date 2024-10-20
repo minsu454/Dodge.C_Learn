@@ -1,13 +1,8 @@
-
 using Common.Yield;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using UnityEditorInternal.Profiling.Memory.Experimental.FileFormat;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.EventSystems.EventTrigger;
 
 
 public class Spawner : MonoBehaviour
@@ -55,12 +50,15 @@ public class Spawner : MonoBehaviour
         for (int i = 0; i < sqawnDataList.Count; i++)
         {
             GameObject enemy = ObjectPoolManager.Instance.GetObject(sqawnDataList[i].EnemyType.ToString());
-            enemy.transform.position = sqawnDataList[i].Pos;
+            var posList = startEnemyDic[sqawnDataList[i].EnemyType];
+            int randIdx = UnityEngine.Random.Range(0, posList.Count);
+
+            enemy.transform.position = posList[randIdx];
 
             EnemyController enemyController = enemy.GetComponent<EnemyController>();
             enemyController.SetEnemy(sqawnDataList[i].EnemyType);
 
-            //enemyController.SetMove(sqawnDataList[i].Pos);
+            enemyController.SetDoMove(sqawnDataList[i].Pos);
         }
     }
 
