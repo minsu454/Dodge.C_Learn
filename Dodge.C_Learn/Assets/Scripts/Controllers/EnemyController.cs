@@ -90,16 +90,14 @@ public class EnemyController : MonoBehaviour
                 ObjectPoolManager.Instance.GetObject("ItemPower", transform, Vector3.zero);
             }
         }
-        Destroy(gameObject);
-        //ObjectPoolManager.Instance.ReturnObject(OT, gameObject);
+        ObjectPoolManager.Instance.ReturnObject(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Boarder"))
         {
-            Destroy(gameObject);
-            //ObjectPoolManager.Instance.ReturnObject(OT, gameObject);
+            ObjectPoolManager.Instance.ReturnObject(gameObject);
         }
 
         if(collision.CompareTag("PlayerProjectile"))
