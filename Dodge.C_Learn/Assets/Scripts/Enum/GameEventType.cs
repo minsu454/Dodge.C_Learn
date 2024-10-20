@@ -7,5 +7,5 @@ public enum GameEventType
     StayCameraView,
     FollowCamera,
 
-    MoveCompleted = 100,
+    EnemyMoveTimerCompleted = 100,
 }

@@ -43,14 +43,10 @@ public class StageManager : MonoBehaviour
     {
         StageSO curStageSO = totalStageSO.stageSOList[curStageIdx];
 
-        PatternSO curPatternSO = curStageSO.PatternList;
-
-        Pattern pattern = curStageSO.PatternList.pattern;
-
         // 현재 스테이지의 인덱스를 올려준다.
         curStageIdx++;
 
-        spawner.SpawnStageEnemy(curPatternSO);
+        spawner.SpawnStageEnemy(curStageSO);
     }
 
 

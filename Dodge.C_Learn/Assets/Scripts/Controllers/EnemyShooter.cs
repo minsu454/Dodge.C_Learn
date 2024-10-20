@@ -31,13 +31,34 @@ public class EnemyShooter : Shooter
             case EnemyType.Cruiser04:
                 StartCoroutine(CoFireArc());
                 break;
-            case EnemyType.Battleship05:
+            case EnemyType.BattleShip05:
                 StartCoroutine(CoTimer.Start(EnemyInfoSO.Delay / 2, () => { StartCoroutine(CoFireBurst()); }));
                 StartCoroutine(CoFireAround());
                 break;
         }
     }
-    
+
+    public void Stop()
+    {
+        switch (enemyType)
+        {
+            case EnemyType.Corvette01:
+                StopCoroutine(CoFire());
+                break;
+            case EnemyType.Frigate02:
+                StopCoroutine(CoFireBurst());
+                break;
+            case EnemyType.Destroyer03:
+            case EnemyType.Cruiser04:
+                StopCoroutine(CoFireArc());
+                break;
+            case EnemyType.BattleShip05:
+                StopCoroutine(CoFireBurst());
+                StopCoroutine(CoFireAround());
+                break;
+        }
+    }
+
     private IEnumerator CoFire()
     {
         while (true)
