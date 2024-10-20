@@ -13,7 +13,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveInput;
     private PlayerShooter shooter;
     private bool isHit;
-    public float speed;
+    private float speed;
+    private int curHp; 
 
     public float invincibilityDuration = 2f;
     private bool isInvincible = false;
@@ -33,9 +34,12 @@ public class PlayerController : MonoBehaviour
 
         animator.runtimeAnimatorController = playerClass.Animator;
         sprRenderer.sprite = playerClass.Sprite;
-        
-        shooter.PlayerInfoSO = playerClass.Info as PlayerInfoSO;
-        speed = shooter.PlayerInfoSO.MoveSpeed;
+
+        PlayerInfoSO playerInfoSO = playerClass.Info as PlayerInfoSO;
+        curHp = playerInfoSO.MaxHp;
+        shooter.Power = playerInfoSO.MaxHp - 1;
+        speed = playerInfoSO.MoveSpeed;
+        shooter.PlayerInfoSO = playerInfoSO;
     }
 
     void OnMove(InputValue value)
@@ -51,8 +55,9 @@ public class PlayerController : MonoBehaviour
 
     void OnHit()
     {
+        curHp--;
         shooter.Power--;
-        if (shooter.Power < 0)
+        if (curHp < 0)
         {
             Destroy(gameObject);
         }
@@ -86,6 +91,7 @@ public class PlayerController : MonoBehaviour
     }
     void Upgrade()
     {
+        curHp++;
         shooter.Power++;
     }
 }

@@ -13,8 +13,7 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] private EnemyType enemyType;
 
-    public float curhealth;
-    public float maxHealth;
+    private int curhealth;
 
     [Header("Test")]
     public bool isTest = false;
@@ -26,7 +25,6 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
-        curhealth = maxHealth;
         shooter = GetComponent<EnemyShooter>(); 
         spriteRender = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
@@ -52,6 +50,7 @@ public class EnemyController : MonoBehaviour
 
         EnemyInfoSO enemyInfoSO = charater.Info as EnemyInfoSO;
         sprites = enemyInfoSO.Sprites;
+        curhealth = enemyInfoSO.MaxHp;
         shooter.EnemyInfoSO = enemyInfoSO;
     }
 

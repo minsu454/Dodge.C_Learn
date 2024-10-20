@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01c38cf9166e4494a97298b62bf08f8e, type: 3}
   m_Name: Destroyer03
   m_EditorClassIdentifier: 
+  MaxHp: 20
   MaxFireRateCount: 25
   Delay: 5
   ProjectileSpeed: 2

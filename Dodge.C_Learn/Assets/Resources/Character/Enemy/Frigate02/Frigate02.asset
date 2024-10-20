@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01c38cf9166e4494a97298b62bf08f8e, type: 3}
   m_Name: Frigate02
   m_EditorClassIdentifier: 
+  MaxHp: 10
   MaxFireRateCount: 4
   Delay: 5
   ProjectileSpeed: 4

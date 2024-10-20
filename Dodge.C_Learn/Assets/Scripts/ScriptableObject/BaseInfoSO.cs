@@ -5,6 +5,7 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 public class BaseInfoSO : ScriptableObject
 {
     [Header("DefaultInfoSO Info")]
+    public int MaxHp;
     public int MaxFireRateCount;
     public float Delay;
     public float ProjectileSpeed;
