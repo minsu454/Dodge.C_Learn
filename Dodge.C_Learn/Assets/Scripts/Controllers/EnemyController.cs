@@ -6,6 +6,8 @@ using UnityEngine;
 using DG.Tweening;
 using System;
 using System.Runtime.CompilerServices;
+using Common.Timer;
+using Common.Yield;
 
 public class EnemyController : MonoBehaviour
 {
@@ -55,7 +57,10 @@ public class EnemyController : MonoBehaviour
 
     public void SetDoMove(Vector3 endVec)
     {
-        transform.DOMove(endVec, 3).OnComplete(shooter.Shoot);
+        transform.DOMove(endVec, 3).OnComplete( () => {
+            if(gameObject.activeSelf)
+                shooter.Shoot();
+        });
     }
 
     public void SetMove(object args)
@@ -67,15 +72,23 @@ public class EnemyController : MonoBehaviour
     {
         curhealth -= dmg;
         spriteRender.sprite = sprites[1];
-        Invoke("ReturnSprite", 0.05f);
         if (curhealth <= 0)
         {
             DieEnemy();
         }
     }
+
+    private IEnumerator CoReturnSprite()
+    {
+        yield return YieldCache.WaitForSeconds(0.05f);
+        spriteRender.sprite = sprites[0];
+    }
+
     private void DieEnemy()
     {
         float randomvalue = UnityEngine.Random.Range(0f, 1f);
+        shooter.Stop();
+        StopCoroutine(CoReturnSprite());
         if (enemyType == EnemyType.Destroyer03)
         {
             if (randomvalue <= 0.1f)
@@ -97,6 +110,8 @@ public class EnemyController : MonoBehaviour
     {
         if(collision.CompareTag("Boarder"))
         {
+            shooter.Stop();
+            StopCoroutine(CoReturnSprite());
             ObjectPoolManager.Instance.ReturnObject(gameObject);
         }
 
@@ -110,6 +125,5 @@ public class EnemyController : MonoBehaviour
     private void OnDisable()
     {
         Managers.Event.Unsubscribe(GameEventType.EnemyMoveTimerCompleted, SetMove);
-        shooter?.Stop();
     }
 }
