@@ -763,6 +763,50 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3767804983225965019, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
+      propertyPath: m_Parameters.colorGradient.atime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 3767804983225965019, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
+      propertyPath: m_Parameters.colorGradient.ctime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3767804983225965019, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3767804983225965019, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3767804983225965019, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3767804983225965019, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3767804983225965019, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3767804983225965019, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3767804983225965019, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3767804983225965019, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3767804983225965019, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
+      propertyPath: m_Parameters.colorGradient.m_NumAlphaKeys
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4439221774441710326, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
       propertyPath: animator
       value: 
@@ -771,6 +815,10 @@ PrefabInstance:
       propertyPath: sprRenderer
       value: 
       objectReference: {fileID: 2011700238}
+    - target: {fileID: 4439221774441710326, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
+      propertyPath: trailRenderer
+      value: 
+      objectReference: {fileID: 828303012}
     - target: {fileID: 4441147620064385220, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
       propertyPath: m_Name
       value: Player
@@ -799,6 +847,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff779d762fa4f6d4784f97c7a1d67d26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!96 &828303012 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 3767804983225965019, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
+  m_PrefabInstance: {fileID: 828303007}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &836615635
 GameObject:
   m_ObjectHideFlags: 0
