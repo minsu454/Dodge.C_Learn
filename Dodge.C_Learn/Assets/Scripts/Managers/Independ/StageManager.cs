@@ -32,6 +32,10 @@ public class StageManager : MonoBehaviour
         _instance = this;
 
         totalStageSO = Resources.Load<TotalStageDataSO>($"StageSO/TotalStageDataSO");
+    }
+
+    private void Start()
+    {
         Managers.Event.Subscribe(GameEventType.EnemyMoveTimerCompleted, CompletePattern);
     }
 
@@ -64,5 +68,11 @@ public class StageManager : MonoBehaviour
             // 현재 스테이지의 인덱스를 올려준다.
             curStageIdx++;
         }
+    }
+
+
+    private void OnDestroy()
+    {
+        Managers.Event.Unsubscribe(GameEventType.EnemyMoveTimerCompleted, CompletePattern);
     }
 }
