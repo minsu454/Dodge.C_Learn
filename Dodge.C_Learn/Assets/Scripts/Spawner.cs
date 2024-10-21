@@ -25,10 +25,6 @@ public class Spawner : MonoBehaviour
         SetStartEnemyDic();
     }
 
-    private void Start()
-    {
-        StartCoroutine(CoSpawnProjectile());
-    }
 
     private void SetStartEnemyDic()
     {
@@ -67,11 +63,16 @@ public class Spawner : MonoBehaviour
         StartCoroutine(CoTimer.Start(stageSO.DurationTime, () => Managers.Event.Dispatch(GameEventType.EnemyMoveTimerCompleted, Vector3.down)));
     }
 
+    public void StartCoSpawnProjectile()
+    {
+        StartCoroutine(CoSpawnProjectile());
+    }
+
     IEnumerator CoSpawnProjectile()
     {
         while (true)
         {
-            yield return YieldCache.WaitForSeconds(1f);
+            yield return YieldCache.WaitForSeconds(0.5f);
 
             GameObject projectile = ObjectPoolManager.Instance.GetObject("EnemyProjectile");
             ProjectileController projectileController = projectile.GetComponent<ProjectileController>();

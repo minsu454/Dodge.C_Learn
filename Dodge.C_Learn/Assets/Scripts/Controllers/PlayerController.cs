@@ -28,6 +28,11 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private void Start()
+    {
+        StartCoroutine(ConHitEffect());
+    }
+
     public void SetPlayer(PlayerType playerType)
     {
         var playerClass = Managers.Character.ReturnAll(playerType);
@@ -62,6 +67,7 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     IEnumerator ConHitEffect()
     {
         isInvincible = true;
@@ -70,6 +76,7 @@ public class PlayerController : MonoBehaviour
         isInvincible = false;
         animator.SetBool("isHit", false);
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy") || collision.CompareTag("EnemyProjectile"))
