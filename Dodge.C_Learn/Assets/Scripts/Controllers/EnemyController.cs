@@ -91,7 +91,7 @@ public class EnemyController : MonoBehaviour
     private void DieEnemy()
     {
         shooter.Stop();
-        if (enemyType == EnemyType.Destroyer03)
+        if (enemyType == EnemyType.Frigate02)
         {
             ObjectPoolManager.Instance.GetObject("ItemPower", transform, Vector3.zero);
         }
