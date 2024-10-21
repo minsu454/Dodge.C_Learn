@@ -77,6 +77,11 @@ public class SoundManager : MonoBehaviour
         var bgmClipArr = Resources.LoadAll<AudioClip>("Sounds/BGM");
         ClipLoader(ref bgmClipDic, bgmClipArr);
 
+        bgmSource.playOnAwake = false;
+        bgmSource.loop = true;
+        bgmSource.volume = 0.3f;
+        sfxSource.playOnAwake = false;
+
         Managers.Scene.OnLoadCompleted(OnLoadCompleted);
     }
 
