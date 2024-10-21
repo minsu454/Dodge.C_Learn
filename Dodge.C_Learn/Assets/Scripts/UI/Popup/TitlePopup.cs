@@ -2,18 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TitlePopup : BasePopup
+public class TitlePopup : BasePopup, ILoadScenePopup
 {
-    protected override void Init()
+    public SceneType nextScene {  get; set; }
+
+    public void LoadSceneAndClose()
     {
-        base.Init();
-    }
-    protected override void Close()
-    {
-        base.Close();
-    }
-    public void StartGame()
-    {
-        Managers.Scene.LoadScene(SceneType.InGame);
+        Managers.Popup.Clear();
+        Managers.Scene.LoadScene(nextScene);
     }
 }

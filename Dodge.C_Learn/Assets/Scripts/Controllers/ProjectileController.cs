@@ -5,36 +5,26 @@ using UnityEngine;
 public class ProjectileController : MonoBehaviour
 {
     private Rigidbody2D projectileRb;
-    float speed = 0.5f;
     public int Damage;
-    public ObjectType myType;
+    public AttackerType myType;
 
     private void Awake()
     {
         projectileRb = GetComponent<Rigidbody2D>();
     }
 
-    private void OnEnable()
+    public void Move(Vector3 vec, float speed)
     {
-        Debug.Log("켜지니?");
+        projectileRb.velocity = vec * speed;
     }
 
-    public void Shoot(Vector3 vec)
-    {
-        projectileRb.velocity = vec;
-    }
-    public void RandomShoot()
-    {
-        Vector2 direction = Random.insideUnitCircle.normalized;
-        projectileRb.velocity = direction * 0.2f;
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && myType == ObjectType.Enemy)
+        if (collision.CompareTag("Player") && myType == AttackerType.Enemy)
         {
             ObjectPoolManager.Instance.ReturnObject(gameObject);
         }
-        else if (collision.CompareTag("Enemy") && myType == ObjectType.Player)
+        else if (collision.CompareTag("Enemy") && myType == AttackerType.Player)
         {
             ObjectPoolManager.Instance.ReturnObject(gameObject);
         }

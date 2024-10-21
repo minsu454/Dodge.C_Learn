@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PausePopup : BasePopup
+public class PausePopup : BasePopup, ILoadScenePopup
 {
     public Text nowTimeText;
+
+    public SceneType nextScene { get; set; }
+
     protected override void Init()
     {
         base.Init();
@@ -15,13 +18,16 @@ public class PausePopup : BasePopup
     {
         nowTimeText.text = time.ToString("0");
     }
-    protected override void Close()
+    public override void Close()
     {
         Time.timeScale = 1f;
         base.Close();
     }
-    public void Retry()
+
+    public void LoadSceneAndClose()
     {
-        Managers.Scene.LoadScene(SceneType.Title);
+        Time.timeScale = 1f;
+        Managers.Popup.Clear();
+        Managers.Scene.LoadScene(nextScene);
     }
 }

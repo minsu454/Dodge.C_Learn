@@ -8,5 +8,5 @@ public enum PopupType
 
     InGamePopup = 10,
     PausePopup,
-    PlayButtonPopup
+    TitlePopup,
 }
