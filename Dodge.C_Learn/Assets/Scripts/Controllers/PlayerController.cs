@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
     {
         curHp--;
         shooter.Power--;
-        if (curHp < 0)
+        if (curHp <= 0)
         {
             Destroy(gameObject);
         }
