@@ -902,7 +902,7 @@ PrefabInstance:
     - target: {fileID: 4439221774441710326, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
       propertyPath: trailRenderer
       value: 
-      objectReference: {fileID: 828303012}
+      objectReference: {fileID: 828303008}
     - target: {fileID: 4441147620064385220, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
       propertyPath: m_Name
       value: Player
@@ -920,6 +920,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
+--- !u!96 &828303008 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 7728695288324483082, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
+  m_PrefabInstance: {fileID: 828303007}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &828303010 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4439221774441710326, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
@@ -931,11 +936,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff779d762fa4f6d4784f97c7a1d67d26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!96 &828303012 stripped
-TrailRenderer:
-  m_CorrespondingSourceObject: {fileID: 3767804983225965019, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
-  m_PrefabInstance: {fileID: 828303007}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &836615635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1708,7 +1708,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 828303010}
   earthTr: {fileID: 398474663}
-  playerType: 1
   score: 0
 --- !u!1 &5153086771465876583
 GameObject:
