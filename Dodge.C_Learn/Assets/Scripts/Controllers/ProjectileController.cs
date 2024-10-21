@@ -18,23 +18,15 @@ public class ProjectileController : MonoBehaviour
         projectileRb.velocity = vec * speed;
     }
 
-    private void ActiveFalse()
-    {
-        ObjectPoolManager.Instance.ReturnObject(gameObject);
-
-        GameObject paticle = ObjectPoolManager.Instance.GetObject("HitParticle");
-        paticle.transform.position = transform.position;
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && myType == AttackerType.Enemy)
         {
-            ActiveFalse();
+            ObjectPoolManager.Instance.ReturnObject(gameObject);
         }
         else if (collision.CompareTag("Enemy") && myType == AttackerType.Player)
         {
-            ActiveFalse();
+            ObjectPoolManager.Instance.ReturnObject(gameObject);
         }
         else if (collision.CompareTag("Boarder"))
         {
