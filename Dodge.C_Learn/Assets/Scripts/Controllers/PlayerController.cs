@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
         if (curHp <= 0)
         {
             Destroy(gameObject);
+            GameManager.Instance.GameOverPopup();
         }
     }
 

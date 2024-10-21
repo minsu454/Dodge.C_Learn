@@ -30,4 +30,8 @@ public class GameManager : SingletonBehaviour<GameManager>
     {
         this.score += score;
     }
+    public void GameOverPopup()
+    {
+        Managers.Popup.CreatePopup(PopupType.GameOverPopup);
+    }
 }

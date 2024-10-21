@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PausePopup : BasePopup, ILoadScenePopup
+public class GameOverPopup : BasePopup, ILoadScenePopup
 {
-    public Text nowScoreText;
+    public Text ScoreText;
 
     public SceneType nextScene { get; set; }
 
@@ -13,14 +13,8 @@ public class PausePopup : BasePopup, ILoadScenePopup
     {
         base.Init();
         Time.timeScale = 0f;
-        nowScoreText.text = GameManager.Instance.score.ToString();
+        ScoreText.text = GameManager.Instance.score.ToString();
     }
-    public override void Close()
-    {
-        Time.timeScale = 1f;
-        base.Close();
-    }
-
     public void LoadSceneAndClose()
     {
         Time.timeScale = 1f;
