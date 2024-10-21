@@ -4,16 +4,16 @@ public class Character
 {
     private readonly Sprite sprite;
     private readonly RuntimeAnimatorController animator;
-    private readonly AttackSO attackSO;
+    private readonly ScriptableObject info;
 
     public Sprite Sprite                        { get { return sprite; } }
     public RuntimeAnimatorController Animator   { get { return animator; } }
-    public AttackSO AttackSO                    { get { return attackSO; } }
+    public ScriptableObject Info                    { get { return info; } }
 
     public Character(string path)
     {
         sprite = Resources.Load<Sprite>(path);
         animator = Resources.Load<RuntimeAnimatorController>(path);
-        attackSO = Resources.Load<AttackSO>(path);
+        info = Resources.Load<ScriptableObject>(path);
     }
 }

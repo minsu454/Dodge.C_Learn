@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
-    public float FireRate;
-    public float projectileSpeed;
+    protected AttackerType objType;
 
-    public AttackSO attackSO;
+    protected float furerateDelay = 0.1f;
 
-    protected void SpawnBullet(ObjectType type, string curBullet, Vector3 pos, Vector2 dir)
+    protected void SpawnBullet(string curBullet, Vector3 pos, Vector2 dir, float speed)
     {
         GameObject bullet = ObjectPoolManager.Instance.GetObject(curBullet, transform, pos);
+
         ProjectileController projectTileController = bullet.GetComponent<ProjectileController>();
-        projectTileController.myType = type;
-        projectTileController.Shoot(dir * projectileSpeed);
+        projectTileController.myType = objType;
+        projectTileController.Move(dir, speed);
     }
 }

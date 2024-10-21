@@ -5,13 +5,27 @@ using UnityEngine.InputSystem;
 
 public class SpawnPoint : MonoBehaviour
 {
-    private SpriteOutline outline;       //외곽선
-    private bool isFollow = false;
+    private SpriteRenderer sprRenderer; 
+    private SpriteOutline outline;      //외곽선
+    private bool isFollow = false;      //마우스따라오는지
 
-    public EnemyType enemyType = EnemyType.Enemy_01Corvette;
+    private EnemyType enemyType = EnemyType.Corvette01;
+    public EnemyType EnemyType
+    {
+        get { return enemyType; }
+        set
+        {
+            if (enemyType != value)
+            {
+                sprRenderer.sprite = Managers.Character.ReturnSprite(value);
+                enemyType = value;
+            }
+        }
+    }
 
     private void Awake()
     {
+        sprRenderer = GetComponent<SpriteRenderer>();
         outline = GetComponent<SpriteOutline>();
     }
 
