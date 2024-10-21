@@ -85,6 +85,8 @@ public sealed class SoundManager : MonoBehaviour, ICreate
         bgmSource.volume = 0.3f;
         sfxSource.playOnAwake = false;
 
+        sfxSource.volume = 0.3f;    
+
         Managers.Scene.OnLoadCompleted(OnLoadCompleted);
     }
 

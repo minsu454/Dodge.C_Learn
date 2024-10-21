@@ -486,6 +486,8 @@ MonoBehaviour:
     Count: 10
   - GO: {fileID: 4863324255693449439, guid: 38312f74c9c948a48aaa1e005ddcc1ac, type: 3}
     Count: 10
+  - GO: {fileID: 1826341687457558, guid: 5563a76bb0c0d29488e3d4765b6e9ecc, type: 3}
+    Count: 10
 --- !u!4 &449887437
 Transform:
   m_ObjectHideFlags: 0
