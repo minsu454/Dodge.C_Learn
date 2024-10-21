@@ -358,8 +358,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterList:
   - {fileID: 6346603011915729028}
-  - {fileID: 5645459280412098615}
   - {fileID: 9087298823939574772}
+  - {fileID: 5645459280412098615}
 --- !u!1 &7525058636427388903
 GameObject:
   m_ObjectHideFlags: 0
