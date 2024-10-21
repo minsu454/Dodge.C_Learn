@@ -90,6 +90,7 @@ public class EnemyController : MonoBehaviour
 
     private void DieEnemy()
     {
+        Managers.Sound.PlaySFX(SfxType.Die_Enemy);
         shooter.Stop();
         if (enemyType == EnemyType.Frigate02)
         {

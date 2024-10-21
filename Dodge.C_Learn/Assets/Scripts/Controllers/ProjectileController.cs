@@ -23,10 +23,12 @@ public class ProjectileController : MonoBehaviour
         if (collision.CompareTag("Player") && myType == AttackerType.Enemy)
         {
             ObjectPoolManager.Instance.ReturnObject(gameObject);
+            Managers.Sound.PlaySFX(SfxType.Hit_Player);
         }
         else if (collision.CompareTag("Enemy") && myType == AttackerType.Player)
         {
             ObjectPoolManager.Instance.ReturnObject(gameObject);
+            Managers.Sound.PlaySFX(SfxType.Hit_Enemy);
         }
         else if (collision.CompareTag("Boarder"))
         {
