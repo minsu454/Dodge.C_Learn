@@ -90,21 +90,10 @@ public class EnemyController : MonoBehaviour
 
     private void DieEnemy()
     {
-        float randomvalue = UnityEngine.Random.Range(0f, 1f);
         shooter.Stop();
         if (enemyType == EnemyType.Destroyer03)
         {
-            if (randomvalue <= 0.1f)
-            {
-                ObjectPoolManager.Instance.GetObject("ItemPower", transform, Vector3.zero);
-            }
-        }
-        else if (enemyType == EnemyType.Cruiser04 || enemyType == EnemyType.BattleShip05)
-        {
-            if (randomvalue <= 0.4f)
-            {
-                ObjectPoolManager.Instance.GetObject("ItemPower", transform, Vector3.zero);
-            }
+            ObjectPoolManager.Instance.GetObject("ItemPower", transform, Vector3.zero);
         }
         ObjectPoolManager.Instance.ReturnObject(gameObject);
     }
