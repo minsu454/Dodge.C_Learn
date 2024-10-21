@@ -17,7 +17,7 @@ public class GameManager : SingletonBehaviour<GameManager>
     protected override void Awake()
     {
         base.Awake();
-        player.SetPlayer(playerType);
+        player.SetPlayer(Managers.Data.PlayerType);
     }
 
     private void Start()

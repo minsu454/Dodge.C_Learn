@@ -8,4 +8,5 @@ public enum GameEventType
     FollowCamera,
 
     EnemyMoveTimerCompleted = 100,
+    SetPlayerType,
 }
