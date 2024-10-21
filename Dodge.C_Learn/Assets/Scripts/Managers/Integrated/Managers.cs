@@ -19,9 +19,11 @@ public class Managers : MonoBehaviour
     #region No MonoBehaviour
     public static EventManager Event { get { return instance.eventManager; } }
     public static SceneManagerEx Scene { get { return instance.sceneManager; } }
+    public static DataManager Data { get { return instance.dataManager; } }
 
     private readonly SceneManagerEx sceneManager = new SceneManagerEx();                    //씬매니저확장
     private readonly EventManager eventManager = new EventManager();                        //이벤트매니저
+    private readonly DataManager dataManager = new DataManager();
     #endregion
 
     #region Container
@@ -44,6 +46,7 @@ public class Managers : MonoBehaviour
         Sound.Init();
 
         Character.Init();
+        Data.Init();
     }
 
     /// <summary>

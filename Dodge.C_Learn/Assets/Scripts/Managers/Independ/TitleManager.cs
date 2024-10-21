@@ -7,8 +7,6 @@ public class TitleManager : MonoBehaviour
 {
     private void Start()
     {      
-        BasePopup basePopup = Managers.Popup.CreatePopup(PopupType.TitlePopup);
-        TitlePopup titlePopup = basePopup as TitlePopup;
-        titlePopup.nextScene = SceneType.InGame;
+        Managers.Popup.CreatePopup(PopupType.TitlePopup);
     }
 }

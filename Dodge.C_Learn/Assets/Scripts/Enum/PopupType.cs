@@ -10,4 +10,5 @@ public enum PopupType
     PausePopup,
     TitlePopup,
     GameOverPopup,
+    SelectPopup,
 }
