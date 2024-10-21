@@ -5,18 +5,17 @@ using UnityEngine.UI;
 
 public class InGamePopup : BasePopup
 {
+    public Text score;
     public Text startTimeText;  
     public float startTime;
     private void Update()
     {
         startTime += Time.deltaTime;
         startTimeText.text = startTime.ToString("0");
+        score.text = GameManager.Instance.score.ToString();
     }
     public void Pause()
     {       
-        BasePopup basePopup = Managers.Popup.CreatePopup(PopupType.PausePopup);
-        PausePopup pausePopup = basePopup as PausePopup;
-        pausePopup.SetNowtime(startTime);
-        pausePopup.nextScene = SceneType.Title;
+        Managers.Popup.CreatePopup(PopupType.PausePopup);
     }
 }

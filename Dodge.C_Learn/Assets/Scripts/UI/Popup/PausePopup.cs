@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PausePopup : BasePopup, ILoadScenePopup
 {
-    public Text nowTimeText;
+    public Text nowScoreText;
 
     public SceneType nextScene { get; set; }
 
@@ -13,10 +13,7 @@ public class PausePopup : BasePopup, ILoadScenePopup
     {
         base.Init();
         Time.timeScale = 0f;
-    }
-    public void SetNowtime(float time)
-    {
-        nowTimeText.text = time.ToString("0");
+        nowScoreText.text = GameManager.Instance.score.ToString();
     }
     public override void Close()
     {
