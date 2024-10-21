@@ -17,9 +17,7 @@ MonoBehaviour:
   Delay: 5
   ProjectileSpeed: 5
   MoveSpeed: 1
-  BulletAmount: 0
-  FireCount: 0
-  Score: 0
+  Score: 100
   Sprites:
   - {fileID: 21300000, guid: 8a7950f5c279fb746a21d17d0fb31829, type: 3}
   - {fileID: 21300000, guid: 901b9ef19de308341b23ac7b1ee01a53, type: 3}
