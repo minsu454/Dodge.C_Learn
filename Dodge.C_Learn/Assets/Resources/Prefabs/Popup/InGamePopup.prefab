@@ -540,7 +540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: {fileID: 8759452960404248593}
-  startTimeText: {fileID: 5667424555149298254}
+  TimeText: {fileID: 5667424555149298254}
   startTime: 0
 --- !u!1 &7163867952853607717
 GameObject:

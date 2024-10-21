@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SoundManager : MonoBehaviour
+public sealed class SoundManager : MonoBehaviour, ICreate
 {
     public AudioSource sfxSource;       //sfx전용 오디오 변수
     public AudioSource bgmSource;       //bgm전용 오디오 변수
@@ -32,6 +32,9 @@ public class SoundManager : MonoBehaviour
         bgmSource.Play();
     }
 
+    /// <summary>
+    /// 씬 로드 시 호출해주는 함수
+    /// </summary>
     public void OnLoadCompleted(Scene scene, LoadSceneMode loadSceneMode)
     {
         switch (scene.name)

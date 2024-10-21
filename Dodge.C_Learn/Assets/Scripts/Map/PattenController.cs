@@ -28,7 +28,7 @@ public class PattenController : MonoBehaviour
 
         Managers.Event.Subscribe(GameEventType.LockInput, OnLockInput);
         Managers.Event.Subscribe(GameEventType.StayCameraView, OnStayCameraView);
-        Managers.Event.Subscribe(GameEventType.FollowCamera, OnFollowCamera);
+        Managers.Event.Subscribe(GameEventType.FollowMouse, OnFollowCamera);
     }
 
     private void Update()

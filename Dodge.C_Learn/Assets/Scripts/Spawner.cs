@@ -8,15 +8,13 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    private const float PROJECTILE_SPEED = 2;
+    private const float PROJECTILE_SPEED = 2;                       //투사체 스피드
 
-    [SerializeField] private PatternSO startProjectile;
-    private List<EnemySpawnData> projectileSpawnList;
+    [SerializeField] private PatternSO startProjectile;             //투사체 생성 SO
+    private List<EnemySpawnData> projectileSpawnList;               //투사체 생성 리스트(위에 내용 풀기)
 
-    [SerializeField] public List<PatternSO> startEnemyList;
-    private readonly Dictionary<EnemyType, List<Vector3>> startEnemyDic = new Dictionary<EnemyType, List<Vector3>>();
-
-    private event Action<Vector3> TimeOutMoveEnemyEvent;
+    [SerializeField] public List<PatternSO> startEnemyList;         //적 생성 SO 리스트
+    private readonly Dictionary<EnemyType, List<Vector3>> startEnemyDic = new Dictionary<EnemyType, List<Vector3>>();   //적 생성 dictionary
 
     private void Awake()
     {           
@@ -25,7 +23,9 @@ public class Spawner : MonoBehaviour
         SetStartEnemyDic();
     }
 
-
+    /// <summary>
+    /// 적 생성 SO 풀어서 Dictionary에 저장해주는 함수
+    /// </summary>
     private void SetStartEnemyDic()
     {
         foreach (var patternSO in startEnemyList)
@@ -42,7 +42,10 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    public void SpawnStageEnemy(StageSO stageSO)
+    /// <summary>
+    /// 적 스폰 해주는 함수
+    /// </summary>
+    public void SpawnStageEnemy(Stage stageSO)
     {
         List<EnemySpawnData> sqawnDataList = stageSO.PatternList.pattern.spawnPointList;
 
@@ -63,11 +66,17 @@ public class Spawner : MonoBehaviour
         StartCoroutine(CoTimer.Start(stageSO.DurationTime, () => Managers.Event.Dispatch(GameEventType.EnemyMoveTimerCompleted, Vector3.down)));
     }
 
+    /// <summary>
+    /// 투사체 발사 실행해주는 함수
+    /// </summary>
     public void StartCoSpawnProjectile()
     {
         StartCoroutine(CoSpawnProjectile());
     }
 
+    /// <summary>
+    /// 투사체 발사 코루틴
+    /// </summary>
     IEnumerator CoSpawnProjectile()
     {
         while (true)
@@ -80,6 +89,9 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 랜덤 스크린 좌표를 따와서 투사체 발사하는 함수
+    /// </summary>
     private void RandomShootInScreen(ProjectileController controller)
     {
         float dirX = UnityEngine.Random.Range(0, Screen.width);

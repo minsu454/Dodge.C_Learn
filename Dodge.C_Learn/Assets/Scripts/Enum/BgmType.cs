@@ -3,7 +3,7 @@
 /// </summary>
 public enum BgmType
 {
-    Title = 0,
-    InGame,
+    Title = 0,      //타이틀
+    InGame,         //인게임
 
 }

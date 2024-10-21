@@ -5,5 +5,5 @@ using UnityEngine.UIElements;
 
 public class ScreenToOutRangeCollider : MonoBehaviour
 {
-    public DirType dir;
+    public DirType dir; //방향
 }

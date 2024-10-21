@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class PausePopup : BasePopup, ILoadScenePopup
 {
-    public Text nowScoreText;
+    public Text nowScoreText;       //현재 스코어 text
 
-    public SceneType nextScene { get; set; }
+    public SceneType nextScene { get; set; }    //다음 로드 될 씬 들고있는 변수
 
     protected override void Init()
     {

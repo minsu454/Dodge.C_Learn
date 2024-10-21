@@ -5,13 +5,10 @@ using UnityEngine;
 
 public delegate void EventListener(object args);
 
-public class EventManager : ICreate
+public sealed class EventManager
 {
-    private Dictionary<GameEventType, List<EventListener>> eventListenerDic = new Dictionary<GameEventType, List<EventListener>>();
-
-    public void Init()
-    {
-    }
+    //eventListener저장해주는 Dictionary
+    private readonly Dictionary<GameEventType, List<EventListener>> eventListenerDic = new Dictionary<GameEventType, List<EventListener>>();
 
     /// <summary>
     /// 구독하는 함수

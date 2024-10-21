@@ -5,18 +5,20 @@ using UnityEngine;
 
 public class EnemyShooter : Shooter
 {
-    public EnemyType enemyType;
-    public EnemyInfoSO EnemyInfoSO;
+    public EnemyType enemyType;             //적 타입
+    public EnemyInfoSO EnemyInfoSO;         //적 기본정보 SO
 
-    private const string ENEMY_PROJECTILE = "EnemyProjectile";
-
-    private int curFireRateCount = 0;
+    private const string ENEMY_PROJECTILE = "EnemyProjectile";  //적 투사체 이름
+    private int curFireRateCount = 0;                           //연사시 체크될 Count
 
     protected void Start()
     {
         objType = AttackerType.Enemy;
     }
 
+    /// <summary>
+    /// 공격 함수
+    /// </summary>
     public void Shoot()
     {
         switch (enemyType)
@@ -37,7 +39,10 @@ public class EnemyShooter : Shooter
                 break;
         }
     }
-
+    
+    /// <summary>
+    /// 공격을 멈추는 함수
+    /// </summary>
     public void Stop()
     {
         switch (enemyType)
@@ -59,6 +64,9 @@ public class EnemyShooter : Shooter
         }
     }
 
+    /// <summary>
+    /// 단발 사격 코루틴
+    /// </summary>
     private IEnumerator CoFire()
     {
         while (true)
@@ -68,6 +76,10 @@ public class EnemyShooter : Shooter
             yield return YieldCache.WaitForSeconds(EnemyInfoSO.Delay);
         }
     }
+
+    /// <summary>
+    /// EnemyInfoSO.MaxFireRateCount만큼 연사하는 코루틴
+    /// </summary>
     private IEnumerator CoFireBurst()
     {
         while (true)
@@ -80,6 +92,10 @@ public class EnemyShooter : Shooter
             yield return YieldCache.WaitForSeconds(EnemyInfoSO.Delay);
         }
     }
+
+    /// <summary>
+    /// EnemyInfoSO.MaxFireRateCount만큼 호를 그리며 연사하는 코루틴
+    /// </summary>
     private IEnumerator CoFireArc()
     {
         while (true)
@@ -95,6 +111,10 @@ public class EnemyShooter : Shooter
             curFireRateCount = 0;
         }
     }
+
+    /// <summary>
+    /// EnemyInfoSO.MaxFireRateCount만큼 전방향 연사하는 코루틴
+    /// </summary>
     private IEnumerator CoFireAround()
     {
         while (true)

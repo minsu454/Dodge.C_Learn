@@ -30,6 +30,9 @@ public class ObjectPoolManager : MonoBehaviour
         PoolSetting();
     }
 
+    /// <summary>
+    /// ObjectPool 처음에 세팅해주는 함수
+    /// </summary>
     private void PoolSetting()
     {
         for (int i = 0; i < objectPrefabs.Length; i++)
@@ -40,16 +43,25 @@ public class ObjectPoolManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ObjectPoolContainer에 추가해주는 함수
+    /// </summary>
     public void InitializePool(string key, GameObject prefab, int count)
     {
         objectContainer.CreateObject(key, prefab, count);
     }
 
+    /// <summary>
+    /// ObjectPoolContainer에서 객체 가져오는 함수
+    /// </summary>
     public GameObject GetObject(string key)
     {
         return objectContainer.GetObject(key);
     }
 
+    /// <summary>
+    /// ObjectPoolContainer에서 객체 가져오는 함수
+    /// </summary>
     public GameObject GetObject(string key, Transform transform, Vector3 vec)
     {
         GameObject GO = objectContainer.GetObject(key);
@@ -59,6 +71,9 @@ public class ObjectPoolManager : MonoBehaviour
         return GO;
     }
 
+    /// <summary>
+    /// ObjectPoolContainer에 반납하는 함수
+    /// </summary>
     public void ReturnObject(GameObject obj)
     {
         objectContainer.ReturnObject(obj);

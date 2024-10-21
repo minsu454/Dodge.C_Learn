@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class ScreenToOutRangeManager : MonoBehaviour
 {
-    [SerializeField] private Transform[] BlockTrArr;
-    [SerializeField] private int farBlock;
+    [SerializeField] private Transform[] BlockTrArr;        //블록 배열
+    [SerializeField] private int farBlock;                  //화면 끝에서 얼마나 더 떨어질지 설정하는 변수
 
     void Awake()
     {
         ResetBlock();
     }
 
+    /// <summary>
+    /// 화면 끝지점에 블록위치 설정해주는 함수
+    /// </summary>
     public void ResetBlock()
     {
         for (int i = 0; i < BlockTrArr.Length; i++)

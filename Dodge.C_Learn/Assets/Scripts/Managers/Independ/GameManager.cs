@@ -9,12 +9,10 @@ using UnityEngine.UI;
 
 public class GameManager : SingletonBehaviour<GameManager>
 {
-    public PlayerController player;
-    public Transform earthTr;
+    public PlayerController player;     //플레이어
+    public Transform earthTr;           //지구
 
-    public PlayerType playerType;
-
-    public int score;
+    public int score;                   //스코어
 
     protected override void Awake()
     {
@@ -29,6 +27,9 @@ public class GameManager : SingletonBehaviour<GameManager>
         GameStart();
     }
 
+    /// <summary>
+    /// 게임 스타트 함수
+    /// </summary>
     public void GameStart()
     {
         earthTr.DOScale(new Vector3(0.5f, 0.5f, 0.5f), 3f);
@@ -37,12 +38,18 @@ public class GameManager : SingletonBehaviour<GameManager>
         Managers.Sound.PlaySFX(SfxType.Loading_Player);
     }
     
+    /// <summary>
+    /// 스코어 더해주는 함수
+    /// </summary>
     public void PlusScore(int score)
     {
         this.score += score;
     }
 
-    public void GameOverPopup()
+    /// <summary>
+    /// 게임오버 함수
+    /// </summary>
+    public void GameOver()
     {
         Managers.Popup.CreatePopup(PopupType.GameOverPopup);
     }

@@ -20,7 +20,7 @@ public class MapEditorPopup : BasePopup
 
     [Header("Toggle")]
     [SerializeField] private Toggle stayCameraViewToggle;       //카메라잠구기 선택박스
-    [SerializeField] private Toggle fallowCameraToggle;         //spawnPoint 카메라 따라올지 선택박스
+    [SerializeField] private Toggle fallowMouseToggle;         //spawnPoint 마우스 따라올지 선택박스
 
     [SerializeField] private List<ArrowButton> arrowButtonList; //화살표로 움직일 수 있는 obj List
 
@@ -34,7 +34,7 @@ public class MapEditorPopup : BasePopup
         dropdown.onValueChanged.AddListener(OnDropdownEvent);
 
         stayCameraViewToggle.onValueChanged.AddListener(OnStayCameraViewEvent);
-        fallowCameraToggle.onValueChanged.AddListener(OnFollowCameraEvent);
+        fallowMouseToggle.onValueChanged.AddListener(OnFollowMouseEvent);
 
         SetDropdown();
         PattenGenerator.Instance.controller.OnMove += OnMoveSeeText;
@@ -92,6 +92,9 @@ public class MapEditorPopup : BasePopup
         inputY.text = spawnPoint.transform.position.y.ToString();
     }
 
+    /// <summary>
+    /// x값 변할 때 수치 변화되도록 연결 함수
+    /// </summary>
     private void OnInputXEvent(string s)
     {
         SpawnPoint go = PattenGenerator.Instance.spawnPoint;
@@ -100,6 +103,9 @@ public class MapEditorPopup : BasePopup
         go.transform.position = new Vector2(float.Parse(s), pos.y);
     }
 
+    /// <summary>
+    /// y값 변할 때 수치 변화되도록 연결 함수
+    /// </summary>
     private void OnInputYEvent(string s)
     {
         SpawnPoint go = PattenGenerator.Instance.spawnPoint;
@@ -110,14 +116,20 @@ public class MapEditorPopup : BasePopup
 
     #endregion
 
+    /// <summary>
+    /// StayCameraView 토글 버튼 누를때 실행 되는 함수
+    /// </summary>
     private void OnStayCameraViewEvent(bool isOn)
     {
         Managers.Event.Dispatch(GameEventType.StayCameraView, isOn);
     }
 
-    private void OnFollowCameraEvent(bool isOn)
+    /// <summary>
+    /// FollowMouse 토글 버튼 누를때 실행 되는 함수
+    /// </summary>
+    private void OnFollowMouseEvent(bool isOn)
     {
-        Managers.Event.Dispatch(GameEventType.FollowCamera, isOn);
+        Managers.Event.Dispatch(GameEventType.FollowMouse, isOn);
     }
 
     #region Data

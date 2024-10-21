@@ -4,6 +4,6 @@ using UnityEngine;
 [Serializable]
 public class ObjectCase
 {
-    public GameObject GO;
-    public int Count;
+    public GameObject GO;   //ObjectPool할 GameObject
+    public int Count;       //ObjectPool 갯수
 }

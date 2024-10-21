@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class PlayerShooter : Shooter
 {
-    public float Power;
-    public PlayerInfoSO PlayerInfoSO;
+    public float Power;                 //플레이어 총알 레벨
+    public PlayerInfoSO PlayerInfoSO;   //플레이어 기본정보 SO
 
     private void Awake()
     {
@@ -20,6 +20,9 @@ public class PlayerShooter : Shooter
         StartCoroutine(CoShoot());
     }
 
+    /// <summary>
+    /// 플레이어 공격하는 코루틴
+    /// </summary>
     IEnumerator CoShoot()
     {
         while (true)
@@ -33,6 +36,9 @@ public class PlayerShooter : Shooter
         }
     }
 
+    /// <summary>
+    /// power에 따라 공격력과 배치 다르게 설정되는 투사체 발사 함수
+    /// </summary>
     void Shoot()
     {
         switch (Power)

@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Managers : MonoBehaviour
+public sealed class Managers : MonoBehaviour
 {
     private static Managers instance;
 
@@ -23,13 +23,13 @@ public class Managers : MonoBehaviour
 
     private readonly SceneManagerEx sceneManager = new SceneManagerEx();                    //씬매니저확장
     private readonly EventManager eventManager = new EventManager();                        //이벤트매니저
-    private readonly DataManager dataManager = new DataManager();
+    private readonly DataManager dataManager = new DataManager();                           //데이터매니저
     #endregion
 
     #region Container
     public static CharacterContainer Character { get { return instance.characterContainer; } }
 
-    private readonly CharacterContainer characterContainer = new CharacterContainer();
+    private readonly CharacterContainer characterContainer = new CharacterContainer();      //캐릭터컨테이너
     #endregion
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]

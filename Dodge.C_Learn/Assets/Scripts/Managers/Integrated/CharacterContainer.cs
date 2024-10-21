@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using UnityEngine;
 
-public class CharacterContainer : IContainer
+public sealed class CharacterContainer : IContainer
 {
-    private readonly Dictionary<Enum, Character> characterDic = new Dictionary<Enum, Character>();
+    private readonly Dictionary<Enum, Character> characterDic = new Dictionary<Enum, Character>();  //character데이터 담아주는 dictionary
 
     public void Init()
     {

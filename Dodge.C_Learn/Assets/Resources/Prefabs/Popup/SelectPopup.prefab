@@ -356,10 +356,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e48d71025f7a694785e49411395f242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  children:
+  CharacterList:
   - {fileID: 6346603011915729028}
-  - {fileID: 9087298823939574772}
   - {fileID: 5645459280412098615}
+  - {fileID: 9087298823939574772}
 --- !u!1 &7525058636427388903
 GameObject:
   m_ObjectHideFlags: 0

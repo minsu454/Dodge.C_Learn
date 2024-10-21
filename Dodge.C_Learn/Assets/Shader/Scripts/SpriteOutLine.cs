@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// 아웃라인 보여주는 Class
+/// </summary>
 [ExecuteInEditMode]
 public class SpriteOutline : MonoBehaviour
 {
@@ -27,6 +30,9 @@ public class SpriteOutline : MonoBehaviour
         UpdateOutline(true);
     }
 
+    /// <summary>
+    /// 아웃라인 그려주는 함수
+    /// </summary>
     void UpdateOutline(bool outline)
     {
         MaterialPropertyBlock mpb = new MaterialPropertyBlock();

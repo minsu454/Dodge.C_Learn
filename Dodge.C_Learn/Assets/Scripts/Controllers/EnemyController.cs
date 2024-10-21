@@ -11,16 +11,16 @@ using Common.Yield;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] private EnemyType enemyType;
+    [SerializeField] private EnemyType enemyType;       //적 타입
 
-    private int curhealth;
+    private int curhealth;                              //현재체력
 
     [Header("Test")]
-    public bool isTest = false;
+    public bool isTest = false;                         //테스트용
 
-    private Sprite[] sprites;
-    private EnemyShooter shooter;
-    private SpriteRenderer spriteRender;
+    private Sprite[] sprites;                           //적 애니메이션 sprite
+    private EnemyShooter shooter;                       //적이 공격하는 class
+    private SpriteRenderer spriteRender;                
     private Rigidbody2D rb;
 
     private void Awake()
@@ -42,6 +42,9 @@ public class EnemyController : MonoBehaviour
         Managers.Event.Subscribe(GameEventType.EnemyMoveTimerCompleted, SetMove);
     }
 
+    /// <summary>
+    /// 적 설정해주는 함수
+    /// </summary>
     public void SetEnemy(EnemyType enemyType)
     {
         var charater = Managers.Character.ReturnAll(enemyType);
@@ -54,6 +57,9 @@ public class EnemyController : MonoBehaviour
         shooter.EnemyInfoSO = enemyInfoSO;
     }
 
+    /// <summary>
+    /// Dotween을 써서 목표지점까지 이동 후 사격해주는 함수
+    /// </summary>
     public void SetDoMove(Vector3 endVec)
     {
         transform.DOMove(endVec, 3).OnComplete( () => {
@@ -61,12 +67,18 @@ public class EnemyController : MonoBehaviour
                 shooter.Shoot();
         });
     }
-
+    
+    /// <summary>
+    /// 적이 움직이는 함수
+    /// </summary>
     public void SetMove(object args)
     {
         rb.velocity = (Vector3)args * shooter.EnemyInfoSO.MoveSpeed;
     }
 
+    /// <summary>
+    /// 적이 데미지 받는 함수
+    /// </summary>
     void OnHit(int dmg)
     {
         curhealth -= dmg;
@@ -81,6 +93,9 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 피격 이미지 전환 코루틴
+    /// </summary>
     private IEnumerator CoSpriteChanger()
     {
         spriteRender.sprite = sprites[1];
@@ -88,6 +103,9 @@ public class EnemyController : MonoBehaviour
         spriteRender.sprite = sprites[0];
     }
 
+    /// <summary>
+    /// 적이 죽는 함수
+    /// </summary>
     private void DieEnemy()
     {
         Managers.Sound.PlaySFX(SfxType.Die_Enemy);

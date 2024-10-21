@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PopupManager : MonoBehaviour, ICreate
+public sealed class PopupManager : MonoBehaviour, ICreate
 {
     private readonly Dictionary<PopupType, GameObject> popupContainerDic = new Dictionary<PopupType, GameObject>();     //팝업 타입 별로 프리팹 저장하는 dic
     private readonly Stack<GameObject> depth = new Stack<GameObject>();                                                 //팝업 뎁스
@@ -96,6 +96,9 @@ public class PopupManager : MonoBehaviour, ICreate
         }
     }
 
+    /// <summary>
+    /// 지금 depth에 있는 오브젝트가 지금 오브젝트와 같은지 비교해주는 함수
+    /// </summary>
     public bool ComparerLastDepth(GameObject go)
     {
         depth.TryPeek(out GameObject temp);

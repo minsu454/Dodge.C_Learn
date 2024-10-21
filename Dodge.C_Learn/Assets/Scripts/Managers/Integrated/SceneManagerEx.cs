@@ -3,14 +3,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class SceneManagerEx : MonoBehaviour, ICreate
+public sealed class SceneManagerEx : MonoBehaviour
 {
     private readonly Dictionary<SceneType, string> typeToStringDic = new Dictionary<SceneType, string>();
-
-    public virtual void Init()
-    {
-        
-    }
 
     /// <summary>
     /// 씬 로드 함수
