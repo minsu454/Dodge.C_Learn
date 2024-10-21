@@ -106,6 +106,7 @@ public class EnemyController : MonoBehaviour
                 ObjectPoolManager.Instance.GetObject("ItemPower", transform, Vector3.zero);
             }
         }
+        GameManager.Instance.score += shooter.EnemyInfoSO.Score;
         ObjectPoolManager.Instance.ReturnObject(gameObject);
     }
 

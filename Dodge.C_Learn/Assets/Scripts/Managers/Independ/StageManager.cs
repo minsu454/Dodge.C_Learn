@@ -35,24 +35,20 @@ public class StageManager : MonoBehaviour
         Managers.Event.Subscribe(GameEventType.EnemyMoveTimerCompleted, CompletePattern);
     }
 
-    private void Start()
-    {
-        RequestEnemySpawn();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space)) RequestEnemySpawn();
-    }
-
     public void CompletePattern(object args)
     {
         StartCoroutine(CoTimer.Start(totalStageSO.stageSOList[curStageIdx].NextStageTime, RequestEnemySpawn));
     }
 
+    public void StartSpawn()
+    {
+        RequestEnemySpawn();
+        spawner.StartCoSpawnProjectile();
+    }
+
 
     // Spawner에게 TotalStageSO / StageIdx를 넘긴다.
-    public void RequestEnemySpawn()
+    private void RequestEnemySpawn()
     {
         StageSO curStageSO = totalStageSO.stageSOList[curStageIdx];
 
