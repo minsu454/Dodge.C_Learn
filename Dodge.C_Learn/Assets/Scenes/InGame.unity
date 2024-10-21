@@ -486,6 +486,8 @@ MonoBehaviour:
     Count: 10
   - GO: {fileID: 4863324255693449439, guid: 38312f74c9c948a48aaa1e005ddcc1ac, type: 3}
     Count: 10
+  - GO: {fileID: 1826341687457558, guid: 5563a76bb0c0d29488e3d4765b6e9ecc, type: 3}
+    Count: 10
 --- !u!4 &449887437
 Transform:
   m_ObjectHideFlags: 0
@@ -1708,7 +1710,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 828303010}
   earthTr: {fileID: 398474663}
-  playerType: 1
   score: 0
 --- !u!1 &5153086771465876583
 GameObject:

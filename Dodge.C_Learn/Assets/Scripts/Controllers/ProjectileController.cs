@@ -26,8 +26,10 @@ public class ProjectileController : MonoBehaviour
     /// </summary>
     public void ReturnObject(SfxType type)
     {
-        ObjectPoolManager.Instance.ReturnObject(gameObject);
+        GameObject effect = ObjectPoolManager.Instance.GetObject("HitParticle");
+        effect.transform.position = transform.position;
         Managers.Sound.PlaySFX(type);
+        ObjectPoolManager.Instance.ReturnObject(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
