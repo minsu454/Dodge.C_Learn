@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
@@ -31,6 +32,27 @@ public class SoundManager : MonoBehaviour
         bgmSource.Play();
     }
 
+    public void OnLoadCompleted(Scene scene, LoadSceneMode loadSceneMode)
+    {
+        switch (scene.name)
+        {
+            case "Title":
+                if (bgmSource.clip == null || bgmSource.clip != bgmClipDic[BgmType.Title])
+                {
+                    bgmSource.clip = bgmClipDic[BgmType.Title];
+                    bgmSource.Play();
+                }
+                break;
+            case "InGame":
+                if (bgmSource.clip == null || bgmSource.clip != bgmClipDic[BgmType.InGame])
+                {
+                    bgmSource.clip = bgmClipDic[BgmType.InGame];
+                    bgmSource.Play();
+                }
+                break;
+        }
+    }
+
     /// <summary>
     /// SoundManager 생성 함수
     /// </summary>
@@ -54,6 +76,8 @@ public class SoundManager : MonoBehaviour
 
         var bgmClipArr = Resources.LoadAll<AudioClip>("Sounds/BGM");
         ClipLoader(ref bgmClipDic, bgmClipArr);
+
+        Managers.Scene.OnLoadCompleted(OnLoadCompleted);
     }
 
     /// <summary>
