@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: RedFighter
   m_EditorClassIdentifier: 
   MaxHp: 1
-  MaxFireRateCount: 1
-  Delay: 0.5
-  ProjectileSpeed: 5
+  MaxFireRateCount: 2
+  Delay: 0.2
+  ProjectileSpeed: 15
   MoveSpeed: 4
   ProjectileA: ProjectileC
   ProjectileB: ProjectileD

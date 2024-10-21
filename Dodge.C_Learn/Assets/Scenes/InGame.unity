@@ -1513,7 +1513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 828303010}
-  playerType: 2
+  playerType: 1
 --- !u!1 &5153086771465876583
 GameObject:
   m_ObjectHideFlags: 0

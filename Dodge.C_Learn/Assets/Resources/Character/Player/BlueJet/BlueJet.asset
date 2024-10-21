@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c37e23825e03d045a2d57c4d976cbfe, type: 3}
   m_Name: BlueJet
   m_EditorClassIdentifier: 
-  MaxHp: 5
+  MaxHp: 1
   MaxFireRateCount: 1
-  Delay: 0.5
-  ProjectileSpeed: 5
+  Delay: 0.1
+  ProjectileSpeed: 10
   MoveSpeed: 3
   ProjectileA: ProjectileA
   ProjectileB: ProjectileB
