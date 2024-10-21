@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6395464568718444965
 Transform:
   m_ObjectHideFlags: 0
@@ -48,14 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dd4a78958b6b1843b2edc0dc93e3338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  maxHealth: 1
-  speed: 0
-  sprites:
-  - {fileID: 21300000, guid: 68465e3ecd59f9741b9cf5744f065ff5, type: 3}
-  - {fileID: 21300000, guid: b649082bba7a05b43944d8189a47709c, type: 3}
-  Score: 0
   enemyType: 0
+  isTest: 0
 --- !u!114 &-6628350132291384625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,9 +62,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 711f810fdc471344c9d9edb4f10ed805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FireRate: 0
-  projectileSpeed: 0
-  objType: 0
   enemyType: 0
   EnemyInfoSO: {fileID: 0}
 --- !u!50 &7048580143294032309

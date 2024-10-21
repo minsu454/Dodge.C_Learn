@@ -53,8 +53,16 @@ public class StageManager : MonoBehaviour
         StageSO curStageSO = totalStageSO.stageSOList[curStageIdx];
 
         spawner.SpawnStageEnemy(curStageSO);
-
-        // 현재 스테이지의 인덱스를 올려준다.
-        curStageIdx++;
+        
+        // 게임이 무한 반복되도록, curStageIdx가 일정 값에 도달했을 때 초기화한다.
+        if(curStageIdx >= totalStageSO.stageSOList.Count - 1)
+        {
+            curStageIdx = 0;
+        }  
+        else
+        {
+            // 현재 스테이지의 인덱스를 올려준다.
+            curStageIdx++;
+        }
     }
 }
