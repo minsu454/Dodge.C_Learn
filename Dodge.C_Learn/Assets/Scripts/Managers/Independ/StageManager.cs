@@ -4,9 +4,8 @@ using UnityEngine;
 
 // 기존 StageContainer의 역할을 stageSO가 하기 때문에,  StageContainer.cs -> UnUse_StageContainer.cs로 한다.
 // 또한 StageSO의 정보를 한번에 Spawner에게 넘겨 Spawner가 이를 자체적으로 읽고 스폰하는 방식으로 진행될 것이다.
-public class StageManager : MonoBehaviour
+public class StageManager : SingletonBehaviour<StageManager>
 {
-    private static StageManager _instance;
     public float patternTime;
 
     [Header("Spawner")]
@@ -15,21 +14,9 @@ public class StageManager : MonoBehaviour
 
     private TotalStageDataSO totalStageSO;
 
-    public static StageManager Instance
+    protected override void Awake()
     {
-        get
-        {
-            if(_instance == null)
-            {
-                Debug.LogError("");
-            }
-            return _instance;
-        }
-    }
-
-    private void Awake()
-    {
-        _instance = this;
+        base.Awake();
 
         totalStageSO = Resources.Load<TotalStageDataSO>($"StageSO/TotalStageDataSO");
     }
