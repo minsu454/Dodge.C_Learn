@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemController : MonoBehaviour
-{
-    public float Score;
-    public float Speed;
-    [SerializeField] ItemType type;
+{              
+    public float Speed;                 //스피드
+    [SerializeField] ItemType type;     //아이템 타입
     Rigidbody2D rb;
     private void Awake()
     {

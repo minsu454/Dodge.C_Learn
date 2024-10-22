@@ -1,43 +1,66 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PattenController : MonoBehaviour
 {
-    public SpawnPoint spawnPoint { get; set; }
     private Camera mainCamera;
+    private PlayerInput input;      //input
 
-    private PlayerInput input;
+    public event Action<EnemyType> OnSpawn;        //스폰할때 실행 하는 action
+    public event Action<SpawnPoint> OnMove;         //마우스 움직일때 실행 하는 action
 
-    public event Action<SpawnPoint> OnMove;
-    private bool isInputMouseScroll = false;
+    private bool isInputMouseLeftClick = false;         //마우스 클릭한 상태를 받는 변수
+    private bool isStayCameraView = false;              //카메라 잠궈줄건지 받는 변수
+    private bool isFollow = false;                      //카메라가 따라올건지 받는 변수
 
-    private float scrollLimit = 10;
+    private float scrollLimit = 10;                     //카메라 size 리미트
 
     private void Awake()
     {
         mainCamera = Camera.main;
         input = GetComponent<PlayerInput>();
+
         Managers.Event.Subscribe(GameEventType.LockInput, OnLockInput);
+        Managers.Event.Subscribe(GameEventType.StayCameraView, OnStayCameraView);
+        Managers.Event.Subscribe(GameEventType.FollowMouse, OnFollowCamera);
     }
 
     private void Update()
     {
-        if (!isInputMouseScroll)
+        if (!isInputMouseLeftClick)
             return;
 
-        OnMove?.Invoke(spawnPoint);
+        OnMove?.Invoke(PattenGenerator.Instance.spawnPoint);
     }
 
     /// <summary>
-    /// Input을 잠구는 함수
+    /// Input System을 잠구는 함수
     /// </summary>
     public void OnLockInput(object args)
     {
-        bool isActive = (bool)args;
-        input.enabled = isActive;
+        input.enabled = (bool)args;
+    }
+
+    /// <summary>
+    /// Input System을 잠구는 함수
+    /// </summary>
+    public void OnStayCameraView(object args)
+    {
+        isStayCameraView = (bool)args;
+    }
+
+    /// <summary>
+    /// Input System을 잠구는 함수
+    /// </summary>
+    public void OnFollowCamera(object args)
+    {
+        isFollow = (bool)args;
     }
 
     /// <summary>
@@ -47,8 +70,8 @@ public class PattenController : MonoBehaviour
     {
         if (!value.isPressed)
         {
-            spawnPoint?.FollowMouse(false);
-            isInputMouseScroll = false;
+            PattenGenerator.Instance.spawnPoint?.FollowMouse(false);
+            isInputMouseLeftClick = false;
             return;
         }
 
@@ -59,16 +82,45 @@ public class PattenController : MonoBehaviour
 
         SpawnPoint point = hit.collider.GetComponent<SpawnPoint>();
 
-        if (point != spawnPoint)
+        if (point != PattenGenerator.Instance.spawnPoint)
         {
-            spawnPoint?.SetOutline(false);
+            PattenGenerator.Instance.spawnPoint?.SetOutline(false);
         }
 
-        isInputMouseScroll = true;
+        isInputMouseLeftClick = true;
 
-        spawnPoint = point;
-        spawnPoint.SetOutline(true);
-        spawnPoint.FollowMouse(true);
+        point.SetOutline(true);
+        point.FollowMouse(isFollow);
+        PattenGenerator.Instance.spawnPoint = point;
+        OnSpawn.Invoke(point.EnemyType);
+    }
+
+    /// <summary>
+    /// 삭제 버튼 action
+    /// </summary>
+    public void OnDelete(InputValue value)
+    {
+        if (PattenGenerator.Instance.spawnPoint == null)
+            return;
+
+        PattenGenerator.Instance.RemoveSpawnPoint();
+    }
+
+    /// <summary>
+    /// 마우스 스크롤 action
+    /// </summary>
+    public void OnMouseScrollY(InputValue value)
+    {
+        if (isStayCameraView)
+            return;
+
+        float y = value.Get<float>();
+        float size = mainCamera.orthographicSize - y;
+
+        if (size <= 4 || scrollLimit < size)
+            return;
+
+        mainCamera.orthographicSize -= y;
     }
 
     /// <summary>
@@ -83,30 +135,5 @@ public class PattenController : MonoBehaviour
             return false;
 
         return true;
-    }
-
-    /// <summary>
-    /// 삭제 버튼 action
-    /// </summary>
-    public void OnDelete(InputValue value)
-    {
-        if (spawnPoint == null)
-            return;
-
-        PattenGenerator.Instance.Remove(spawnPoint);
-    }
-
-    /// <summary>
-    /// 마우스 스크롤 action
-    /// </summary>
-    public void OnMouseScrollY(InputValue value)
-    {
-        float v = value.Get<float>();
-        float size = mainCamera.orthographicSize - v;
-
-        if (size <= 0 || scrollLimit < size)
-            return;
-
-        mainCamera.orthographicSize -= v;
     }
 }

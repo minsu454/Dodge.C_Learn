@@ -1,108 +1,143 @@
+using Common.Timer;
 using Common.Yield;
-using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyShooter : Shooter
 {
-    public EnemyType enemyType;
+    public EnemyType enemyType;             //적 타입
+    public EnemyInfoSO EnemyInfoSO;         //적 기본정보 SO
 
-    bool isCooldown = false;
+    private const string ENEMY_PROJECTILE = "EnemyProjectile";  //적 투사체 이름
+    private int curFireRateCount = 0;                           //연사시 체크될 Count
 
-    private const string projectTile_A = "ProjecTileA";
-    private const string projectTile_B = "ProjectileB";
-    private const string enemyProjectile = "EnemyProjectile";
-
-    int num = 0;
     protected void Start()
+    {
+        objType = AttackerType.Enemy;
+    }
+
+    /// <summary>
+    /// 공격 함수
+    /// </summary>
+    public void Shoot()
     {
         switch (enemyType)
         {
-            case EnemyType.Enemy_01Corvette:
-                projectileSpeed = 2f;
+            case EnemyType.Corvette01:
                 StartCoroutine(CoFire());
                 break;
-            case EnemyType.Frigate:
-                projectileSpeed = 4f;
+            case EnemyType.Frigate02:
                 StartCoroutine(CoFireBurst());
                 break;
-            case EnemyType.Destroyer:
-                projectileSpeed = 2f;
+            case EnemyType.Destroyer03:
+            case EnemyType.Cruiser04:
                 StartCoroutine(CoFireArc());
                 break;
-            case EnemyType.Cruiser:
-                projectileSpeed = 5f;
-                StartCoroutine(CoFireArc());
-                break;
-            case EnemyType.Battleship:
-                projectileSpeed = 2f;
+            case EnemyType.BattleShip05:
+                StartCoroutine(CoTimer.Start(EnemyInfoSO.Delay / 2, () => { StartCoroutine(CoFireBurst()); }));
                 StartCoroutine(CoFireAround());
-                StartCoroutine(CoFireBurst());
                 break;
         }
     }
-    private void SpawnBullet(string curBullet, Vector3 pos, Vector2 dir)
+    
+    /// <summary>
+    /// 공격을 멈추는 함수
+    /// </summary>
+    public void Stop()
     {
-        GameObject bullet = ObjectPoolManager.Instance.GetObject(curBullet, transform, pos);
-        ProjectileController projectTileController = bullet.GetComponent<ProjectileController>();
-        projectTileController.myType = ObjectType.Enemy;
-        projectTileController.Shoot(dir * projectileSpeed);
+        switch (enemyType)
+        {
+            case EnemyType.Corvette01:
+                StopCoroutine(CoFire());
+                break;
+            case EnemyType.Frigate02:
+                StopCoroutine(CoFireBurst());
+                break;
+            case EnemyType.Destroyer03:
+            case EnemyType.Cruiser04:
+                StopCoroutine(CoFireArc());
+                break;
+            case EnemyType.BattleShip05:
+                StopCoroutine(CoFireBurst());
+                StopCoroutine(CoFireAround());
+                break;
+        }
     }
+
+    /// <summary>
+    /// 단발 사격 코루틴
+    /// </summary>
     private IEnumerator CoFire()
     {
         while (true)
         {
-            SpawnBullet(enemyProjectile, Vector3.zero, Vector2.down);
+            SpawnBullet(ENEMY_PROJECTILE, Vector3.zero, Vector2.down, EnemyInfoSO.ProjectileSpeed);
 
-            yield return YieldCache.WaitForSeconds(5f);
+            yield return YieldCache.WaitForSeconds(EnemyInfoSO.Delay);
         }
     }
+
+    /// <summary>
+    /// EnemyInfoSO.MaxFireRateCount만큼 연사하는 코루틴
+    /// </summary>
     private IEnumerator CoFireBurst()
     {
         while (true)
         {
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < EnemyInfoSO.MaxFireRateCount; i++)
             {
-                SpawnBullet(enemyProjectile, Vector3.zero, Vector2.down);
+                SpawnBullet(ENEMY_PROJECTILE, Vector3.zero, Vector2.down, EnemyInfoSO.ProjectileSpeed);
                 yield return YieldCache.WaitForSeconds(0.1f); // 각 발사 사이에 딜레이
             }
-            yield return YieldCache.WaitForSeconds(5f);
+            yield return YieldCache.WaitForSeconds(EnemyInfoSO.Delay);
         }
     }
+
+    /// <summary>
+    /// EnemyInfoSO.MaxFireRateCount만큼 호를 그리며 연사하는 코루틴
+    /// </summary>
     private IEnumerator CoFireArc()
     {
         while (true)
         {
-            while (num < 50)
+            while (curFireRateCount < EnemyInfoSO.MaxFireRateCount)
             {
-                Vector2 dirVec = new Vector2(Mathf.Cos(Mathf.PI * 5 * num / 50), -1);
-                SpawnBullet(enemyProjectile, Vector3.zero, dirVec);
-                num++;
+                Vector2 dirVec = new Vector2(Mathf.Cos(Mathf.PI * 5 * curFireRateCount / EnemyInfoSO.MaxFireRateCount), -1);
+                SpawnBullet(ENEMY_PROJECTILE, Vector3.zero, dirVec, EnemyInfoSO.ProjectileSpeed);
+                curFireRateCount++;
                 yield return YieldCache.WaitForSeconds(0.1f); // 각 발사 사이에 딜레이
             }
-            yield return YieldCache.WaitForSeconds(5f);
-            num = 0;
+            yield return YieldCache.WaitForSeconds(EnemyInfoSO.Delay);
+            curFireRateCount = 0;
         }
     }
+
+    /// <summary>
+    /// EnemyInfoSO.MaxFireRateCount만큼 전방향 연사하는 코루틴
+    /// </summary>
     private IEnumerator CoFireAround()
     {
         while (true)
         {
-            int count = 0;
-            while (count < 4)
+            curFireRateCount = 0;
+            while (curFireRateCount < EnemyInfoSO.MaxFireRateCount)
             {
-                while (num < 50)
+                int count = 0;
+
+                while (count < 50)
                 {
-                    Vector2 dirVec = new Vector2(Mathf.Cos(Mathf.PI * 2 * num / 50), Mathf.Sin(Mathf.PI * 2 * num / 50));
-                    SpawnBullet(enemyProjectile, Vector3.zero, dirVec);
-                    num++;
+                    float x = Mathf.Cos(Mathf.PI * 2 * count / 45);
+                    float y = Mathf.Sin(Mathf.PI * 2 * count / 45);
+
+                    Vector2 dirVec = new Vector2(x, y);
+                    SpawnBullet(ENEMY_PROJECTILE, Vector3.zero, dirVec, EnemyInfoSO.ProjectileSpeed);
+                    count++;
                 }
-                count++;
-                yield return YieldCache.WaitForSeconds(0.1f);
+                curFireRateCount++;
+                yield return YieldCache.WaitForSeconds(0.3f);
             }
-            yield return YieldCache.WaitForSeconds(1f);
-            num = 0;
+            yield return YieldCache.WaitForSeconds(EnemyInfoSO.Delay);
+            
         }
     }
 }

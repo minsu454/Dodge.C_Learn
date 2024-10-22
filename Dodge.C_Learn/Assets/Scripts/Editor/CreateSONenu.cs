@@ -20,7 +20,6 @@ public class CreateSONenu
     {
         EditorUtility.DisplayProgressBar("Create PattenSO", "Generate Create PattenSO..", 0.0f);
 
-        CreatePattenSOService.DeletePattenSO();
         CreatePattenSOService.CreatePattenSO();
 
         EditorUtility.DisplayProgressBar("Create PattenSO", "Done..", 1.0f);

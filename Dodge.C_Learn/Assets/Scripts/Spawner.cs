@@ -1,97 +1,109 @@
-
+using Common.Timer;
+using Common.Yield;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.EventSystems.EventTrigger;
 
 
 public class Spawner : MonoBehaviour
 {
-    public Transform[] spawnPoint;
-    public Transform[] movePoint;
+    private const float PROJECTILE_SPEED = 2;                       //투사체 스피드
 
-    string path = "Stage/Patten/H";
+    [SerializeField] private PatternSO startProjectile;             //투사체 생성 SO
+    private List<EnemySpawnData> projectileSpawnList;               //투사체 생성 리스트(위에 내용 풀기)
 
-
+    [SerializeField] public List<PatternSO> startEnemyList;         //적 생성 SO 리스트
+    private readonly Dictionary<EnemyType, List<Vector3>> startEnemyDic = new Dictionary<EnemyType, List<Vector3>>();   //적 생성 dictionary
 
     private void Awake()
-    {
-        spawnPoint = GetComponentsInChildren<Transform>();
+    {           
+        projectileSpawnList = startProjectile.pattern.spawnPointList;
+
+        SetStartEnemyDic();
     }
 
-    private void Start()
+    /// <summary>
+    /// 적 생성 SO 풀어서 Dictionary에 저장해주는 함수
+    /// </summary>
+    private void SetStartEnemyDic()
     {
-        var tempStageTest = Resources.Load<PatternSO>(path);
-        SpawnStageEnemy(tempStageTest.pattern); 
-    }
-
-
-    private void Spawn()
-    {
-/*        GameObject enemy = ObjectPoolManager.Instance.GetObject(ObjectType.EnemyProjectile);
-        enemy.transform.position = spawnPoint[UnityEngine.Random.Range(0, spawnPoint.Length)].position;*/
-    }
-
-    public void SpawnStageEnemy(Pattern pattern)
-    {
-        for (int i = 0; i < pattern.spawnPointList.Count; i++)
+        foreach (var patternSO in startEnemyList)
         {
-            EnemyType enemyType = pattern.spawnPointList[i].EnemyType;
-            Vector3 pos  = pattern.spawnPointList[i].Pos;
+            List<EnemySpawnData> tempList = patternSO.pattern.spawnPointList;
+            List<Vector3> posList = new List<Vector3>();
 
-            GameObject enemy = ObjectPoolManager.Instance.GetObject(enemyType.ToString());
-            enemy.transform.position = spawnPoint[UnityEngine.Random.Range(0, spawnPoint.Length)].position;
+            for (int i = 0; i < tempList.Count; i++)
+            {
+                posList.Add(tempList[i].Pos);
+            }
 
-            //EnemyMovePoint(enemy.GetComponent<EnemyController>(), pos);
+            startEnemyDic.Add(tempList[0].EnemyType, posList);
         }
     }
 
-
-    private void EnemyMovePoint(EnemyController enemy, Vector2 position)
+    /// <summary>
+    /// 적 스폰 해주는 함수
+    /// </summary>
+    public void SpawnStageEnemy(Stage stageSO)
     {
-        enemy.transform.position = movePoint[UnityEngine.Random.Range(0, movePoint.Length)].position;
-        enemy.transform.position = Vector2.MoveTowards(enemy.transform.position, position, 0.2f);
+        List<EnemySpawnData> sqawnDataList = stageSO.PatternList.pattern.spawnPointList;
+
+        for (int i = 0; i < sqawnDataList.Count; i++)
+        {
+            GameObject enemy = ObjectPoolManager.Instance.GetObject(sqawnDataList[i].EnemyType.ToString());
+            var posList = startEnemyDic[sqawnDataList[i].EnemyType];
+            int randIdx = UnityEngine.Random.Range(0, posList.Count);
+
+             enemy.transform.position = posList[randIdx];
+
+            EnemyController enemyController = enemy.GetComponent<EnemyController>();
+            enemyController.SetEnemy(sqawnDataList[i].EnemyType);
+
+            enemyController.SetDoMove(sqawnDataList[i].Pos);
+        }
+
+        StartCoroutine(CoTimer.Start(stageSO.DurationTime, () => Managers.Event.Dispatch(GameEventType.EnemyMoveTimerCompleted, Vector3.down)));
     }
 
-    private void SpawnProjectile()
+    /// <summary>
+    /// 투사체 발사 실행해주는 함수
+    /// </summary>
+    public void StartCoSpawnProjectile()
     {
-/*        GameObject projectile = ObjectPoolManager.Instance.GetObject(ObjectType.ProjectileA);
-        ProjectileController controller = projectile.GetComponent<ProjectileController>();
-        projectile.transform.position = spawnPoint[UnityEngine.Random.Range(0, spawnPoint.Length)].position;
-        화면에 내에 있는 랜덤값 shoot
-        controller.RandomShoot();
-        MovePoint(projectile.GetComponent<ProjectileController>(), Vector2.zero);*/
+        StartCoroutine(CoSpawnProjectile());
     }
 
-    private void MovePoint(ProjectileController projectile, Vector2 position)
+    /// <summary>
+    /// 투사체 발사 코루틴
+    /// </summary>
+    IEnumerator CoSpawnProjectile()
     {
-        projectile.transform.position = movePoint[UnityEngine.Random.Range(0, movePoint.Length)].position;
-        projectile.transform.position = Vector2.MoveTowards(projectile.transform.position, position, 0.2f);
+        while (true)
+        {
+            yield return YieldCache.WaitForSeconds(0.5f);
+
+            GameObject projectile = ObjectPoolManager.Instance.GetObject("EnemyProjectile");
+            ProjectileController projectileController = projectile.GetComponent<ProjectileController>();
+            RandomShootInScreen(projectileController);
+        }
     }
 
+    /// <summary>
+    /// 랜덤 스크린 좌표를 따와서 투사체 발사하는 함수
+    /// </summary>
+    private void RandomShootInScreen(ProjectileController controller)
+    {
+        float dirX = UnityEngine.Random.Range(0, Screen.width);
+        float dirY = UnityEngine.Random.Range(0, Screen.height);
 
+        int idx = UnityEngine.Random.Range(0, projectileSpawnList.Count);
 
+        Vector2 pos = projectileSpawnList[idx].Pos;
+        Vector2 dir = ((Vector2)Camera.main.ScreenToWorldPoint(new Vector2(dirX, dirY)) - pos).normalized;
 
+        controller.transform.position = pos;
 
-
-
-
-
-
-    //private void ProjectileFire()
-    //{
-    //    ProjectileController projectileController = GetComponent<ProjectileController>();
-
-
-    //    float minAngle = -45f;
-    //    float maxAngle = 45f;
-
-    //    float randomAngle = UnityEngine.Random.Range(minAngle, maxAngle);
-    //    float radians = randomAngle * Mathf.Deg2Rad;
-
-    //}
-
-
-
-
+        controller.Move(dir, PROJECTILE_SPEED);
+    }
 }
