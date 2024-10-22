@@ -51,7 +51,7 @@ public class Spawner : MonoBehaviour
 
         for (int i = 0; i < sqawnDataList.Count; i++)
         {
-            GameObject enemy = ObjectPoolManager.Instance.GetObject(sqawnDataList[i].EnemyType.ToString());
+            GameObject enemy = ObjectPoolManager.Instance.GetObject("BaseEnemy");
             var posList = startEnemyDic[sqawnDataList[i].EnemyType];
             int randIdx = UnityEngine.Random.Range(0, posList.Count);
 
