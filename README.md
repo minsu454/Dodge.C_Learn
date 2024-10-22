@@ -16,9 +16,9 @@
 
 - Unity 버전: [2022.3.17f1]
 - C# 버전: [C#-17]
-- 팀 노션: [Notion](https://www.notion.so/e193b9df410b4432b2758f12d687f8cb)
-- 와이어프레임: [Figma](https://www.figma.com/board/V5nljnfyh8pMLzz7yOLxe8/Untitled?node-id=0-1&node-type=canvas&t=nM0Hf0zJCOf2Bv34-0) 
-- 발표 자료 & 프로젝트 기술 소개: [Figma](https://www.figma.com/board/V5nljnfyh8pMLzz7yOLxe8/1%EC%A1%B0-%ED%94%BC%EA%B7%B8%EB%A7%88?node-id=0-1&node-type=canvas&t=m7hKAkoG2PslU8iv-0)
+- 팀 노션: [Notion - 팀 노션](https://www.notion.so/e193b9df410b4432b2758f12d687f8cb)
+- 와이어프레임: [Figma - 와이어 프레임](https://www.figma.com/board/V5nljnfyh8pMLzz7yOLxe8/Untitled?node-id=0-1&node-type=canvas&t=nM0Hf0zJCOf2Bv34-0) 
+- 발표 자료 & 프로젝트 기술 소개: [Figma - 발표 자료](https://www.figma.com/board/V5nljnfyh8pMLzz7yOLxe8/1%EC%A1%B0-%ED%94%BC%EA%B7%B8%EB%A7%88?node-id=0-1&node-type=canvas&t=m7hKAkoG2PslU8iv-0)
 
 ## 게임소개
 
@@ -41,18 +41,12 @@
 
 ## 참여 인원
 
-팀원들의 GitHub Link 입니다.
-
 [팀장]
-
-[김찬](https://github.com/moloch-kim)
+[김찬]
 
 [팀원]
+[강민수]
+[정우석]
+[김동현]
+[전세훈]
 
-[강민수](https://github.com/minsu454/minsu454.github.io)
-
-[정우석](https://github.com/yellow-redcard)
-
-[김동현](https://github.com/belfly1111)
-
-전세훈
