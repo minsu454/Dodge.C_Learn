@@ -48,12 +48,13 @@ public class EnemyController : MonoBehaviour
     public void SetEnemy(EnemyType enemyType)
     {
         var charater = Managers.Character.ReturnAll(enemyType);
-
+        this.enemyType = enemyType;
         spriteRender.sprite = charater.Sprite;
 
         EnemyInfoSO enemyInfoSO = charater.Info as EnemyInfoSO;
         sprites = enemyInfoSO.Sprites;
         curhealth = enemyInfoSO.MaxHp;
+        shooter.enemyType = enemyType;
         shooter.EnemyInfoSO = enemyInfoSO;
     }
 
@@ -81,6 +82,9 @@ public class EnemyController : MonoBehaviour
     /// </summary>
     void OnHit(int dmg)
     {
+        if (curhealth <= 0)
+            return;
+
         curhealth -= dmg;
         
         if (curhealth <= 0)

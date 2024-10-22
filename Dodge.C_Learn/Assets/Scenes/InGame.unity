@@ -474,15 +474,7 @@ MonoBehaviour:
     Count: 20
   - GO: {fileID: 8690834134288300692, guid: 7fb991dfb1c86424a8f6cf2010fd0707, type: 3}
     Count: 50
-  - GO: {fileID: 7449122610795647660, guid: 1ec0dcbf1e1d21c41b9a9ee598b23172, type: 3}
-    Count: 5
-  - GO: {fileID: 3836814126277472270, guid: 72f4580e80757fa4a831fa704f5f6080, type: 3}
-    Count: 10
-  - GO: {fileID: 2964122219916754637, guid: c33fdb94e5fcfe144bc978f6999d8d5c, type: 3}
-    Count: 10
-  - GO: {fileID: 3086820790859058501, guid: 33d28996bb248aa40a95cbd175a50ec8, type: 3}
-    Count: 10
-  - GO: {fileID: 4870064830017222008, guid: 5e273dec784d96e4ab2af544acfadd13, type: 3}
+  - GO: {fileID: 3836814126277472270, guid: 3e23faf2b480140408f2c01aa4eb04e7, type: 3}
     Count: 10
   - GO: {fileID: 4863324255693449439, guid: 38312f74c9c948a48aaa1e005ddcc1ac, type: 3}
     Count: 10
@@ -904,7 +896,7 @@ PrefabInstance:
     - target: {fileID: 4439221774441710326, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
       propertyPath: trailRenderer
       value: 
-      objectReference: {fileID: 828303012}
+      objectReference: {fileID: 828303008}
     - target: {fileID: 4441147620064385220, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
       propertyPath: m_Name
       value: Player
@@ -922,6 +914,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
+--- !u!96 &828303008 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 7728695288324483082, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
+  m_PrefabInstance: {fileID: 828303007}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &828303010 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4439221774441710326, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
@@ -933,11 +930,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff779d762fa4f6d4784f97c7a1d67d26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!96 &828303012 stripped
-TrailRenderer:
-  m_CorrespondingSourceObject: {fileID: 3767804983225965019, guid: 626e8f3f7e8f77741979ffab404a1adb, type: 3}
-  m_PrefabInstance: {fileID: 828303007}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &836615635
 GameObject:
   m_ObjectHideFlags: 0

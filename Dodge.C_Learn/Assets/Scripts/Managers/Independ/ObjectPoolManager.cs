@@ -1,29 +1,16 @@
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-public class ObjectPoolManager : MonoBehaviour
+public class ObjectPoolManager : SingletonBehaviour<ObjectPoolManager>
 {
-    private static ObjectPoolManager _instance;
     private ObjectContainer objectContainer;
 
     [Header("Prefabs")]
     [SerializeField] ObjectCase[] objectPrefabs;
 
-    public static ObjectPoolManager Instance
+    protected override void Awake()
     {
-        get
-        {
-            if (_instance == null)
-            {
-                Debug.LogError("");
-            }
-            return _instance;
-        }
-    }
-
-    private void Awake()
-    {
-        _instance = this;
+        base.Awake();
 
         objectContainer = gameObject.AddComponent<ObjectContainer>();
 
