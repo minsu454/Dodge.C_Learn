@@ -38,11 +38,9 @@ public class ObjectContainer : MonoBehaviour
     /// </summary>
     public void ReturnObject(GameObject obj)
     {
+        if(obj.name == "BaseEnemy")
+            Debug.Log("Dee");
         obj.SetActive(false); // 비활성화
-        if (!objContainer.ContainsKey(obj.name))
-        {
-            objContainer[obj.name] = new Queue<GameObject>();
-        }
         objContainer[obj.name].Enqueue(obj);
     }
 

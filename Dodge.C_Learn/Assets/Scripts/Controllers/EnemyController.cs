@@ -82,6 +82,9 @@ public class EnemyController : MonoBehaviour
     /// </summary>
     void OnHit(int dmg)
     {
+        if (curhealth <= 0)
+            return;
+
         curhealth -= dmg;
         
         if (curhealth <= 0)
