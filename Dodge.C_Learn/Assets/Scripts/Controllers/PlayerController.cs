@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer sprRenderer;
+    [SerializeField] private TrailRenderer trailRenderer;
     private Rigidbody2D rb;
 
     private Vector2 moveInput;
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour
 
         animator.runtimeAnimatorController = playerClass.Animator;
         sprRenderer.sprite = playerClass.Sprite;
+        setPlayerTrailColor(playerType);
 
         PlayerInfoSO playerInfoSO = playerClass.Info as PlayerInfoSO;
         curHp = playerInfoSO.MaxHp;
@@ -55,6 +57,27 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>().normalized;
+    }
+
+    /// <summary>
+    /// 플레이어별 Trail Color를 설정해주는 함수
+    /// </summary>
+    void setPlayerTrailColor(PlayerType playerType)
+    {
+        Color startColor = Color.black;
+        Color endColor = Color.black;
+
+        if (playerType == PlayerType.BlueJet) endColor = new Color(0, 0.5f, 1); // Blue
+        else if (playerType == PlayerType.RedFighter) endColor = new Color(1, 0, 0); // Red
+        else if (playerType == PlayerType.YellowCanaria) endColor = new Color(1, 1, 0); // Yellow
+
+        Gradient gradient = new Gradient();
+        gradient.SetKeys(
+            new GradientColorKey[] { new GradientColorKey(startColor, 0.0f), new GradientColorKey(endColor, 1.0f) },
+            new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(0.0f, 1.0f) }
+        );
+
+        trailRenderer.colorGradient = gradient;
     }
 
     private void FixedUpdate()
