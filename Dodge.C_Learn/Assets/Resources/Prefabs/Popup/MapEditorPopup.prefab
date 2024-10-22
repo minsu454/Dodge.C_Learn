@@ -478,7 +478,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: FallowCamera
+  m_Text: 'Fallow Mouse
+
+'
 --- !u!1 &767526160456172944
 GameObject:
   m_ObjectHideFlags: 0
@@ -1194,7 +1196,7 @@ MonoBehaviour:
   inputY: {fileID: 1505016895314280599}
   dropdown: {fileID: 1304687231435424916}
   stayCameraViewToggle: {fileID: 6372534310244061816}
-  fallowCameraToggle: {fileID: 8917824581131097318}
+  fallowMouseToggle: {fileID: 8917824581131097318}
   arrowButtonList:
   - {fileID: 8601690085484192898}
   - {fileID: 2749919554234724012}
@@ -4289,7 +4291,7 @@ GameObject:
   - component: {fileID: 386878300927724674}
   - component: {fileID: 8917824581131097318}
   m_Layer: 5
-  m_Name: FollowCamera
+  m_Name: FollowMouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4313,8 +4315,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 143, y: -179}
-  m_SizeDelta: {x: 340, y: 80}
+  m_AnchoredPosition: {x: 132.7, y: -179}
+  m_SizeDelta: {x: 320, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8917824581131097318
 MonoBehaviour:

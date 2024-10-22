@@ -69,6 +69,13 @@ public class PlayerShooter : Shooter
                 SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.right * 0.15f, Vector2.up, PlayerInfoSO.ProjectileSpeed);
                 SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.left * 0.15f, Vector2.up, PlayerInfoSO.ProjectileSpeed);
                 break;
+            default:
+                SpawnBullet(PlayerInfoSO.ProjectileB, Vector3.up * 0.1f, Vector2.up, PlayerInfoSO.ProjectileSpeed);
+                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.right * 0.15f, Vector2.up, PlayerInfoSO.ProjectileSpeed);
+                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.left * 0.15f, Vector2.up, PlayerInfoSO.ProjectileSpeed);
+                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.right * 0.25f, Vector2.up, PlayerInfoSO.ProjectileSpeed);
+                SpawnBullet(PlayerInfoSO.ProjectileA, Vector3.left * 0.25f, Vector2.up, PlayerInfoSO.ProjectileSpeed);
+                break;
         }
     }
 }

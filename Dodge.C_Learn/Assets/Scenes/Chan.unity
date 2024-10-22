@@ -368,7 +368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2964122219916754637, guid: c33fdb94e5fcfe144bc978f6999d8d5c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3828324976654422346, guid: c33fdb94e5fcfe144bc978f6999d8d5c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -590,7 +590,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3836814126277472270, guid: 72f4580e80757fa4a831fa704f5f6080, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4016276164922936172, guid: 72f4580e80757fa4a831fa704f5f6080, type: 3}
       propertyPath: enemyType
@@ -652,6 +652,10 @@ PrefabInstance:
     - target: {fileID: 4863324255693449439, guid: 38312f74c9c948a48aaa1e005ddcc1ac, type: 3}
       propertyPath: m_Name
       value: ItemPower
+      objectReference: {fileID: 0}
+    - target: {fileID: 4863324255693449439, guid: 38312f74c9c948a48aaa1e005ddcc1ac, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7533696065171079960, guid: 38312f74c9c948a48aaa1e005ddcc1ac, type: 3}
       propertyPath: m_LocalPosition.x
@@ -983,7 +987,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7449122610795647660, guid: 1ec0dcbf1e1d21c41b9a9ee598b23172, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1092,7 +1096,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1325817261}
-  playerType: 0
+  earthTr: {fileID: 0}
+  score: 0
 --- !u!4 &1394114757
 Transform:
   m_ObjectHideFlags: 0
@@ -1334,7 +1339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3086820790859058501, guid: 33d28996bb248aa40a95cbd175a50ec8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4555015399145741945, guid: 33d28996bb248aa40a95cbd175a50ec8, type: 3}
       propertyPath: m_LocalPosition.x
