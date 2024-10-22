@@ -1,1 +1,58 @@
 # Dodge.C_Learn
+
+2024 스파르타 Unity track 6기 고전 게임 제작 주간에서 'Dodge'를 주제로 2D 종스크롤 슈팅 게임을 제작하였습니다.
+
+## 소개
+갤러그의 향수를 느껴보자!
+끝없는 우주를 나아가면서 적을 무찔러 나가는 게임입니다.
+
+## 목차
+- [소개](#소개)
+- [기술 스택](#기술-스택)
+- [게임소개](#게임소개)
+- [참여 인원](#깃허브링크)
+
+## 기술 스택
+
+- Unity 버전: [2022.3.17f1]
+- C# 버전: [C#-17]
+- 팀 노션: [Notion](https://www.notion.so/e193b9df410b4432b2758f12d687f8cb)
+- 와이어프레임: [Figma](https://www.figma.com/board/V5nljnfyh8pMLzz7yOLxe8/Untitled?node-id=0-1&node-type=canvas&t=nM0Hf0zJCOf2Bv34-0) 
+- 발표 자료 & 프로젝트 기술 소개: [Figma](https://www.figma.com/board/V5nljnfyh8pMLzz7yOLxe8/1%EC%A1%B0-%ED%94%BC%EA%B7%B8%EB%A7%88?node-id=0-1&node-type=canvas&t=m7hKAkoG2PslU8iv-0)
+
+## 게임소개
+
+| 키   | 동작         |
+|------|--------------|
+| W    | 앞으로 이동  |
+| A    | 왼쪽으로 이동 |
+| S    | 뒤로 이동    |
+| D    | 오른쪽으로 이동 |
+| 사격 | 자동(auto) |
+
+총 4가지 종류의 적과 7가지 등장 패턴이 존재합니다.
+적과 우주 공간 사방에서 날아오는 총알을 피해서 하이스코어를 세우는 게임입니다.
+
+우주선(플레이어)은 총 3가지가 존재합니다.
+각 우주선 마다 총알 데미지와 속도가 다르므로 원하는 우주선을 골라주세요.
+
+특정 적을 물리치면 파워업 아이템이 생성되며, 해당 아이템 획득 시 총알이 강화됩니다.
+업그레이드 단게는 총 5단계까지 업그레이드가 가능합니다.
+
+## 참여 인원
+
+팀원들의 GitHub Link 입니다.
+
+[팀장]
+
+[김찬](https://github.com/moloch-kim)
+
+[팀원]
+
+[강민수](https://github.com/minsu454/minsu454.github.io)
+
+[정우석](https://github.com/yellow-redcard)
+
+[김동현](https://github.com/belfly1111)
+
+전세훈
