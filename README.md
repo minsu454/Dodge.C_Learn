@@ -15,7 +15,7 @@
 ## 기술 스택
 
 - Unity 버전: [2022.3.17f1]
-- C# 버전: [C#-17]
+- C# 버전: [C# 8.0]
 - 팀 노션: [Notion - 팀 노션](https://www.notion.so/e193b9df410b4432b2758f12d687f8cb)
 - 와이어프레임: [Figma - 와이어 프레임](https://www.figma.com/board/V5nljnfyh8pMLzz7yOLxe8/Untitled?node-id=0-1&node-type=canvas&t=nM0Hf0zJCOf2Bv34-0) 
 - 발표 자료 & 프로젝트 기술 소개: [Figma - 발표 자료](https://www.figma.com/board/V5nljnfyh8pMLzz7yOLxe8/1%EC%A1%B0-%ED%94%BC%EA%B7%B8%EB%A7%88?node-id=0-1&node-type=canvas&t=m7hKAkoG2PslU8iv-0)
